@@ -24,50 +24,125 @@
             </objects>
             <point key="canvasLocation" x="-1204" y="81"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tabbar View Controller-->
         <scene sceneID="uDs-4e-JR3">
             <objects>
-                <tabBarController id="w8m-gv-3Kr" sceneMemberID="viewController">
+                <tabBarController id="w8m-gv-3Kr" customClass="TabbarViewController" customModule="Gitramy" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="kHc-hH-3Q8"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Z2l-0n-vfR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="ePA-an-B2l" kind="relationship" relationship="viewControllers" id="ehX-fr-5Bc"/>
                         <segue destination="JOk-81-N2g" kind="relationship" relationship="viewControllers" id="f3g-ZV-qyO"/>
                         <segue destination="3pf-6i-c8H" kind="relationship" relationship="viewControllers" id="Noo-VL-6Kt"/>
+                        <segue destination="mt5-Ze-ALU" kind="relationship" relationship="viewControllers" id="sca-wr-ssi"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9bu-gP-vig" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="488" y="81"/>
         </scene>
+        <!--Chart-->
+        <scene sceneID="Hc5-dM-uqf">
+            <objects>
+                <viewController id="mt5-Ze-ALU" customClass="ChartViewController" customModule="Gitramy" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mgp-8N-V0E">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="m2P-Np-PqV">
+                                <rect key="frame" x="20" y="88" width="350" height="148.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오늘의 기여 : 5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NmG-M6-7uV">
+                                        <rect key="frame" x="0.0" y="0.0" width="350" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2Zj-gz-Pob">
+                                        <rect key="frame" x="0.0" y="20.5" width="350" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="350" id="O3L-PI-geg"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="2Zj-gz-Pob" secondAttribute="trailing" id="BJO-vC-wnW"/>
+                                    <constraint firstItem="2Zj-gz-Pob" firstAttribute="leading" secondItem="m2P-Np-PqV" secondAttribute="leading" id="aS9-4y-9Jr"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="rcQ-za-taI">
+                                <rect key="frame" x="29" y="277" width="350" height="320.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="저장소 순위" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TSb-MV-viU">
+                                        <rect key="frame" x="0.0" y="0.0" width="350" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AN3-oc-Le9">
+                                        <rect key="frame" x="0.0" y="20.5" width="350" height="300"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="350" id="0TJ-8K-e8R"/>
+                                            <constraint firstAttribute="height" constant="300" id="Y8B-aH-HKX"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="qrc-4t-xcR"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="qrc-4t-xcR" firstAttribute="trailing" secondItem="rcQ-za-taI" secondAttribute="trailing" constant="35" id="HHy-Ph-IX9"/>
+                            <constraint firstItem="qrc-4t-xcR" firstAttribute="trailing" secondItem="2Zj-gz-Pob" secondAttribute="trailing" constant="44" id="S38-vs-xcP"/>
+                            <constraint firstItem="m2P-Np-PqV" firstAttribute="leading" secondItem="qrc-4t-xcR" secondAttribute="leading" constant="20" id="YY1-Cc-3jr"/>
+                            <constraint firstItem="m2P-Np-PqV" firstAttribute="top" secondItem="qrc-4t-xcR" secondAttribute="top" id="mRp-U7-eNd"/>
+                            <constraint firstItem="qrc-4t-xcR" firstAttribute="bottom" secondItem="m2P-Np-PqV" secondAttribute="bottom" constant="576.5" id="u7K-gL-TSV"/>
+                            <constraint firstItem="rcQ-za-taI" firstAttribute="leading" secondItem="qrc-4t-xcR" secondAttribute="leading" constant="29" id="wNn-NO-u2B"/>
+                            <constraint firstItem="rcQ-za-taI" firstAttribute="top" secondItem="m2P-Np-PqV" secondAttribute="bottom" constant="40.5" id="yp8-1C-dH7"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Chart" image="chart.line.uptrend.xyaxis" catalog="system" id="NxQ-7E-q2n"/>
+                    <connections>
+                        <outlet property="contributionImageView" destination="2Zj-gz-Pob" id="PXJ-7G-sGN"/>
+                        <outlet property="lineChartView" destination="AN3-oc-Le9" id="NhJ-gH-uo4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Czh-DY-iE5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1208.6956521739132" y="79.6875"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="Gitramy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hvk-7s-88m">
-                                <rect key="frame" x="56" y="706" width="302" height="57"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hvk-7s-88m">
+                                <rect key="frame" x="56" y="706" width="302" height="56.5"/>
                                 <inset key="titleEdgeInsets" minX="-100" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <inset key="imageEdgeInsets" minX="-150" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="logo_github" title="깃허브로 시작하기">
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="18"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="LoginButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mob-z9-LcO"/>
+                                    <segue destination="w8m-gv-3Kr" kind="show" id="KKC-k6-qpd"/>
+                                </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4GC-GZ-ghH">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4GC-GZ-ghH">
                                 <rect key="frame" x="95" y="364" width="224" height="61"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timer" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="z5L-FW-5ec">
                                         <rect key="frame" x="0.0" y="0.5" width="224" height="19"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="원하는 시간대에 알림을 받고 하루에 한개의 커밋을 성공하세요!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFp-jj-gg4">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="원하는 시간대에 알림을 받고 하루에 한개의 커밋을 성공하세요!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="cFp-jj-gg4">
                                         <rect key="frame" x="0.0" y="20" width="224" height="41"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -78,8 +153,20 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="hvk-7s-88m" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="56" id="1Os-fc-CLf"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hvk-7s-88m" secondAttribute="trailing" constant="56" id="9iH-ZY-bVG"/>
+                            <constraint firstItem="4GC-GZ-ghH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="95" id="DEl-cs-6Wi"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="hvk-7s-88m" secondAttribute="bottom" constant="99.5" id="GSz-Oa-dKI"/>
+                            <constraint firstItem="4GC-GZ-ghH" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="276" id="Yxo-GC-Bi6"/>
+                            <constraint firstItem="hvk-7s-88m" firstAttribute="top" secondItem="cFp-jj-gg4" secondAttribute="bottom" constant="281" id="aGt-Dc-l7Q"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4GC-GZ-ghH" secondAttribute="trailing" constant="95" id="xef-h5-9hF"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zVv-f0-6cO"/>
+                    <connections>
+                        <outlet property="githubLoginButton" destination="hvk-7s-88m" id="Mx7-Jb-5Lc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -93,8 +180,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="N9M-AL-soM">
-                                <rect key="frame" x="87" y="77" width="240" height="640"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="N9M-AL-soM">
+                                <rect key="frame" x="87" y="130.5" width="240" height="640"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LV_1 깃린이" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Yo-nh-NRR">
                                         <rect key="frame" x="46" y="0.0" width="148.5" height="128"/>
@@ -128,6 +215,11 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ok6-bi-ehc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="N9M-AL-soM" firstAttribute="leading" secondItem="ok6-bi-ehc" secondAttribute="leading" constant="87" id="2mi-We-xnU"/>
+                            <constraint firstItem="N9M-AL-soM" firstAttribute="centerY" secondItem="ok6-bi-ehc" secondAttribute="centerY" id="5Iw-zh-gQp"/>
+                            <constraint firstItem="ok6-bi-ehc" firstAttribute="trailing" secondItem="N9M-AL-soM" secondAttribute="trailing" constant="87" id="jBV-vW-S5N"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="홈" image="house.fill" catalog="system" id="HJK-Ho-DSd"/>
                 </viewController>
@@ -173,57 +265,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vm8-vc-LzY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1297" y="799"/>
-        </scene>
-        <!--차트-->
-        <scene sceneID="8EV-mR-Mzd">
-            <objects>
-                <viewController id="ePA-an-B2l" customClass="TotalViewController" customModule="Gitramy" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Vxg-2f-G89">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Wo1-7x-VLj">
-                                <rect key="frame" x="20" y="64" width="101.5" height="20.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오늘의 기여 : 5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bEt-4r-Mhm">
-                                        <rect key="frame" x="0.0" y="0.0" width="101.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="RQ4-nW-5Si">
-                                <rect key="frame" x="16" y="288" width="94.5" height="20.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top-5 저장소" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="st1-Az-lJC">
-                                        <rect key="frame" x="0.0" y="0.0" width="94.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Ie5-dL-trw">
-                                <rect key="frame" x="20" y="604" width="93" height="20.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="언어사용 비율" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="549-93-0DA">
-                                        <rect key="frame" x="0.0" y="0.0" width="93" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="h3b-gg-5wd"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="차트" image="chart.line.uptrend.xyaxis" catalog="system" id="6xE-9s-xlG"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CoJ-xM-eLN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1268" y="81"/>
         </scene>
     </scenes>
     <resources>

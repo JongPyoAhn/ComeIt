@@ -1,0 +1,4 @@
+${PODS_ROOT}/Target Support Files/Pods-Gitramy/Pods-Gitramy-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Charts/Charts.framework
+${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework
+${BUILT_PRODUCTS_DIR}/SwiftSVG/SwiftSVG.framework
