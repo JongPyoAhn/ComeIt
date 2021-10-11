@@ -16,17 +16,18 @@ class ChartViewController: UIViewController, ChartViewDelegate {
     @IBOutlet weak var contributionImageView: UIImageView!
     
     @IBOutlet weak var repositoryChartView: LineChartView!
+    @IBOutlet weak var languageChart: BarChartView!
     
     //x축을 레파지토리 이름 받아오기
-    let repositoryNames = ["Jan", "Feb", "Mar", "Apr", "May"]
+    let repositoryNames = ["Algorithm", "mainProject", "subProject", "test", "test12"]
     
     //모든 레포지토리 데이터 받아와서 y축을 총커밋수
     let repositoryValues: [ChartDataEntry] = [
-        ChartDataEntry(x: 0, y: 20.0),
-        ChartDataEntry(x: 1, y: 30.0),
-        ChartDataEntry(x: 2, y: 40.0),
-        ChartDataEntry(x: 3, y: 45.0),
-        ChartDataEntry(x: 4, y: 50.0)
+        ChartDataEntry(x: 0, y: 50),
+        ChartDataEntry(x: 1, y: 30),
+        ChartDataEntry(x: 2, y: 20),
+        ChartDataEntry(x: 3, y: 60),
+        ChartDataEntry(x: 4, y: 40)
     ]
     
     let imageURL = URL(string: "https://ghchart.rshah.org/JongpyoAhn")
@@ -78,6 +79,7 @@ extension ChartViewController {
         yAxis.setLabelCount(repositoryValues.count, force: false) //왼쪽 y축 눈금의 수를 설정
         yAxis.labelTextColor = .white //왼쪽 y축 눈금의 색을 설정
         yAxis.axisLineColor = .white //왼쪽 y축 눈금선의 색을 설정
+        
         xAxis.labelPosition = .bottom //위에 있던 x축 눈금이 아래로 내려옴.
         xAxis.labelFont = .boldSystemFont(ofSize: 12) //x축 폰트 설정
         xAxis.setLabelCount(repositoryValues.count, force: true) //x축 레이블의 수를 설정
