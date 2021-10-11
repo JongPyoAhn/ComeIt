@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="AMq-Om-xc8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QaU-Sz-J1F">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
@@ -24,10 +24,10 @@
             </objects>
             <point key="canvasLocation" x="-1204" y="81"/>
         </scene>
-        <!--Tabbar View Controller-->
+        <!--Tab Bar Controller-->
         <scene sceneID="uDs-4e-JR3">
             <objects>
-                <tabBarController id="w8m-gv-3Kr" customClass="TabbarViewController" customModule="Gitramy" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="w8m-gv-3Kr" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="kHc-hH-3Q8"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Z2l-0n-vfR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -37,6 +37,7 @@
                     <connections>
                         <segue destination="JOk-81-N2g" kind="relationship" relationship="viewControllers" id="f3g-ZV-qyO"/>
                         <segue destination="3pf-6i-c8H" kind="relationship" relationship="viewControllers" id="Noo-VL-6Kt"/>
+                        <segue destination="AMq-Om-xc8" kind="relationship" relationship="viewControllers" id="GkY-8e-J39"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9bu-gP-vig" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -138,90 +139,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Czh-DY-iE5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2745" y="46"/>
+            <point key="canvasLocation" x="2362" y="46"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="PJD-AJ-v0Q">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZVL-wm-Ub0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <viewController id="qvQ-TG-u7G" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ejY-SZ-IWs">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1301"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RgZ-QF-piE">
-                                <rect key="frame" x="0.0" y="44" width="414" height="1223"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WN0-Rw-o0O">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1222"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cir-Be-1Yo">
-                                                <rect key="frame" x="186" y="80" width="42" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fwd-Lg-yTj">
-                                                <rect key="frame" x="186" y="353" width="42" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KHZ-ac-h1a">
-                                                <rect key="frame" x="186" y="1183" width="42" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="Cir-Be-1Yo" secondAttribute="trailing" constant="186" id="2GG-wD-8Ec"/>
-                                            <constraint firstItem="Cir-Be-1Yo" firstAttribute="leading" secondItem="WN0-Rw-o0O" secondAttribute="leading" constant="186" id="8ZE-5b-hl8"/>
-                                            <constraint firstItem="fwd-Lg-yTj" firstAttribute="top" secondItem="Cir-Be-1Yo" secondAttribute="bottom" constant="252" id="8x6-6M-Jhh"/>
-                                            <constraint firstItem="Cir-Be-1Yo" firstAttribute="top" secondItem="WN0-Rw-o0O" secondAttribute="top" constant="80" id="Hip-AY-pff"/>
-                                            <constraint firstAttribute="trailing" secondItem="fwd-Lg-yTj" secondAttribute="trailing" constant="186" id="MzK-V4-rXU"/>
-                                            <constraint firstItem="KHZ-ac-h1a" firstAttribute="leading" secondItem="WN0-Rw-o0O" secondAttribute="leading" constant="186" id="aNa-7J-6jE"/>
-                                            <constraint firstAttribute="width" constant="414" id="eJO-Qu-gL5"/>
-                                            <constraint firstItem="fwd-Lg-yTj" firstAttribute="leading" secondItem="WN0-Rw-o0O" secondAttribute="leading" constant="186" id="hVT-xT-D2X"/>
-                                            <constraint firstAttribute="bottom" secondItem="KHZ-ac-h1a" secondAttribute="bottom" constant="18" id="rkd-ar-GRx"/>
-                                            <constraint firstItem="KHZ-ac-h1a" firstAttribute="top" secondItem="fwd-Lg-yTj" secondAttribute="bottom" constant="809" id="t8V-7l-69o"/>
-                                            <constraint firstItem="Cir-Be-1Yo" firstAttribute="top" secondItem="WN0-Rw-o0O" secondAttribute="top" constant="80" id="tBV-WE-eMR"/>
-                                            <constraint firstAttribute="trailing" secondItem="KHZ-ac-h1a" secondAttribute="trailing" constant="186" id="zNt-0z-UNs"/>
-                                        </constraints>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="tBV-WE-eMR"/>
-                                            </mask>
-                                        </variation>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="WN0-Rw-o0O" firstAttribute="trailing" secondItem="Kge-1B-QWf" secondAttribute="trailing" id="5io-FB-3R9"/>
-                                    <constraint firstItem="WN0-Rw-o0O" firstAttribute="leading" secondItem="Kge-1B-QWf" secondAttribute="leading" id="NIm-GL-c2y"/>
-                                    <constraint firstItem="WN0-Rw-o0O" firstAttribute="top" secondItem="Kge-1B-QWf" secondAttribute="top" id="eUv-AW-yd0"/>
-                                    <constraint firstItem="WN0-Rw-o0O" firstAttribute="bottom" secondItem="Kge-1B-QWf" secondAttribute="bottom" id="eWB-uZ-L8e"/>
-                                    <constraint firstItem="WN0-Rw-o0O" firstAttribute="width" secondItem="lCW-uG-Lh3" secondAttribute="width" id="omz-3A-h7G"/>
-                                </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="Kge-1B-QWf"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="lCW-uG-Lh3"/>
-                            </scrollView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="k06-Wu-fh4"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="RgZ-QF-piE" firstAttribute="top" secondItem="k06-Wu-fh4" secondAttribute="top" id="FHO-ew-qzv"/>
-                            <constraint firstItem="RgZ-QF-piE" firstAttribute="trailing" secondItem="k06-Wu-fh4" secondAttribute="trailing" id="FnR-Nj-CPl"/>
-                            <constraint firstItem="RgZ-QF-piE" firstAttribute="bottom" secondItem="k06-Wu-fh4" secondAttribute="bottom" id="Uu8-lJ-kK6"/>
-                            <constraint firstItem="RgZ-QF-piE" firstAttribute="leading" secondItem="k06-Wu-fh4" secondAttribute="leading" id="t5y-ry-ZD1"/>
-                        </constraints>
-                    </view>
-                    <size key="freeformSize" width="414" height="1301"/>
-                </viewController>
-            </objects>
-            <point key="canvasLocation" x="2018.840579710145" y="71.316964285714278"/>
-        </scene>
-        <!--Chart View Controller-->
+        <!--통계-->
         <scene sceneID="gId-Zu-qt2">
             <objects>
                 <viewController id="AMq-Om-xc8" customClass="ChartViewController" customModule="Gitramy" customModuleProvider="target" sceneMemberID="viewController">
@@ -230,7 +150,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H4r-GQ-ABQ">
-                                <rect key="frame" x="20" y="64" width="374" height="882"/>
+                                <rect key="frame" x="20" y="108" width="374" height="789"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="41c-jH-LxW">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="1100"/>
@@ -317,6 +237,13 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="d33-S2-0cB"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="c6O-Ps-7uE"/>
                             </scrollView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FRl-g6-EI2">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="통계" id="6ta-76-bkP"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="w20-sK-nDf"/>
                         <color key="backgroundColor" systemColor="systemYellowColor"/>
@@ -327,16 +254,17 @@
                             <constraint firstItem="w20-sK-nDf" firstAttribute="bottom" secondItem="H4r-GQ-ABQ" secondAttribute="bottom" constant="20" id="xHb-eo-Kws"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="통계" image="chart.line.uptrend.xyaxis" catalog="system" id="iKe-fJ-zra"/>
                     <size key="freeformSize" width="414" height="1000"/>
                     <connections>
                         <outlet property="contributionImageView" destination="R1R-Xz-VgR" id="0cs-oI-Jz4"/>
-                        <outlet property="languageChart" destination="bRm-KB-cI2" id="suS-yM-H5d"/>
+                        <outlet property="languageChartView" destination="bRm-KB-cI2" id="Anh-2j-AL8"/>
                         <outlet property="repositoryChartView" destination="MIe-t2-tnE" id="NXe-QL-sTW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nEM-no-Rha" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1350.7246376811595" y="17.410714285714285"/>
+            <point key="canvasLocation" x="1235" y="59"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -450,10 +378,10 @@
             </objects>
             <point key="canvasLocation" x="487" y="799"/>
         </scene>
-        <!--알람-->
+        <!--푸시알림-->
         <scene sceneID="WLI-5c-JfS">
             <objects>
-                <tableViewController id="3pf-6i-c8H" sceneMemberID="viewController">
+                <tableViewController id="3pf-6i-c8H" customClass="AlarmViewController" customModule="Gitramy" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="BhB-Md-vVu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -462,7 +390,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <items>
-                                <navigationItem title="알람" id="qmz-YF-9Zr">
+                                <navigationItem title="푸시알림" id="qmz-YF-9Zr">
                                     <barButtonItem key="leftBarButtonItem" title="Item" image="minus" catalog="system" id="0Ch-VK-hXm"/>
                                     <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="t6S-Wx-eD8"/>
                                 </navigationItem>
@@ -483,7 +411,7 @@
                             <outlet property="delegate" destination="3pf-6i-c8H" id="O5a-YD-mpf"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="알람" image="alarm.fill" catalog="system" id="Nb6-aD-ebF"/>
+                    <tabBarItem key="tabBarItem" title="푸시알림" image="alarm.fill" catalog="system" id="Nb6-aD-ebF"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vm8-vc-LzY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
