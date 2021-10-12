@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		530F8629270B357500343BA1 /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F8628270B357500343BA1 /* ProgressViewController.swift */; };
+		5312A8B82715B65A0045F4B3 /* AddAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312A8B72715B65A0045F4B3 /* AddAlertViewController.swift */; };
 		539D41252714789500ED3606 /* AlarmTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539D41242714789500ED3606 /* AlarmTableViewController.swift */; };
 		539D4128271478A500ED3606 /* AlarmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539D4126271478A500ED3606 /* AlarmTableViewCell.swift */; };
 		539D4129271478A500ED3606 /* AlarmTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 539D4127271478A500ED3606 /* AlarmTableViewCell.xib */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		530F8628270B357500343BA1 /* ProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
+		5312A8B72715B65A0045F4B3 /* AddAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlertViewController.swift; sourceTree = "<group>"; };
 		539D41242714789500ED3606 /* AlarmTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTableViewController.swift; sourceTree = "<group>"; };
 		539D4126271478A500ED3606 /* AlarmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTableViewCell.swift; sourceTree = "<group>"; };
 		539D4127271478A500ED3606 /* AlarmTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlarmTableViewCell.xib; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				53A4483A270B215C000FA3C8 /* LoginViewController.swift */,
 				539D41242714789500ED3606 /* AlarmTableViewController.swift */,
 				539D4126271478A500ED3606 /* AlarmTableViewCell.swift */,
+				5312A8B72715B65A0045F4B3 /* AddAlertViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 			files = (
 				530F8629270B357500343BA1 /* ProgressViewController.swift in Sources */,
 				539D41252714789500ED3606 /* AlarmTableViewController.swift in Sources */,
+				5312A8B82715B65A0045F4B3 /* AddAlertViewController.swift in Sources */,
 				53A4483B270B215C000FA3C8 /* LoginViewController.swift in Sources */,
 				53A44837270B215C000FA3C8 /* AppDelegate.swift in Sources */,
 				53A44839270B215C000FA3C8 /* SceneDelegate.swift in Sources */,
