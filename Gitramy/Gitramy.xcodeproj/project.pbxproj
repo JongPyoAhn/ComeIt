@@ -18,6 +18,7 @@
 		53A44840270B215D000FA3C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53A4483F270B215D000FA3C8 /* Assets.xcassets */; };
 		53A44843270B215D000FA3C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53A44841270B215D000FA3C8 /* LaunchScreen.storyboard */; };
 		53A4484D270B33CB000FA3C8 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A4484C270B33CB000FA3C8 /* ChartViewController.swift */; };
+		53AD614C27151587001E51B7 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53AD614B27151587001E51B7 /* Alert.swift */; };
 		F78F13B3F2BCD74FB476408D /* Pods_Gitramy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC7A5797E0FACA191DD89636 /* Pods_Gitramy.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		53A44842270B215D000FA3C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		53A44844270B215D000FA3C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		53A4484C270B33CB000FA3C8 /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
+		53AD614B27151587001E51B7 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		89B8B0F155CFD623C83CFA29 /* Pods-Gitramy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gitramy.release.xcconfig"; path = "Target Support Files/Pods-Gitramy/Pods-Gitramy.release.xcconfig"; sourceTree = "<group>"; };
 		B5F318ABC36BE18E047FF97D /* Pods-Gitramy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gitramy.debug.xcconfig"; path = "Target Support Files/Pods-Gitramy/Pods-Gitramy.debug.xcconfig"; sourceTree = "<group>"; };
 		EC7A5797E0FACA191DD89636 /* Pods_Gitramy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gitramy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				530F862A270B358000343BA1 /* ViewController */,
+				53AD614A27151572001E51B7 /* Model */,
 				539D4127271478A500ED3606 /* AlarmTableViewCell.xib */,
 				53A4483C270B215C000FA3C8 /* Main.storyboard */,
 				53A44836270B215C000FA3C8 /* AppDelegate.swift */,
@@ -95,6 +98,14 @@
 				53A44844270B215D000FA3C8 /* Info.plist */,
 			);
 			path = Gitramy;
+			sourceTree = "<group>";
+		};
+		53AD614A27151572001E51B7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				53AD614B27151587001E51B7 /* Alert.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		6E8BAC81C53A991F4EF3E44F /* Pods */ = {
@@ -236,6 +247,7 @@
 				53A44837270B215C000FA3C8 /* AppDelegate.swift in Sources */,
 				53A44839270B215C000FA3C8 /* SceneDelegate.swift in Sources */,
 				539D4128271478A500ED3606 /* AlarmTableViewCell.swift in Sources */,
+				53AD614C27151587001E51B7 /* Alert.swift in Sources */,
 				53A4484D270B33CB000FA3C8 /* ChartViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
