@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QaU-Sz-J1F">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -172,7 +173,7 @@
         <!--Add Alert View Controller-->
         <scene sceneID="jo9-sL-JGQ">
             <objects>
-                <viewController id="V6r-dn-7DZ" customClass="AddAlertViewController" customModule="Gitramy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="AddAlertViewController" storyboardIdentifier="AddAlertViewController" id="V6r-dn-7DZ" customClass="AddAlertViewController" customModule="Gitramy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wO9-C6-POk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -181,7 +182,7 @@
                                 <rect key="frame" x="286" y="148" width="116" height="51"/>
                                 <locale key="locale" localeIdentifier="ko_KR"/>
                             </datePicker>
-                            <navigationBar contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EUa-G5-vzX">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EUa-G5-vzX">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
                                     <navigationItem title="알림추가" id="pzd-JV-w8F">
@@ -213,8 +214,11 @@
                             <constraint firstItem="hGb-iR-uMR" firstAttribute="leading" secondItem="S0S-WZ-FPN" secondAttribute="leading" constant="33" id="BT7-OF-Zsw"/>
                             <constraint firstItem="AVD-hJ-jH3" firstAttribute="leading" secondItem="hGb-iR-uMR" secondAttribute="trailing" constant="223" id="VYx-AG-GuL"/>
                             <constraint firstItem="S0S-WZ-FPN" firstAttribute="trailing" secondItem="AVD-hJ-jH3" secondAttribute="trailing" constant="12" id="bRb-ES-0TD"/>
+                            <constraint firstItem="EUa-G5-vzX" firstAttribute="top" secondItem="S0S-WZ-FPN" secondAttribute="top" id="ctz-sr-pQ6"/>
                             <constraint firstItem="S0S-WZ-FPN" firstAttribute="bottom" secondItem="hGb-iR-uMR" secondAttribute="bottom" constant="678" id="fP1-sL-xD9"/>
+                            <constraint firstItem="EUa-G5-vzX" firstAttribute="trailing" secondItem="S0S-WZ-FPN" secondAttribute="trailing" id="iIL-Hk-ccx"/>
                             <constraint firstItem="hGb-iR-uMR" firstAttribute="top" secondItem="EUa-G5-vzX" secondAttribute="bottom" constant="75" id="kQD-sB-Qau"/>
+                            <constraint firstItem="EUa-G5-vzX" firstAttribute="leading" secondItem="S0S-WZ-FPN" secondAttribute="leading" id="tLw-xl-e4z"/>
                         </constraints>
                     </view>
                     <connections>
@@ -340,7 +344,7 @@
         <!--푸시알림-->
         <scene sceneID="WLI-5c-JfS">
             <objects>
-                <tableViewController id="3pf-6i-c8H" customClass="AlarmViewController" customModule="Gitramy" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="3pf-6i-c8H" customClass="AlarmTableViewController" customModule="Gitramy" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="BhB-Md-vVu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -351,7 +355,11 @@
                             <items>
                                 <navigationItem title="푸시알림" id="qmz-YF-9Zr">
                                     <barButtonItem key="leftBarButtonItem" title="Item" image="minus" catalog="system" id="0Ch-VK-hXm"/>
-                                    <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="t6S-Wx-eD8"/>
+                                    <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="t6S-Wx-eD8">
+                                        <connections>
+                                            <action selector="addAlertAction:" destination="3pf-6i-c8H" id="MBm-3T-kSJ"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </navigationItem>
                             </items>
                         </navigationBar>

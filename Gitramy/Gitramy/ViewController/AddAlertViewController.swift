@@ -9,6 +9,8 @@ import UIKit
 
 class AddAlertViewController: UIViewController {
 
+    var pickedDate: ((_ date: Date) -> Void)? //일단 함수형인데, 받자마자 리턴하는느낌?
+    
     @IBOutlet weak var datePicker: UIDatePicker!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +25,7 @@ class AddAlertViewController: UIViewController {
     }
     
     @IBAction func saveButtonTabbed(_ sender: Any) {
-        
+        pickedDate?(datePicker.date)
+        self.dismiss(animated: true, completion: nil)
     }
 }
