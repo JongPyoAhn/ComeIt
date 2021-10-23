@@ -6,13 +6,29 @@
 //
 
 import UIKit
+import NotificationCenter
+import UserNotifications
+import Firebase
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
-
+    let userNotificationCenter = UNUserNotificationCenter.current()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        FirebaseApp.configure()
+        UNUserNotificationCenter.current().delegate = self
+        
+        //사용자승인 받기위함.
+        let authorizationOptions = UNAuthorizationOptions(arrayLiteral: [.alert, .badge, .sound])
+        userNotificationCenter.requestAuthorization(options: authorizationOptions) { _ , error in
+            if let error = error {
+                print("Error: notification authorization request \(error.localizedDescription)")
+            }
+        }
+        
+        
         // Override point for customization after application launch.
         return true
     }
@@ -34,3 +50,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate {
+    //노티피케이션 센터를 보내기전에 어떠한 핸들링을 해줄것인지.
+    //banner, list, badge, sound
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.banner, .list, .badge, .sound])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        completionHandler()
+    }
+    
+    
+}

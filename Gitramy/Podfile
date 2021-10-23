@@ -7,6 +7,8 @@ target 'Gitramy' do
 pod 'Kingfisher', '~> 7.0'
 pod 'SwiftSVG', '~> 2.0'
 pod 'Charts'
+pod 'Firebase/Analytics'
+pod 'Firebase/Auth'
   # Pods for Gitramy
 
 end
