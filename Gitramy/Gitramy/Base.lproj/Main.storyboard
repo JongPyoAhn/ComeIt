@@ -75,6 +75,11 @@
                                                         </constraints>
                                                     </imageView>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="R1R-Xz-VgR" firstAttribute="leading" secondItem="JxM-k2-ERl" secondAttribute="leading" id="611-uU-DJu"/>
+                                                    <constraint firstAttribute="trailing" secondItem="R1R-Xz-VgR" secondAttribute="trailing" id="Atx-9j-JYm"/>
+                                                    <constraint firstItem="R1R-Xz-VgR" firstAttribute="top" secondItem="RVQ-6t-C0W" secondAttribute="bottom" constant="1" id="nkB-iq-JWC"/>
+                                                </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fzh-k5-GzJ">
                                                 <rect key="frame" x="0.0" y="256" width="350" height="321.5"/>

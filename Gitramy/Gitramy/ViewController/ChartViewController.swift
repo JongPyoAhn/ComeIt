@@ -54,8 +54,14 @@ class ChartViewController: UIViewController, ChartViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let fistBump = UIView(SVGURL: imageURL!)
-        self.contributionImageView.addSubview(fistBump)
+        
+        
+        let data = try! Data(contentsOf: imageURL!)
+        self.contributionImageView.image = UIImage(data: data)
+        
+//        let fistBump = UIView(SVGURL: imageURL!)
+//        
+//        self.contributionImageView.addSubview(fistBump)
     }
 }
 

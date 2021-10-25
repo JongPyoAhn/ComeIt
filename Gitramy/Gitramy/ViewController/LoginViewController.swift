@@ -23,24 +23,24 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func LoginButtonTapped(_ sender: Any) {
-        provider.getCredentialWith(nil) { credential, error in
-            if error != nil {
-                print("getCredential Error : \(error!.localizedDescription)")
-            }
-            
-            if credential != nil {
-                Auth().signIn(with: credential) { authResult, error in
-                    if error != nil {
-                        print("sign In Error : \(error.localizedDescription)")
-                    }
-                    
-                    guard let oauthCredential = authResult.credential as? OAuthCredential else {return}
-                }
-            }
-            
-            
-            
-        }
+//        provider.getCredentialWith(nil) { credential, error in
+//            if error != nil {
+//                print("getCredential Error : \(error!.localizedDescription)")
+//            }
+//
+//            if credential != nil {
+//                Auth().signIn(with: credential) { authResult, error in
+//                    if error != nil {
+//                        print("sign In Error : \(error.localizedDescription)")
+//                    }
+//
+//                    guard let oauthCredential = authResult.credential as? OAuthCredential else {return}
+//                }
+//            }
+//
+//
+//
+//        }
         
     }
     
