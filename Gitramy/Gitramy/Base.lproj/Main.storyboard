@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QaU-Sz-J1F">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QaU-Sz-J1F">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -293,7 +293,7 @@
         <!--홈-->
         <scene sceneID="iy1-nl-4fl">
             <objects>
-                <viewController id="JOk-81-N2g" sceneMemberID="viewController">
+                <viewController id="JOk-81-N2g" customClass="HomeViewController" customModule="Gitramy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="k9z-e7-oWA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -330,12 +330,33 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pg6-jT-d0L">
+                                <rect key="frame" x="214" y="88" width="180" height="46"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="***님 환영합니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gmk-ka-ebl">
+                                        <rect key="frame" x="20" y="11" width="140" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="Gmk-ka-ebl" firstAttribute="centerX" secondItem="Pg6-jT-d0L" secondAttribute="centerX" id="6uG-jb-4FW"/>
+                                    <constraint firstItem="Gmk-ka-ebl" firstAttribute="centerY" secondItem="Pg6-jT-d0L" secondAttribute="centerY" id="uWE-uw-AxF"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ok6-bi-ehc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="N9M-AL-soM" firstAttribute="leading" secondItem="ok6-bi-ehc" secondAttribute="leading" constant="87" id="2mi-We-xnU"/>
                             <constraint firstItem="N9M-AL-soM" firstAttribute="centerY" secondItem="ok6-bi-ehc" secondAttribute="centerY" id="5Iw-zh-gQp"/>
+                            <constraint firstItem="Pg6-jT-d0L" firstAttribute="top" secondItem="ok6-bi-ehc" secondAttribute="top" id="6m2-GO-GzV"/>
+                            <constraint firstItem="ok6-bi-ehc" firstAttribute="bottom" secondItem="Pg6-jT-d0L" secondAttribute="bottom" constant="679" id="6xv-N6-FfF"/>
+                            <constraint firstItem="ok6-bi-ehc" firstAttribute="bottom" secondItem="N9M-AL-soM" secondAttribute="bottom" constant="42.5" id="BF5-z6-aIX"/>
+                            <constraint firstItem="Pg6-jT-d0L" firstAttribute="leading" secondItem="ok6-bi-ehc" secondAttribute="leading" constant="214" id="W3r-UG-lmX"/>
+                            <constraint firstItem="ok6-bi-ehc" firstAttribute="trailing" secondItem="Pg6-jT-d0L" secondAttribute="trailing" constant="20" id="bAz-hd-m89"/>
                             <constraint firstItem="ok6-bi-ehc" firstAttribute="trailing" secondItem="N9M-AL-soM" secondAttribute="trailing" constant="87" id="jBV-vW-S5N"/>
                         </constraints>
                     </view>

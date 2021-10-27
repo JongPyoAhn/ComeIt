@@ -9,6 +9,8 @@ pod 'SwiftSVG', '~> 2.0'
 pod 'Charts'
 pod 'Firebase/Analytics'
 pod 'Firebase/Auth'
+pod 'RxSwift' , '6.2.0'
+pod 'RxCocoa' , '6.2.0'
   # Pods for Gitramy
 
 end

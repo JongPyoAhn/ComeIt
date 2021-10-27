@@ -100,6 +100,12 @@ PODS:
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
   - PromisesObjC (2.0.0)
+  - RxCocoa (6.2.0):
+    - RxRelay (= 6.2.0)
+    - RxSwift (= 6.2.0)
+  - RxRelay (6.2.0):
+    - RxSwift (= 6.2.0)
+  - RxSwift (6.2.0)
   - SwiftSVG (2.3.2)
 
 DEPENDENCIES:
@@ -107,6 +113,8 @@ DEPENDENCIES:
   - Firebase/Analytics
   - Firebase/Auth
   - Kingfisher (~> 7.0)
+  - RxCocoa (= 6.2.0)
+  - RxSwift (= 6.2.0)
   - SwiftSVG (~> 2.0)
 
 SPEC REPOS:
@@ -125,6 +133,9 @@ SPEC REPOS:
     - Kingfisher
     - nanopb
     - PromisesObjC
+    - RxCocoa
+    - RxRelay
+    - RxSwift
     - SwiftSVG
 
 SPEC CHECKSUMS:
@@ -142,8 +153,11 @@ SPEC CHECKSUMS:
   Kingfisher: 5efc54fec3980f92354898532e562cc17f31efb4
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
+  RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
+  RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
+  RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
   SwiftSVG: ca7f64e403b8ea7ea8eba8c823b83ba4a059834c
 
-PODFILE CHECKSUM: 80d7b7c65368a9e5ff032bdc9ad6f6ddfca9689d
+PODFILE CHECKSUM: bf824336faf3fbae81b1896f23ee0d2ff48d7225
 
 COCOAPODS: 1.11.2
