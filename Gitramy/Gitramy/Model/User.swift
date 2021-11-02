@@ -9,10 +9,10 @@ import UIKit
 
 
 struct User : Decodable{
-    let name: String
-    let company: String
-    let reposPublic: Int
-    let reposPrivate: Int
+    var name: String
+    var company: String
+    var reposPublic: Int
+    var reposPrivate: Int
     
     enum codingkeys: String, CodingKey {
         case company
