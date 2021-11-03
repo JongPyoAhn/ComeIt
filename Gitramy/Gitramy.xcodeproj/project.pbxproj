@@ -26,6 +26,7 @@
 		53BABC122723D51D008C7F50 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53BABC112723D51D008C7F50 /* GoogleService-Info.plist */; };
 		53FC5D14272809E9002F368C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FC5D13272809E9002F368C /* HomeViewController.swift */; };
 		53FC5D1627280C66002F368C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FC5D1527280C66002F368C /* User.swift */; };
+		53FC8CBD27322B5A00FAEC43 /* Commit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FC8CBC27322B5A00FAEC43 /* Commit.swift */; };
 		F78F13B3F2BCD74FB476408D /* Pods_Gitramy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC7A5797E0FACA191DD89636 /* Pods_Gitramy.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		53BABC112723D51D008C7F50 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		53FC5D13272809E9002F368C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		53FC5D1527280C66002F368C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		53FC8CBC27322B5A00FAEC43 /* Commit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commit.swift; sourceTree = "<group>"; };
 		89B8B0F155CFD623C83CFA29 /* Pods-Gitramy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gitramy.release.xcconfig"; path = "Target Support Files/Pods-Gitramy/Pods-Gitramy.release.xcconfig"; sourceTree = "<group>"; };
 		B5F318ABC36BE18E047FF97D /* Pods-Gitramy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gitramy.debug.xcconfig"; path = "Target Support Files/Pods-Gitramy/Pods-Gitramy.debug.xcconfig"; sourceTree = "<group>"; };
 		EC7A5797E0FACA191DD89636 /* Pods_Gitramy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gitramy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +126,7 @@
 				53AD614B27151587001E51B7 /* Alert.swift */,
 				53FC5D1527280C66002F368C /* User.swift */,
 				53B280AE2731594200CFD634 /* Repository.swift */,
+				53FC8CBC27322B5A00FAEC43 /* Commit.swift */,
 				5331729227281C4D0021BFB3 /* LoginManager.swift */,
 			);
 			path = Model;
@@ -174,7 +177,7 @@
 		53A4482B270B215C000FA3C8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = 1;
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1300;
 				TargetAttributes = {
@@ -263,6 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53FC8CBD27322B5A00FAEC43 /* Commit.swift in Sources */,
 				533B7B13271D0C98002A1359 /* UNNotificationCenter.swift in Sources */,
 				539D41252714789500ED3606 /* AlarmTableViewController.swift in Sources */,
 				5312A8B82715B65A0045F4B3 /* AddAlertViewController.swift in Sources */,
@@ -444,7 +448,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -474,7 +478,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

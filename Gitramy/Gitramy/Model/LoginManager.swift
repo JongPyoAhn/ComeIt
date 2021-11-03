@@ -158,7 +158,58 @@ class LoginManager{
     
     }
 
- 
+    func fetchCommit(_ name: String,_ repository: String ,completion: @escaping ([Commit])->Void){
+        Observable.just(name)
+            .map { name -> URLRequest  in
+                let url = URL(string: "https://api.github.com/repos/\(name)/\(repository)/stats/commit_activity")!
+                var request = URLRequest(url: url)
+                request.httpMethod = "GET"
+                request.addValue("token \(self.userAccessToken!)", forHTTPHeaderField: "Authorization")//헤더추가
+                request.addValue("application/vnd.github.v3+json", forHTTPHeaderField: "Accept")//헤더추가
+                return request
+            }
+            .flatMap { request -> Observable<(response: HTTPURLResponse, data: Data)> in
+                return URLSession.shared.rx.response(request: request)
+            }
+            .filter { responds, _ in
+                return 200..<300 ~= responds.statusCode
+            }
+            .map { _, data -> [[String:Any]] in
+                guard let json = try? JSONSerialization.jsonObject(with: data, options: []),
+                      let result = json as? [[String: Any]] else {
+                          return []
+                      }
+                return result
+            }
+            .filter { result in
+                result.count > 0
+            }
+            .map { objects in
+                return objects.compactMap { dic -> Commit? in
+                    
+                    guard let week = dic["week"] as? Int,
+                          let days = dic["days"] as? [Int]
+                    else{ return nil}
+                    
+                    return Commit(week: week, days: days)
+                }
+            }
+            .subscribe(onNext: {commits in
+               
+                DispatchQueue.main.async {
+                    completion(commits)
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        
+        
+    
+    }
+    
+    
+    
+    
 }
 
 

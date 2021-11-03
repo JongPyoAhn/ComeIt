@@ -49,11 +49,11 @@
             <objects>
                 <viewController id="AMq-Om-xc8" customClass="ChartViewController" customModule="Gitramy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YkS-aI-Csb">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1002"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H4r-GQ-ABQ">
-                                <rect key="frame" x="20" y="64" width="374" height="833"/>
+                                <rect key="frame" x="20" y="64" width="374" height="835"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="41c-jH-LxW">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="1100"/>
@@ -163,7 +163,7 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="통계" image="chart.line.uptrend.xyaxis" catalog="system" id="iKe-fJ-zra"/>
-                    <size key="freeformSize" width="414" height="1000"/>
+                    <size key="freeformSize" width="414" height="1002"/>
                     <connections>
                         <outlet property="contributionImageView" destination="R1R-Xz-VgR" id="0cs-oI-Jz4"/>
                         <outlet property="languageChartView" destination="bRm-KB-cI2" id="Anh-2j-AL8"/>
@@ -172,7 +172,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nEM-no-Rha" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1235" y="59"/>
+            <point key="canvasLocation" x="1234.7826086956522" y="59.598214285714285"/>
         </scene>
         <!--Add Alert View Controller-->
         <scene sceneID="jo9-sL-JGQ">
@@ -297,23 +297,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="VKq-4x-Oqr">
-                                <rect key="frame" x="20" y="54" width="374" height="268"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="VKq-4x-Oqr">
+                                <rect key="frame" x="20" y="54" width="374" height="208.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="***님 환영합니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gmk-ka-ebl">
-                                        <rect key="frame" x="0.0" y="0.0" width="140" height="89.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="140" height="69.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="소속 : 인하공업전문대학" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X6F-9M-AdL">
-                                        <rect key="frame" x="0.0" y="89.5" width="188" height="89"/>
+                                        <rect key="frame" x="0.0" y="69.5" width="188" height="69.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="총 레포지토리 수 : 00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ae8-GH-5hm">
-                                        <rect key="frame" x="0.0" y="178.5" width="170" height="89.5"/>
+                                        <rect key="frame" x="0.0" y="139" width="170" height="69.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -321,28 +321,33 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="pPV-4O-bxs">
-                                <rect key="frame" x="87" y="322" width="240" height="391"/>
+                                <rect key="frame" x="87" y="263.5" width="240" height="450.5"/>
                                 <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="저장소를 선택하세요." borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xNU-mr-DLg">
+                                        <rect key="frame" x="3" y="0.0" width="234" height="39.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오늘의 커밋 수" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XOh-zg-Wf3">
-                                        <rect key="frame" x="49.5" y="0.0" width="141" height="30"/>
+                                        <rect key="frame" x="49.5" y="59.5" width="141" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uHc-Lt-K4G">
-                                        <rect key="frame" x="0.0" y="50" width="240" height="209.5"/>
+                                        <rect key="frame" x="0.0" y="109.5" width="240" height="209.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="240" id="hfL-Xn-n7T"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?? 번" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxh-N7-Kbr">
-                                        <rect key="frame" x="65" y="279.5" width="110" height="60"/>
+                                        <rect key="frame" x="65" y="339" width="110" height="60"/>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="50"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="빨리 커밋하세요!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b5j-ix-SlQ">
-                                        <rect key="frame" x="31" y="359.5" width="178" height="31.5"/>
+                                        <rect key="frame" x="31" y="419" width="178" height="31.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -355,19 +360,21 @@
                         <constraints>
                             <constraint firstItem="VKq-4x-Oqr" firstAttribute="top" secondItem="ok6-bi-ehc" secondAttribute="top" constant="10" id="4TE-XK-poc"/>
                             <constraint firstItem="VKq-4x-Oqr" firstAttribute="leading" secondItem="ok6-bi-ehc" secondAttribute="leading" constant="20" id="9bW-jj-THt"/>
-                            <constraint firstItem="ok6-bi-ehc" firstAttribute="bottom" secondItem="pPV-4O-bxs" secondAttribute="bottom" constant="100" id="E4B-wr-1kf"/>
+                            <constraint firstItem="ok6-bi-ehc" firstAttribute="bottom" secondItem="pPV-4O-bxs" secondAttribute="bottom" constant="99" id="E4B-wr-1kf"/>
                             <constraint firstItem="pPV-4O-bxs" firstAttribute="leading" secondItem="ok6-bi-ehc" secondAttribute="leading" constant="87" id="PpR-no-Jpo"/>
-                            <constraint firstItem="pPV-4O-bxs" firstAttribute="top" secondItem="VKq-4x-Oqr" secondAttribute="bottom" id="S9m-8k-wKT"/>
+                            <constraint firstItem="pPV-4O-bxs" firstAttribute="top" secondItem="VKq-4x-Oqr" secondAttribute="bottom" constant="1" id="S9m-8k-wKT"/>
                             <constraint firstItem="ok6-bi-ehc" firstAttribute="trailing" secondItem="pPV-4O-bxs" secondAttribute="trailing" constant="87" id="VXm-7Q-9Gg"/>
                             <constraint firstItem="ok6-bi-ehc" firstAttribute="trailing" secondItem="VKq-4x-Oqr" secondAttribute="trailing" constant="20" id="qTu-R1-9hn"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="홈" image="house.fill" catalog="system" id="HJK-Ho-DSd"/>
                     <connections>
+                        <outlet property="commitCountLabel" destination="fxh-N7-Kbr" id="pAI-vz-ngB"/>
                         <outlet property="companyLabel" destination="X6F-9M-AdL" id="NET-qJ-qB2"/>
                         <outlet property="levelImage" destination="uHc-Lt-K4G" id="Am3-gy-Q0N"/>
                         <outlet property="nameLabel" destination="Gmk-ka-ebl" id="qac-cS-vy5"/>
                         <outlet property="numOfRepository" destination="Ae8-GH-5hm" id="usA-aW-Zm2"/>
+                        <outlet property="repositoryPicker" destination="xNU-mr-DLg" id="31q-Nu-ygA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IRr-df-Ke4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
