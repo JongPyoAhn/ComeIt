@@ -346,7 +346,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="빨리 커밋하세요!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b5j-ix-SlQ">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="빨리 커밋하세요!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="b5j-ix-SlQ">
                                         <rect key="frame" x="31" y="419" width="178" height="31.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                         <nil key="textColor"/>
@@ -357,6 +357,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ok6-bi-ehc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="VKq-4x-Oqr" firstAttribute="top" secondItem="ok6-bi-ehc" secondAttribute="top" constant="10" id="4TE-XK-poc"/>
                             <constraint firstItem="VKq-4x-Oqr" firstAttribute="leading" secondItem="ok6-bi-ehc" secondAttribute="leading" constant="20" id="9bW-jj-THt"/>
@@ -366,9 +367,13 @@
                             <constraint firstItem="ok6-bi-ehc" firstAttribute="trailing" secondItem="pPV-4O-bxs" secondAttribute="trailing" constant="87" id="VXm-7Q-9Gg"/>
                             <constraint firstItem="ok6-bi-ehc" firstAttribute="trailing" secondItem="VKq-4x-Oqr" secondAttribute="trailing" constant="20" id="qTu-R1-9hn"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="w8h-Kk-s4w" appends="YES" id="md6-lb-i05"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="홈" image="house.fill" catalog="system" id="HJK-Ho-DSd"/>
                     <connections>
+                        <outlet property="commentLabel" destination="b5j-ix-SlQ" id="mNt-So-o1V"/>
                         <outlet property="commitCountLabel" destination="fxh-N7-Kbr" id="pAI-vz-ngB"/>
                         <outlet property="companyLabel" destination="X6F-9M-AdL" id="NET-qJ-qB2"/>
                         <outlet property="levelImage" destination="uHc-Lt-K4G" id="Am3-gy-Q0N"/>
@@ -378,6 +383,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IRr-df-Ke4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="w8h-Kk-s4w">
+                    <connections>
+                        <action selector="backgroundTapped:" destination="JOk-81-N2g" id="L4v-tI-bDr"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="487" y="799"/>
         </scene>

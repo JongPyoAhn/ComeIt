@@ -10,6 +10,7 @@ import UIKit
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var commitCountLabel: UILabel!
+    @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var repositoryPicker: UITextField!
     @IBOutlet weak var numOfRepository: UILabel!
     @IBOutlet weak var companyLabel: UILabel!
@@ -51,6 +52,10 @@ class HomeViewController: UIViewController {
         
     }
     
+    @IBAction func backgroundTapped(_ sender: Any) {
+        //픽커뷰에서 안돼고 텍스트필드에 적용하니까 된다.
+        repositoryPicker.resignFirstResponder()
+    }
     
     
 
@@ -80,9 +85,16 @@ extension HomeViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicke
             guard let self = self else {return}
             
             print(commits.last!)
-            self.latestDayOfCommit = commits.last!.days[Int(self.getNowDay())!]
+            self.latestDayOfCommit = commits.last!.days[Int(self.getNowDay())! - 1]
+            print(commits.last!.days[Int(self.getNowDay())! - 1])
             print(self.latestDayOfCommit)
+            
             self.commitCountLabel.text = "\(self.latestDayOfCommit)번!!"
+            if self.latestDayOfCommit >= 1{
+                self.commentLabel.text = "😍성공하셨습니다😍"
+            }else{
+                self.commentLabel.text = "🥺오늘은 안하실건가요?🥺"
+            }
         }
     }
     
