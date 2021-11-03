@@ -289,35 +289,6 @@
             </objects>
             <point key="canvasLocation" x="-320" y="81"/>
         </scene>
-        <!--Start View Controller-->
-        <scene sceneID="tW6-vL-xOd">
-            <objects>
-                <viewController storyboardIdentifier="StartViewController" id="kMR-Ba-DWV" customClass="StartViewController" customModule="Gitramy" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="sjI-yD-v3G">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4CX-Z5-KWS">
-                                <rect key="frame" x="71" y="648" width="275" height="62"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="깃라미 시작하기">
-                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="40"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="startButtonTapped:" destination="kMR-Ba-DWV" eventType="touchUpInside" id="asW-4q-pS5"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="y77-oA-f2s"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="zNp-l5-WSg"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FQq-3m-nrd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-320" y="799"/>
-        </scene>
         <!--홈-->
         <scene sceneID="iy1-nl-4fl">
             <objects>

@@ -8,5 +8,12 @@
 import UIKit
 
 struct Repository: Decodable{
-    var url: String
+    var id: Int
+    var name: String
+    var full_name: String
+    
+    
+    enum codingKeys: String, CodingKey {
+        case id, name, full_name
+    }
 }
