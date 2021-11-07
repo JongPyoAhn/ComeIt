@@ -49,6 +49,7 @@ PODS:
     - GoogleUtilities/Environment (~> 7.4)
     - GoogleUtilities/UserDefaults (~> 7.4)
     - PromisesObjC (< 3.0, >= 1.2)
+  - Gifu (3.3.1)
   - GoogleAppMeasurement (8.8.0):
     - GoogleAppMeasurement/AdIdSupport (= 8.8.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.4)
@@ -112,6 +113,7 @@ DEPENDENCIES:
   - Charts
   - Firebase/Analytics
   - Firebase/Auth
+  - Gifu
   - Kingfisher (~> 7.0)
   - RxCocoa (= 6.2.0)
   - RxSwift (= 6.2.0)
@@ -126,6 +128,7 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseInstallations
+    - Gifu
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleUtilities
@@ -146,6 +149,7 @@ SPEC CHECKSUMS:
   FirebaseCore: 98b29e3828f0a53651c363937a7f7d92a19f1ba2
   FirebaseCoreDiagnostics: fe77f42da6329d6d83d21fd9d621a6b704413bfc
   FirebaseInstallations: 2563cb18a723ef9c6ef18318a49519b75dce613c
+  Gifu: 416d4e38c4c2fed012f019e0a1d3ffcb58e5b842
   GoogleAppMeasurement: 5ba1164e3c844ba84272555e916d0a6d3d977e91
   GoogleDataTransport: 629c20a4d363167143f30ea78320d5a7eb8bd940
   GoogleUtilities: 684ee790a24f73ebb2d1d966e9711c203f2a4237
@@ -158,6 +162,6 @@ SPEC CHECKSUMS:
   RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
   SwiftSVG: ca7f64e403b8ea7ea8eba8c823b83ba4a059834c
 
-PODFILE CHECKSUM: bf824336faf3fbae81b1896f23ee0d2ff48d7225
+PODFILE CHECKSUM: a7652174ce072bac69304d170d17dba1eb3cbdb0
 
 COCOAPODS: 1.11.2

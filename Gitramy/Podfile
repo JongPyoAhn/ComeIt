@@ -11,6 +11,7 @@ pod 'Firebase/Analytics'
 pod 'Firebase/Auth'
 pod 'RxSwift' , '6.2.0'
 pod 'RxCocoa' , '6.2.0'
+pod 'Gifu'
   # Pods for Gitramy
 
 end

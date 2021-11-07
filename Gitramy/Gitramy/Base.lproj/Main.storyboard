@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QaU-Sz-J1F">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BWG-b4-tXX">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
@@ -289,6 +289,33 @@
             </objects>
             <point key="canvasLocation" x="-320" y="81"/>
         </scene>
+        <!--Loading View Controller-->
+        <scene sceneID="DF5-4y-klz">
+            <objects>
+                <viewController storyboardIdentifier="LoadingViewController" id="BWG-b4-tXX" customClass="LoadingViewController" customModule="Gitramy" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7qL-a4-vJc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="브론즈" translatesAutoresizingMaskIntoConstraints="NO" id="efo-1M-w02">
+                                <rect key="frame" x="87" y="266" width="240" height="279"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="QRd-aS-vv6"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="QRd-aS-vv6" firstAttribute="trailing" secondItem="efo-1M-w02" secondAttribute="trailing" constant="87" id="3ES-TT-vRC"/>
+                            <constraint firstItem="efo-1M-w02" firstAttribute="centerX" secondItem="7qL-a4-vJc" secondAttribute="centerX" id="JuA-Uv-fXj"/>
+                            <constraint firstItem="QRd-aS-vv6" firstAttribute="bottom" secondItem="efo-1M-w02" secondAttribute="bottom" constant="317" id="iR7-57-zfn"/>
+                            <constraint firstItem="efo-1M-w02" firstAttribute="leading" secondItem="QRd-aS-vv6" secondAttribute="leading" constant="87" id="pXT-1f-icc"/>
+                            <constraint firstItem="efo-1M-w02" firstAttribute="top" secondItem="QRd-aS-vv6" secondAttribute="top" constant="222" id="yLc-NT-i5X"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cRZ-qu-yhO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-320.28985507246381" y="788.83928571428567"/>
+        </scene>
         <!--홈-->
         <scene sceneID="iy1-nl-4fl">
             <objects>
@@ -443,6 +470,7 @@
         <image name="minus" catalog="system" width="128" height="24"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="timer" catalog="system" width="128" height="121"/>
+        <image name="브론즈" width="100" height="100"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
