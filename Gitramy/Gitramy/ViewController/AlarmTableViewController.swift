@@ -12,6 +12,8 @@ class AlarmTableViewController: UITableViewController {
 
     var alerts: [Alert] = []
     let userNotification = UNUserNotificationCenter.current()
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +35,7 @@ class AlarmTableViewController: UITableViewController {
             
             var alertList = self.alertList()
             print(self.alertList())
+           
             
             let newAlert = Alert(date: date, isOn: true)
             
@@ -41,6 +44,7 @@ class AlarmTableViewController: UITableViewController {
             
             self.alerts = alertList
             UserDefaults.standard.set(try? PropertyListEncoder().encode(self.alerts), forKey:  "alerts")
+            //오늘커밋데이터가져와서 커밋이 1이상이면 isCommit은 true 1 미만이면 isCommit은 false
             
             self.userNotification.addNotificaionRequest(by: newAlert)
             

@@ -89,6 +89,14 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		53759879273917F10004FAB4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				539D4127271478A500ED3606 /* AlarmTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		53A4482A270B215C000FA3C8 = {
 			isa = PBXGroup;
 			children = (
@@ -112,14 +120,14 @@
 			children = (
 				530F862A270B358000343BA1 /* ViewController */,
 				53AD614A27151572001E51B7 /* Model */,
-				539D4127271478A500ED3606 /* AlarmTableViewCell.xib */,
-				53A4483C270B215C000FA3C8 /* Main.storyboard */,
+				53759879273917F10004FAB4 /* View */,
 				53A44836270B215C000FA3C8 /* AppDelegate.swift */,
 				53A44838270B215C000FA3C8 /* SceneDelegate.swift */,
 				533B7B12271D0C98002A1359 /* UNNotificationCenter.swift */,
 				53F86D36273800D400EFBDD8 /* Loading.gif */,
-				53A4483F270B215D000FA3C8 /* Assets.xcassets */,
+				53A4483C270B215C000FA3C8 /* Main.storyboard */,
 				53A44841270B215D000FA3C8 /* LaunchScreen.storyboard */,
+				53A4483F270B215D000FA3C8 /* Assets.xcassets */,
 				53A44844270B215D000FA3C8 /* Info.plist */,
 				53BABC112723D51D008C7F50 /* GoogleService-Info.plist */,
 			);

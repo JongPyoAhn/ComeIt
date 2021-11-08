@@ -10,7 +10,7 @@ struct Alert: Codable {
     var id: String = UUID().uuidString
     var date: Date
     var isOn: Bool
-    
+
     
     var time: String {
         let timeFormatter = DateFormatter()

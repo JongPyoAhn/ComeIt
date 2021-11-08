@@ -118,8 +118,11 @@ extension HomeViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicke
             print("오늘 커밋한 횟수 : \(commits.last!.days[Int(self.getNowDay())! - 1])")
             self.commitCountLabel.text = "\(self.latestDayOfCommit)번!!"
             if self.latestDayOfCommit >= 1{
+                //오늘 커밋여부를 알고 알림하기위해 저장.
+                UserDefaults.standard.set(true, forKey: "isCommit")
                 self.commentLabel.text = "😍성공하셨습니다😍"
             }else{
+                UserDefaults.standard.set(false, forKey: "isCommit")
                 self.commentLabel.text = "🥺오늘은 안하실건가요?🥺"
             }
             

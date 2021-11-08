@@ -19,11 +19,14 @@ extension UNUserNotificationCenter {
     
         
         let component = Calendar.current.dateComponents([.hour, .minute], from: alert.date)
-        let trigger = UNCalendarNotificationTrigger(dateMatching: component, repeats: alert.isOn)
-    
-        let request = UNNotificationRequest(identifier: alert.id, content: content, trigger: trigger)
         
-        self.add(request, withCompletionHandler: nil)
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: component, repeats: alert.isOn)
+        
+        let request = UNNotificationRequest(identifier: alert.id, content: content, trigger: trigger)
+        if !UserDefaults.standard.bool(forKey: "isCommit"){
+            self.add(request, withCompletionHandler: nil)
+        }
         
     }
     
