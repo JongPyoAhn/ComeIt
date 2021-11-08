@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BWG-b4-tXX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QaU-Sz-J1F">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
@@ -406,6 +406,7 @@
                         <outlet property="levelImage" destination="uHc-Lt-K4G" id="Am3-gy-Q0N"/>
                         <outlet property="nameLabel" destination="Gmk-ka-ebl" id="qac-cS-vy5"/>
                         <outlet property="numOfRepository" destination="Ae8-GH-5hm" id="usA-aW-Zm2"/>
+                        <outlet property="repositoryName" destination="xNU-mr-DLg" id="CTn-2r-Mz4"/>
                         <outlet property="repositoryPicker" destination="xNU-mr-DLg" id="31q-Nu-ygA"/>
                     </connections>
                 </viewController>

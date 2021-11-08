@@ -17,9 +17,9 @@ class LoginManager{
     //파이어베이스
     let firebaseAuth = Auth.auth()
     let provider = OAuthProvider(providerID: "github.com")
-    //
 //    let repositoryInformation = BehaviorSubject<[Repository]>(value: [])
-    var user: User?
+    var user = User(name: "Null", company: "Null", reposPublic: 0, reposPrivate: 0)
+    var repositories: [Repository]?
     private var userAccessToken: String?
     let disposeBag = DisposeBag()
     
@@ -46,10 +46,6 @@ class LoginManager{
                             completion()
                         }
                     }
-                                        
-                    //self.userAccessToken = oAuthCredential.accessToken!
-                    //self.fetchUser()
-                    //self.getUser()
             }
         }
     }

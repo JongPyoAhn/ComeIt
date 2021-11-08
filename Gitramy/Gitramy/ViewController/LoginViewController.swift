@@ -31,11 +31,10 @@ class LoginViewController: UIViewController {
         //로그인이 성공적으로 완료되었을 때 탭바로 넘어감. @escaping closure !!
         loginManager.getCredential(){
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let startVC = storyboard.instantiateViewController(withIdentifier: "tabbarController") as! UITabBarController
+            let startVC = storyboard.instantiateViewController(withIdentifier: "LoadingViewController") as! LoadingViewController
             startVC.modalPresentationStyle = .overFullScreen
             startVC.modalTransitionStyle = .crossDissolve
             self.present(startVC, animated: true, completion: nil)
-            
         }
         
        
