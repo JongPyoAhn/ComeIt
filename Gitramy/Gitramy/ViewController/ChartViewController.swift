@@ -40,7 +40,7 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         BarChartDataEntry(x: 4, y: 0.6)
     ]
     
-    let imageURL = URL(string: "https://ghchart.rshah.org/JongpyoAhn")
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,18 +50,16 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         languageSetData(languageValues)
         
         
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        
+        let imageURL = URL(string: "https://ghchart.rshah.org/JongpyoAhn")
         let data = try! Data(contentsOf: imageURL!)
         self.contributionImageView.image = UIImage(data: data)
-        
-//        let fistBump = UIView(SVGURL: imageURL!)
-//        
-//        self.contributionImageView.addSubview(fistBump)
+        let fistBump = UIView(SVGURL: imageURL!)
+        self.contributionImageView.addSubview(fistBump)
     }
 }
 

@@ -18,11 +18,10 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var githubLoginButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        githubLoginButton.layer.borderWidth = 1
-        githubLoginButton.layer.borderColor = UIColor.white.cgColor
-        githubLoginButton.layer.cornerRadius = 30
-
-        
+//        githubLoginButton.layer.borderWidth = 1
+//        githubLoginButton.layer.borderColor = UIColor.white.cgColor
+//        githubLoginButton.layer.cornerRadius = 30
+//        githubLoginButton.titleLabel?.textColor = .white
         
     }
 

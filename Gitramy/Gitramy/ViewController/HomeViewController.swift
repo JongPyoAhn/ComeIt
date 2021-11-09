@@ -140,16 +140,20 @@ extension HomeViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicke
     
     //피커뷰 디폴트값 세팅
     func pickerDefaultSetting() -> Int{
-        let defaults = UserDefaults.standard.string(forKey: "currentSelectedRepository")!
-        print("defaults: \(defaults)")
-        let names = repoNames.map{$0.name}
-        if let defaultRowIndex = names.firstIndex(of: defaults){
-            self.defaultRowIndex = defaultRowIndex
+        if let defaults = UserDefaults.standard.string(forKey: "currentSelectedRepository") {
+            print("defaults: \(defaults)")
+            let names = repoNames.map{$0.name}
+            if let defaultRowIndex = names.firstIndex(of: defaults){
+                self.defaultRowIndex = defaultRowIndex
+            }
+            print("defaultRowIndex : \(defaultRowIndex)")
+            pickerView.selectRow(defaultRowIndex, inComponent: 0, animated: true)
+            repositoryName.text = defaults
+            return defaultRowIndex
         }
-        print("defaultRowIndex : \(defaultRowIndex)")
-        pickerView.selectRow(defaultRowIndex, inComponent: 0, animated: true)
-        repositoryName.text = defaults
-        return defaultRowIndex
+        else {
+            return 0
+        }
     }
     
 }
