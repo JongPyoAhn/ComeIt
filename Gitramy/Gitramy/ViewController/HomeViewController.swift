@@ -13,9 +13,6 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var commitCountLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var repositoryPicker: UITextField!
-    @IBOutlet weak var numOfRepository: UILabel!
-    @IBOutlet weak var companyLabel: UILabel!
-    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var levelImage: UIImageView!
     let loginManager = LoginManager.shared
     var latestDayOfCommit = 0
@@ -32,12 +29,7 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        user = loginManager.user
-        guard let user = user else {return}
         self.levelImage.image = UIImage(named: "브론즈_2")
-        self.nameLabel.text = "\(user.name)님 환영합니다."
-        self.companyLabel.text = "소속 : \(user.company)"
-        self.numOfRepository.text = "총 레포지토리 수 : \(user.reposPublic + user.reposPrivate)"
         loginManager.fetchRepository(loginManager.user.name) {[weak self]repositories in
             guard let self = self else {return}
             self.repoNames = repositories//레포지토리정보가져오기
@@ -94,9 +86,9 @@ extension HomeViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicke
         let toolBar = UIToolbar()
         toolBar.barStyle = .default
         toolBar.sizeToFit()
-        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+//        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         let button = UIBarButtonItem(title: "선택", style: .plain, target: self, action: #selector(self.selectButtonTapped))
-        toolBar.setItems([button, space], animated: true)
+        toolBar.setItems([button], animated: true)
         toolBar.isUserInteractionEnabled = true
         repositoryPicker.inputAccessoryView = toolBar
         

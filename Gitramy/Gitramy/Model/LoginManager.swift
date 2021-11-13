@@ -18,11 +18,11 @@ class LoginManager{
     let firebaseAuth = Auth.auth()
     let provider = OAuthProvider(providerID: "github.com")
 //    let repositoryInformation = BehaviorSubject<[Repository]>(value: [])
-    var user = User(name: "Null", company: "Null", reposPublic: 0, reposPrivate: 0)
+    var user = User(imageURL: "", name: "Null", company: "Null" , email: "", reposPublic: 0, reposPrivate: 0)
     var repositories: [Repository]?
     private var userAccessToken: String?
     let disposeBag = DisposeBag()
-    
+    var email = "등록된 이메일이 없습니다."
     
     func getCredential(completion: @escaping () -> Void){
         
@@ -86,13 +86,18 @@ class LoginManager{
                 result.count > 0
             }
             .map { object -> User in
+                print("==========================\(object)")
                 guard let name = object["login"] as? String,
                       let company = object["company"] as? String,
                       let reposPublic = object["public_repos"] as? Int,
-                      let reposPrivate = object["total_private_repos"] as? Int else {
-                          return User(name: "null", company: "null", reposPublic: 0, reposPrivate: 0)
+                      let reposPrivate = object["total_private_repos"] as? Int,
+                      let imageURL = object["avatar_url"] as? String else{
+                          return User(imageURL: "", name: "Null", company: "Null" , email: "", reposPublic: 0, reposPrivate: 0)
                       }
-                return User(name: name, company: company, reposPublic: reposPublic, reposPrivate: reposPrivate)
+                if let email = object["email"] as? String {
+                    self.email = email
+                }
+                return User(imageURL: imageURL, name: name, company: company, email: self.email, reposPublic: reposPublic, reposPrivate: reposPrivate )
             }
             .subscribe { user in
 //                self?.userInformation.onNext(user)
@@ -197,15 +202,7 @@ class LoginManager{
                 }
             })
             .disposed(by: disposeBag)
-        
-        
-        
-    
     }
-    
-    
-    
-    
 }
 
 

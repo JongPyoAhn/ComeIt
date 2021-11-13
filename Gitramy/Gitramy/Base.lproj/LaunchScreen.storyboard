@@ -25,7 +25,7 @@
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="labelColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="KOn-dG-hZz" secondAttribute="trailing" id="Egh-jg-feU"/>
                             <constraint firstItem="KOn-dG-hZz" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="NlP-zk-YfR"/>
@@ -46,8 +46,8 @@
     <resources>
         <image name="GItramy_Background" width="341" height="341"/>
         <image name="LoginGitramy" width="341" height="341"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

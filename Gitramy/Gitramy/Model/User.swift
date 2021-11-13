@@ -9,16 +9,23 @@ import UIKit
 
 
 struct User : Decodable{
+    var imageURL: String
     var name: String
     var company: String
+    var email: String
     var reposPublic: Int
     var reposPrivate: Int
     
+    
+    
     enum codingkeys: String, CodingKey {
-        case company
+        case imageURL = "avatar_url"
         case name = "login"
+        case company, email
         case reposPublic = "public_repos"
         case reposPrivate = "total_private_repos"
+        
+        
     }
 }
 

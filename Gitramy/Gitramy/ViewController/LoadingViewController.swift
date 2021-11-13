@@ -24,7 +24,7 @@ class LoadingViewController: UIViewController {
             startVC.modalPresentationStyle = .overFullScreen
             startVC.modalTransitionStyle = .crossDissolve
             self.present(startVC, animated: true, completion: nil)
-           
+            
         }
 
 
