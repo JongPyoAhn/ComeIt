@@ -7,13 +7,15 @@
 
 import UIKit
 import Kingfisher
-import SwiftSVG
+import PocketSVG
 import Charts
 
 class ChartViewController: UIViewController, ChartViewDelegate {
 
 
-    @IBOutlet weak var contributionImageView: UIImageView!
+
+    @IBOutlet weak var contributionStackView: UIStackView!
+    @IBOutlet weak var contributionView: UIView!
     
     @IBOutlet weak var repositoryChartView: LineChartView!
     @IBOutlet weak var languageChartView: BarChartView!
@@ -55,11 +57,13 @@ class ChartViewController: UIViewController, ChartViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        //웹URL SVG가져오기.
         let imageURL = URL(string: "https://ghchart.rshah.org/JongpyoAhn")
-        let data = try! Data(contentsOf: imageURL!)
-        self.contributionImageView.image = UIImage(data: data)
-        let fistBump = UIView(SVGURL: imageURL!)
-        self.contributionImageView.addSubview(fistBump)
+        let svgImageView = SVGImageView.init(contentsOf: imageURL!)
+        svgImageView.frame = view.bounds
+        svgImageView.contentMode = .scaleAspectFit
+        contributionStackView.addArrangedSubview(svgImageView)
+        
     }
 }
 
