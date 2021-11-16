@@ -18,19 +18,33 @@ class LoadingViewController: UIViewController {
         //로그인한 유저정보 미리 가져오기.
         loginManager.fetchUser { user in
             self.loginManager.user = user
-            //
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let startVC = storyboard.instantiateViewController(withIdentifier: "tabbarController") as! UITabBarController
-            startVC.modalPresentationStyle = .overFullScreen
-            startVC.modalTransitionStyle = .crossDissolve
-            self.present(startVC, animated: true, completion: nil)
-            
+            self.loginManager.fetchRepository(user.name) { repositories in
+                self.loginManager.repositories = repositories
+                print("========================================================================================\(self.loginManager.repositories)")
+                for i in self.loginManager.repositories{
+                    self.loginManager.fetchCommit(self.loginManager.user.name, i.name) { commits in
+                        let latestCommit = commits.last!
+                        self.loginManager.repoTotal[i.name] = latestCommit.total
+                    }
+                }
+                DispatchQueue.main.async {
+                    self.moveToTabbar()
+                }
+            }
         }
-
-
         
     }
     
-
-
+    
+    func moveToTabbar(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let startVC = storyboard.instantiateViewController(withIdentifier: "tabbarController") as! UITabBarController
+        startVC.modalPresentationStyle = .overFullScreen
+        startVC.modalTransitionStyle = .crossDissolve
+        self.present(startVC, animated: true, completion: nil)
+    }
+    
 }
+
+
+

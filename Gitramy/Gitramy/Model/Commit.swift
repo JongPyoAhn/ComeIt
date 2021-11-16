@@ -10,5 +10,6 @@ import UIKit
 struct Commit{
     var week: Int
     var days: [Int]
+    var total: Int
 }
 

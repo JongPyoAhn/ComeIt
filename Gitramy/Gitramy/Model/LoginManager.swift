@@ -19,10 +19,12 @@ class LoginManager{
     let provider = OAuthProvider(providerID: "github.com")
 //    let repositoryInformation = BehaviorSubject<[Repository]>(value: [])
     var user = User(imageURL: "", name: "Null", company: "Null" , email: "", reposPublic: 0, reposPrivate: 0)
-    var repositories: [Repository]?
+    var repositories: [Repository] = []
     private var userAccessToken: String?
     let disposeBag = DisposeBag()
     var email = "등록된 이메일이 없습니다."
+    var repoTotal: [String:Int] = [:]
+    var repositoryChartNames: [String] = []
     
     func getCredential(completion: @escaping () -> Void){
         
@@ -189,10 +191,11 @@ class LoginManager{
                 return objects.compactMap { dic -> Commit? in
                     
                     guard let week = dic["week"] as? Int,
-                          let days = dic["days"] as? [Int]
+                          let days = dic["days"] as? [Int],
+                          let total = dic["total"] as? Int
                     else{ return nil}
                     
-                    return Commit(week: week, days: days)
+                    return Commit(week: week, days: days, total: total)
                 }
             }
             .subscribe(onNext: {commits in

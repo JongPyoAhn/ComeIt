@@ -37,7 +37,7 @@ class HomeViewController: UIViewController {
             self.createPickerView()
             self.dismissPickerView()
             self.commitTextChange(self.pickerDefaultSetting())
-            
+            self.commitToDict()
         }
     }
     
@@ -46,6 +46,14 @@ class HomeViewController: UIViewController {
         repositoryPicker.resignFirstResponder()
     }
     
+    func commitToDict(){
+        for i in self.loginManager.repositories{
+            self.loginManager.fetchCommit(self.loginManager.user.name, i.name) { commits in
+                let latestCommit = commits.last!
+                self.loginManager.repoTotal[i.name] = latestCommit.total
+            }
+        }
+    }
     
 
 }

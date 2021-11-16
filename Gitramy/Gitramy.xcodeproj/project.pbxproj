@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		5312A8B82715B65A0045F4B3 /* AddAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312A8B72715B65A0045F4B3 /* AddAlertViewController.swift */; };
 		5331729327281C4D0021BFB3 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5331729227281C4D0021BFB3 /* LoginManager.swift */; };
+		5335F9A027434875006DAF3B /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5335F99F27434875006DAF3B /* TabbarViewController.swift */; };
+		5335F9A227436D51006DAF3B /* ChartManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5335F9A127436D51006DAF3B /* ChartManager.swift */; };
 		533B7B13271D0C98002A1359 /* UNNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533B7B12271D0C98002A1359 /* UNNotificationCenter.swift */; };
 		535DE60F273A2F42001064BD /* alarmgif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 535DE60E273A2F42001064BD /* alarmgif.gif */; };
 		5364AB34273E6A5D00A88E2E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5364AB33273E6A5D00A88E2E /* ProfileViewController.swift */; };
@@ -35,6 +37,8 @@
 /* Begin PBXFileReference section */
 		5312A8B72715B65A0045F4B3 /* AddAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlertViewController.swift; sourceTree = "<group>"; };
 		5331729227281C4D0021BFB3 /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+		5335F99F27434875006DAF3B /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
+		5335F9A127436D51006DAF3B /* ChartManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartManager.swift; sourceTree = "<group>"; };
 		533B7B12271D0C98002A1359 /* UNNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNNotificationCenter.swift; sourceTree = "<group>"; };
 		535DE60E273A2F42001064BD /* alarmgif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = alarmgif.gif; sourceTree = "<group>"; };
 		5364AB33273E6A5D00A88E2E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -77,14 +81,15 @@
 		530F862A270B358000343BA1 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				53A4484C270B33CB000FA3C8 /* ChartViewController.swift */,
+				53FC5D13272809E9002F368C /* HomeViewController.swift */,
 				53FD9EA32737FBE8004944EC /* LoadingViewController.swift */,
 				53A4483A270B215C000FA3C8 /* LoginViewController.swift */,
-				53FC5D13272809E9002F368C /* HomeViewController.swift */,
-				53A4484C270B33CB000FA3C8 /* ChartViewController.swift */,
 				5312A8B72715B65A0045F4B3 /* AddAlertViewController.swift */,
 				539D4126271478A500ED3606 /* AlarmTableViewCell.swift */,
 				539D41242714789500ED3606 /* AlarmTableViewController.swift */,
 				5364AB33273E6A5D00A88E2E /* ProfileViewController.swift */,
+				5335F99F27434875006DAF3B /* TabbarViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -142,6 +147,7 @@
 				53B280AE2731594200CFD634 /* Repository.swift */,
 				53FC8CBC27322B5A00FAEC43 /* Commit.swift */,
 				5331729227281C4D0021BFB3 /* LoginManager.swift */,
+				5335F9A127436D51006DAF3B /* ChartManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -283,11 +289,13 @@
 			files = (
 				53FC8CBD27322B5A00FAEC43 /* Commit.swift in Sources */,
 				533B7B13271D0C98002A1359 /* UNNotificationCenter.swift in Sources */,
+				5335F9A227436D51006DAF3B /* ChartManager.swift in Sources */,
 				539D41252714789500ED3606 /* AlarmTableViewController.swift in Sources */,
 				53FD9EA42737FBE8004944EC /* LoadingViewController.swift in Sources */,
 				5312A8B82715B65A0045F4B3 /* AddAlertViewController.swift in Sources */,
 				53A4483B270B215C000FA3C8 /* LoginViewController.swift in Sources */,
 				5364AB34273E6A5D00A88E2E /* ProfileViewController.swift in Sources */,
+				5335F9A027434875006DAF3B /* TabbarViewController.swift in Sources */,
 				53A44837270B215C000FA3C8 /* AppDelegate.swift in Sources */,
 				5331729327281C4D0021BFB3 /* LoginManager.swift in Sources */,
 				53FC5D14272809E9002F368C /* HomeViewController.swift in Sources */,
