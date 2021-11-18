@@ -16,6 +16,7 @@ class ChartViewController: UIViewController, ChartViewDelegate {
     let loginManager = LoginManager.shared
 
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contributionStackView: UIStackView!
     @IBOutlet weak var contributionView: UIView!
     
@@ -25,7 +26,7 @@ class ChartViewController: UIViewController, ChartViewDelegate {
     
     var repositoryNames: [String] = []//x축을 레파지토리 이름 받아오기
     let languageNames = ["Swift", "Java", "python", "Ruby", "C++"]//
-    
+    let test = ["Swift", "Java", "python", "Ruby", "C++"]
     
     //모든 레포지토리 데이터 받아와서 y축을 총커밋수
     var repositoryValues: [ChartDataEntry] = []
@@ -38,6 +39,7 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         BarChartDataEntry(x: 4, y: 0.6)
     ]
     
+    let refresh = UIRefreshControl()
     
     
     override func viewDidLoad() {
@@ -46,12 +48,12 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         repositorySetData()
         setBarChartView()
         languageSetData(languageValues)
+        initRefresh()
         //웹URL SVG가져오기.
-        let imageURL = URL(string: "https://ghchart.rshah.org/JongpyoAhn")
-        let svgImageView = SVGImageView.init(contentsOf: imageURL!)
-        svgImageView.frame = view.bounds
-        svgImageView.contentMode = .scaleAspectFit
-        contributionStackView.addArrangedSubview(svgImageView)
+        print("subViewCounts : \(contributionStackView.arrangedSubviews.count)")
+        if contributionStackView.arrangedSubviews.count < 2{
+            getContributionSvgImageFile()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,11 +62,47 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         //dict에서 오름차순이나 내림차순으로 쓰기.
         
     }
-
-    
+    func getContributionSvgImageFile(){
+        let imageURL = URL(string: "https://ghchart.rshah.org/JongpyoAhn")
+        let svgImageView = SVGImageView.init(contentsOf: imageURL!)
+        svgImageView.frame = view.bounds
+        svgImageView.contentMode = .scaleAspectFit
+        if contributionStackView.arrangedSubviews.count >= 2{
+            contributionStackView.removeArrangedSubview(svgImageView)
+        }else {
+            contributionStackView.addArrangedSubview(svgImageView)
+        }
+    }
     
 }
-
+//MARK: -refresh
+extension ChartViewController{
+    func initRefresh() {
+        refresh.addTarget(self, action: #selector(updateUI), for: .valueChanged)
+        refresh.backgroundColor = UIColor.clear
+        //UIRefreshControl의 attributedTitle
+        refresh.attributedTitle = NSAttributedString(string: "Loading Data...",
+                attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray, NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 20)])
+        //ScrollView에 UIRefreshControl 적용
+        self.scrollView.refreshControl = refresh
+    }
+    
+    @objc func updateUI(){
+        if !repositoryNames.isEmpty{
+            repositoryNames.removeAll()
+            repositoryValues.removeAll()
+            repositoryChartView.clear()
+        }
+        self.loginManager.commitToDict()
+        setLineChartView()
+        repositorySetData()
+        setBarChartView()
+        languageSetData(languageValues)
+        
+        getContributionSvgImageFile()
+        self.refresh.endRefreshing() //새로고침종료
+    }
+}
 
 //차트관련
 extension ChartViewController {
@@ -77,18 +115,19 @@ extension ChartViewController {
         for i in repositoryNames{
             let repoTotal = self.loginManager.repoTotal[i]!
             repositoryValues.append(ChartDataEntry(x: x, y: Double(repoTotal)))
-            x += 10
+            x += 1.0 //xLabel에 이름이 안나왔던 원인임 차트는 1.0단위로해줘야함 ㅠㅠㅠㅠ
+            //그동안 10으로해서 안나왔던것이다ㅠㅠㅠㅠㅠㅠㅠㅠㅠ
         }
         print(repositoryValues)
         let set1 = LineChartDataSet(entries: repositoryValues, label: "🙈레포지토리")
         set1.lineWidth = 5 //선의 굵기
         //그래프 바깥쪽 원 크기와 색상
-        set1.circleColors = [NSUIColor.black]
+        set1.circleColors = [NSUIColor.init(rgb: 0xFF5500)]
         set1.circleRadius = 5.0
         //그래프 안쪽 원 크기와 색상
         set1.circleHoleColor = UIColor.white
-        set1.circleHoleRadius = 4.7
-        set1.mode = .cubicBezier //선 유연하게
+        set1.circleHoleRadius = 4.0
+//        set1.mode = .cubicBezier //선 유연하게
         set1.setColor(UIColor(rgb: 0xFF7F00)) //선의 색깔
         set1.highlightColor = .systemRed //누르면서 움직이면 빨간색나오게함
         
@@ -104,16 +143,14 @@ extension ChartViewController {
         set1.drawFilledEnabled = true
         
         //        set1.mode = .stepped //선의 종류
-        //        set1.drawCirclesEnabled = false //선 꼭짓점에 생기던 동그란원이 사라짐
+//        set1.drawCirclesEnabled = false //선 꼭짓점에 생기던 동그란원이 사라짐
         let data = LineChartData(dataSet: set1)
-        data.setDrawValues(false)
+        data.setDrawValues(false)//꼭지점에 데이터표시
+        
         repositoryChartView.data = data
         
         //그래프 밑에 색 채우는거
         func getGradientFilling() -> CGGradient {
-            // Setting fill gradient color
-//            let coloTop = UIColor(red: 141/255, green: 133/255, blue: 220/255, alpha: 1).cgColor
-//            let colorBottom = UIColor(red: 230/255, green: 155/255, blue: 210/255, alpha: 1).cgColor
             let coloTop = UIColor(rgb: 0xFF6A00).cgColor
             let colorBottom = UIColor(rgb: 0xFFFDABF).cgColor
             // Colors of the gradient
@@ -142,32 +179,39 @@ extension ChartViewController {
         //뷰 모서리 둥글게
         repositoryChartView.layer.cornerRadius = 20
         repositoryChartView.layer.masksToBounds = true
-        
         repositoryChartView.legend.verticalAlignment = .top //범례 위치 지정.
         
         let yAxis = repositoryChartView.leftAxis
         let xAxis = repositoryChartView.xAxis
+//        yAxis.setLabelCount(repositoryNames.count + 1, force: true) //왼쪽 y축 눈금의 수를 설정
+        
         yAxis.enabled = false
         print("여기 : \(repositoryNames)")
+        
         xAxis.valueFormatter = IndexAxisValueFormatter(values: repositoryNames)
+        xAxis.setLabelCount(repositoryNames.count, force: true) //x축 레이블의 수를 설정
+        xAxis.labelPosition = .topInside //x축 눈금 위치 조정
+//        xAxis.granularity = 1
         xAxis.gridColor = .clear
         xAxis.granularityEnabled = true
-        xAxis.labelPosition = .bottom //x축 눈금 위치 조정
+    
         xAxis.labelFont = .boldSystemFont(ofSize: 8) //x축 폰트 설정
-        xAxis.setLabelCount(repositoryNames.count, force: true) //x축 레이블의 수를 설정
-        repositoryChartView.data?.setDrawValues(false)
+        
+
+//        repositoryChartView.data?.setDrawValues(false)
         xAxis.labelTextColor = .black //x축 글자색깔
         xAxis.axisLineColor = .clear //x축 눈금선의 색을 설정
         
-        xAxis.granularity = 1
+       
         
         repositoryChartView.doubleTapToZoomEnabled = false
         repositoryChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)//애니메이션 설정
+        repositoryChartView.fitScreen()
     }
     
     //        yAxis.gridColor = .clear //격자 선 지우기
     //        yAxis.labelFont = .boldSystemFont(ofSize: 12) //왼쪽 y축 눈금의 폰트를 설정
-    //        yAxis.setLabelCount(repositoryNames.count, force: false) //왼쪽 y축 눈금의 수를 설정
+
     //        yAxis.labelTextColor = .black //왼쪽 y축 눈금의 색을 설정
     //        yAxis.axisLineColor = .black //왼쪽 y축 눈금선의 색을 설정
     

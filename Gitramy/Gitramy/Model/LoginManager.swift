@@ -206,6 +206,15 @@ class LoginManager{
             })
             .disposed(by: disposeBag)
     }
+    
+    func commitToDict(){
+        for i in self.repositories{
+            self.fetchCommit(self.user.name, i.name) { commits in
+                let latestCommit = commits.last!
+                self.repoTotal[i.name] = latestCommit.total
+            }
+        }
+    }
 }
 
 
