@@ -41,9 +41,10 @@ class LoginManager{
                     }
                     //oAuthCredentila로 accessToken과 idToken을 얻을 수 있음.
                     guard let oAuthCredential = authResult?.credential as? OAuthCredential else {return}
-
+                    
                     if let userAccessToken = oAuthCredential.accessToken {
                         self.userAccessToken = userAccessToken
+                        UserDefaults.standard.set(userAccessToken, forKey: "userAccessToken")
                         DispatchQueue.main.async {
                             completion()
                         }
@@ -206,6 +207,19 @@ class LoginManager{
             })
             .disposed(by: disposeBag)
     }
+    
+    func autoLogin(completion: @escaping ()-> Void){
+        if let userAccessToken =  UserDefaults.standard.string(forKey: "userAccessToken"){
+            self.userAccessToken = userAccessToken
+            DispatchQueue.main.async {
+                completion()
+            }
+        }else{return}
+        
+        
+        
+    }
+    
     
     func commitToDict(){
         for i in self.repositories{
