@@ -21,12 +21,8 @@ class LoadingViewController: UIViewController {
             self.loginManager.fetchRepository(user.name) { repositories in
                 self.loginManager.repositories = repositories
                 print("========================================================================================\(self.loginManager.repositories)")
-                for i in self.loginManager.repositories{
-                    self.loginManager.fetchCommit(self.loginManager.user.name, i.name) { commits in
-                        let latestCommit = commits.last!
-                        self.loginManager.repoTotal[i.name] = latestCommit.total
-                    }
-                }
+                self.loginManager.commitToDict()
+                
                 DispatchQueue.main.async {
                     self.moveToTabbar()
                 }

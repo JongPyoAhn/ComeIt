@@ -32,7 +32,9 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Z2l-0n-vfR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.86274509803921573" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.86274509799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" systemColor="systemBrownColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="JOk-81-N2g" kind="relationship" relationship="viewControllers" id="f3g-ZV-qyO"/>
@@ -43,21 +45,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9bu-gP-vig" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="488" y="81"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="QoZ-0W-rOF">
-            <objects>
-                <viewController id="S41-d5-D6V" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="7TO-Rk-3cD">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="cGR-Dj-ceI"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ufb-1D-5YV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1990" y="80"/>
         </scene>
         <!--통계-->
         <scene sceneID="fks-Cf-Ril">
@@ -76,13 +63,13 @@
                                             <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="1Ml-7B-DLH">
                                                 <rect key="frame" x="0.0" y="0.0" width="412" height="850"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ioh-av-AUb">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="Ioh-av-AUb">
                                                         <rect key="frame" x="0.0" y="0.0" width="412" height="110"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오늘의 기여" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lzG-fI-4P3">
-                                                                <rect key="frame" x="167" y="0.0" width="78" height="110"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <nil key="textColor"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🔥🔥올해의 Contributions🔥🔥" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lzG-fI-4P3">
+                                                                <rect key="frame" x="0.0" y="0.0" width="412" height="110"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
@@ -90,14 +77,14 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Hu6-sT-Ivq">
                                                         <rect key="frame" x="0.0" y="130" width="412" height="350"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이번주 저장소 순위" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QOA-bv-4F5">
-                                                                <rect key="frame" x="143" y="0.0" width="126.5" height="20.5"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <nil key="textColor"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="✅✅이번주 저장소 순위✅✅" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QOA-bv-4F5">
+                                                                <rect key="frame" x="91.5" y="0.0" width="229" height="21.5"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ujs-xK-Bha" customClass="LineChartView" customModule="Charts">
-                                                                <rect key="frame" x="62" y="28.5" width="288" height="321.5"/>
+                                                                <rect key="frame" x="62" y="29.5" width="288" height="320.5"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             </view>
                                                         </subviews>
@@ -110,14 +97,14 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="OGm-Mv-4mH">
                                                         <rect key="frame" x="0.0" y="500" width="412" height="350"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="언어 사용 비율" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6nu-oB-C58">
-                                                                <rect key="frame" x="157.5" y="0.0" width="97" height="20.5"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <nil key="textColor"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🇰🇷🇰🇷언어 사용 비율🇰🇷🇰🇷" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6nu-oB-C58">
+                                                                <rect key="frame" x="107" y="0.0" width="198" height="21.5"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eIc-84-uAY" customClass="BarChartView" customModule="Charts">
-                                                                <rect key="frame" x="62" y="28.5" width="288" height="321.5"/>
+                                                                <rect key="frame" x="62" y="29.5" width="288" height="320.5"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             </view>
                                                         </subviews>
@@ -333,53 +320,53 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4GC-GZ-ghH">
-                                <rect key="frame" x="30" y="138" width="354" height="446.5"/>
+                                <rect key="frame" x="30" y="138" width="354" height="415.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LoginGitramy" translatesAutoresizingMaskIntoConstraints="NO" id="z5L-FW-5ec">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="341"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="원하는 시간대에 알림을 받고 하루에 한개의 커밋을 성공하세요!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="cFp-jj-gg4">
-                                        <rect key="frame" x="0.0" y="351" width="354" height="95.5"/>
+                                        <rect key="frame" x="0.0" y="351" width="354" height="64.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="v0Y-gV-PUS">
-                                <rect key="frame" x="100" y="662" width="244" height="50"/>
+                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="6lk-go-YA4">
+                                <rect key="frame" x="60" y="613.5" width="304" height="98.5"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Github" translatesAutoresizingMaskIntoConstraints="NO" id="YyT-YG-leO">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="1Bq-Le-5Xy"/>
-                                            <constraint firstAttribute="width" constant="50" id="8Bg-RH-gck"/>
-                                        </constraints>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hvk-7s-88m">
-                                        <rect key="frame" x="50" y="7" width="194" height="36"/>
+                                    <button opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="center" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hvk-7s-88m">
+                                        <rect key="frame" x="0.0" y="0.0" width="304" height="98.5"/>
                                         <color key="backgroundColor" systemColor="labelColor"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                        <inset key="titleEdgeInsets" minX="-31" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <inset key="imageEdgeInsets" minX="-100" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="깃허브로 계속하기">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="23"/>
+                                        <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="-40" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="깃허브로 계속하기" image="last">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="30" scale="default"/>
                                         </state>
                                         <connections>
                                             <action selector="LoginButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mob-z9-LcO"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                            </stackView>
+                                <constraints>
+                                    <constraint firstItem="hvk-7s-88m" firstAttribute="top" secondItem="6lk-go-YA4" secondAttribute="top" id="ACC-QX-mZ4"/>
+                                    <constraint firstAttribute="bottom" secondItem="hvk-7s-88m" secondAttribute="bottom" id="TZi-OG-Oho"/>
+                                    <constraint firstAttribute="trailing" secondItem="hvk-7s-88m" secondAttribute="trailing" id="ZlQ-l6-TWt"/>
+                                    <constraint firstItem="hvk-7s-88m" firstAttribute="leading" secondItem="6lk-go-YA4" secondAttribute="leading" id="tvp-bV-hiM"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="4GC-GZ-ghH" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="57r-Yz-KB0"/>
+                            <constraint firstItem="6lk-go-YA4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="60" id="9Jm-Tj-dQu"/>
                             <constraint firstItem="4GC-GZ-ghH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="DEl-cs-6Wi"/>
-                            <constraint firstItem="v0Y-gV-PUS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="Kiz-R3-zaA"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="v0Y-gV-PUS" secondAttribute="bottom" constant="150" id="U3h-5i-g4L"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="v0Y-gV-PUS" secondAttribute="trailing" constant="70" id="Ww2-Ad-q5T"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6lk-go-YA4" secondAttribute="trailing" constant="50" id="RS4-Rh-tp3"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="6lk-go-YA4" secondAttribute="bottom" constant="150" id="V4r-Dm-Tbf"/>
+                            <constraint firstItem="6lk-go-YA4" firstAttribute="top" secondItem="4GC-GZ-ghH" secondAttribute="bottom" constant="60" id="m2Z-c3-g2y"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4GC-GZ-ghH" secondAttribute="trailing" constant="30" id="xef-h5-9hF"/>
                         </constraints>
                     </view>
@@ -390,7 +377,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-320" y="81"/>
+            <point key="canvasLocation" x="-320.28985507246381" y="80.357142857142847"/>
         </scene>
         <!--Loading View Controller-->
         <scene sceneID="DF5-4y-klz">
@@ -434,6 +421,8 @@
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="저장소를 선택하세요." borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xNU-mr-DLg">
                                         <rect key="frame" x="3" y="0.0" width="234" height="39.5"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -452,13 +441,13 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?? 번" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxh-N7-Kbr">
                                         <rect key="frame" x="65" y="477.5" width="110" height="60"/>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="50"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="빨리 커밋하세요!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="b5j-ix-SlQ">
                                         <rect key="frame" x="31" y="557.5" width="178" height="31.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -522,10 +511,17 @@
                         <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="Lbe-QF-Tmu">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <color key="barTintColor" red="0.92549019607843142" green="0.90196078431372551" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <textAttributes key="titleTextAttributes">
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </textAttributes>
                             <items>
                                 <navigationItem title="푸시알림" id="qmz-YF-9Zr">
-                                    <barButtonItem key="leftBarButtonItem" title="Item" image="minus" catalog="system" id="0Ch-VK-hXm"/>
+                                    <barButtonItem key="leftBarButtonItem" title="Item" image="minus" catalog="system" id="0Ch-VK-hXm">
+                                        <color key="tintColor" red="0.0048598507420000003" green="0.096086271109999996" blue="0.57499289509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </barButtonItem>
                                     <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="t6S-Wx-eD8">
+                                        <color key="tintColor" red="0.0048598507420000003" green="0.096086271109999996" blue="0.57499289509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="addAlertAction:" destination="3pf-6i-c8H" id="MBm-3T-kSJ"/>
                                         </connections>
@@ -556,12 +552,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Github" width="341" height="341"/>
         <image name="LoginGitramy" width="341" height="341"/>
         <image name="alarm.fill" catalog="system" width="124" height="128"/>
         <image name="alarmgif.gif" width="1024" height="1024"/>
         <image name="chart.line.uptrend.xyaxis" catalog="system" width="128" height="101"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
+        <image name="last" width="66.5" height="66.5"/>
         <image name="minus" catalog="system" width="128" height="24"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="plus" catalog="system" width="128" height="113"/>
@@ -570,6 +566,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBrownColor">
+            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

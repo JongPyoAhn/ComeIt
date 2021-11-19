@@ -94,12 +94,16 @@ extension ChartViewController{
             repositoryChartView.clear()
         }
         self.loginManager.commitToDict()
+        print("repoTotal : \(self.loginManager.repoTotal)")
         setLineChartView()
         repositorySetData()
         setBarChartView()
         languageSetData(languageValues)
         
         getContributionSvgImageFile()
+        
+        
+        
         self.refresh.endRefreshing() //새로고침종료
     }
 }
@@ -119,7 +123,7 @@ extension ChartViewController {
             //그동안 10으로해서 안나왔던것이다ㅠㅠㅠㅠㅠㅠㅠㅠㅠ
         }
         print(repositoryValues)
-        let set1 = LineChartDataSet(entries: repositoryValues, label: "🙈레포지토리")
+        let set1 = LineChartDataSet(entries: repositoryValues, label: "🙈레포지토리 커밋개수")
         set1.lineWidth = 5 //선의 굵기
         //그래프 바깥쪽 원 크기와 색상
         set1.circleColors = [NSUIColor.init(rgb: 0xFF5500)]
@@ -165,7 +169,9 @@ extension ChartViewController {
     
     //꺽은선그래프 꾸미기
     func setLineChartView(){
+        //repoTotal딕셔너리에서 totalRepo가 많은순으로 내림차순 정렬
         var sorted = self.loginManager.repoTotal.sorted { $0.value > $1.value}
+        //저장소이름은 오름차순 정렬 딱히 의미x
         sorted.sort{
             $0.key < $1.key
         }
@@ -180,6 +186,7 @@ extension ChartViewController {
         repositoryChartView.layer.cornerRadius = 20
         repositoryChartView.layer.masksToBounds = true
         repositoryChartView.legend.verticalAlignment = .top //범례 위치 지정.
+        repositoryChartView.legend.textColor = UIColor.black//범례 텍스트 색상지정.
         
         let yAxis = repositoryChartView.leftAxis
         let xAxis = repositoryChartView.xAxis

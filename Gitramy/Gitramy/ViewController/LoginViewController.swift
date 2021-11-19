@@ -14,14 +14,13 @@ import RxCocoa
 class LoginViewController: UIViewController {
     let loginManager = LoginManager.shared //싱글톤 사용
     let disposeBag = DisposeBag()
-    
     @IBOutlet weak var githubLoginButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-//        githubLoginButton.layer.borderWidth = 1
-//        githubLoginButton.layer.borderColor = UIColor.white.cgColor
-//        githubLoginButton.layer.cornerRadius = 30
-//        githubLoginButton.titleLabel?.textColor = .white
+        githubLoginButton.layer.borderWidth = 3
+        githubLoginButton.layer.borderColor = UIColor.white.cgColor
+        githubLoginButton.layer.cornerRadius = 25
+        githubLoginButton.titleLabel?.textColor = .white
         
     }
 
