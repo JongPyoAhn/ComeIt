@@ -63,7 +63,7 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         
     }
     func getContributionSvgImageFile(){
-        let imageURL = URL(string: "https://ghchart.rshah.org/JongpyoAhn")
+        let imageURL = URL(string: "https://ghchart.rshah.org/\(self.loginManager.user.name)")
         let svgImageView = SVGImageView.init(contentsOf: imageURL!)
         svgImageView.frame = view.bounds
         svgImageView.contentMode = .scaleAspectFit
@@ -145,11 +145,14 @@ extension ChartViewController {
         let gradient = getGradientFilling()
         set1.fill = Fill.fillWithLinearGradient(gradient, angle: 90.0)
         set1.drawFilledEnabled = true
+        set1.valueFormatter = DefaultValueFormatter(decimals: 0)//꼭지점에서 소수점없애기
+        set1.valueFont = UIFont.boldSystemFont(ofSize: 10)
         
         //        set1.mode = .stepped //선의 종류
 //        set1.drawCirclesEnabled = false //선 꼭짓점에 생기던 동그란원이 사라짐
         let data = LineChartData(dataSet: set1)
-        data.setDrawValues(false)//꼭지점에 데이터표시
+        
+        data.setDrawValues(true)//꼭지점에 데이터표시
         
         repositoryChartView.data = data
         
@@ -187,6 +190,7 @@ extension ChartViewController {
         repositoryChartView.layer.masksToBounds = true
         repositoryChartView.legend.verticalAlignment = .top //범례 위치 지정.
         repositoryChartView.legend.textColor = UIColor.black//범례 텍스트 색상지정.
+        repositoryChartView.legend.form = .circle
         
         let yAxis = repositoryChartView.leftAxis
         let xAxis = repositoryChartView.xAxis
@@ -197,7 +201,7 @@ extension ChartViewController {
         
         xAxis.valueFormatter = IndexAxisValueFormatter(values: repositoryNames)
         xAxis.setLabelCount(repositoryNames.count, force: true) //x축 레이블의 수를 설정
-        xAxis.labelPosition = .topInside //x축 눈금 위치 조정
+        xAxis.labelPosition = .top //x축 눈금 위치 조정
 //        xAxis.granularity = 1
         xAxis.gridColor = .clear
         xAxis.granularityEnabled = true

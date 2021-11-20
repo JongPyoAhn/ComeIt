@@ -34,5 +34,11 @@ class ProfileViewController: UIViewController {
     }
     
    
+    @IBAction func moveToRepositoryButtonTapped(_ sender: Any) {
+        if let url = URL(string: "https://github.com/\(self.loginManager.user.name)?tab=repositories"){
+            UIApplication.shared.open(url, options: [:])
+        }
+        
+    }
     
 }
