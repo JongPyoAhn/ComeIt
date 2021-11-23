@@ -151,7 +151,7 @@ extension ChartViewController {
         //        set1.mode = .stepped //선의 종류
 //        set1.drawCirclesEnabled = false //선 꼭짓점에 생기던 동그란원이 사라짐
         let data = LineChartData(dataSet: set1)
-        
+        data.setValueTextColor(.black)
         data.setDrawValues(true)//꼭지점에 데이터표시
         
         repositoryChartView.data = data
