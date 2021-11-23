@@ -18,9 +18,8 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         githubLoginButton.layer.borderWidth = 3
-        githubLoginButton.layer.borderColor = UIColor.white.cgColor
+        githubLoginButton.layer.borderColor = UIColor.black.cgColor
         githubLoginButton.layer.cornerRadius = 25
-        githubLoginButton.titleLabel?.textColor = .white
         
     }
 

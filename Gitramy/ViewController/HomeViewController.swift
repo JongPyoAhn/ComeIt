@@ -142,6 +142,7 @@ extension HomeViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicke
             print("defaultRowIndex : \(defaultRowIndex)")
             pickerView.selectRow(defaultRowIndex, inComponent: 0, animated: true)
             repositoryName.text = defaults
+            repositoryName.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
             return defaultRowIndex
         }
         else {
