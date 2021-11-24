@@ -31,7 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 print("Error: notification authorization request \(error.localizedDescription)")
             }
         }
-        
+        //네트워크변화상태체크하기위한 싱글톤
+        NetworkMonitor.shared.startMonitoring()
         
         // Override point for customization after application launch.
         return true

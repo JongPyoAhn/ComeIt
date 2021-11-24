@@ -337,13 +337,13 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="4GC-GZ-ghH">
-                                        <rect key="frame" x="12" y="0.0" width="390.5" height="415"/>
+                                        <rect key="frame" x="12" y="0.0" width="390.5" height="387"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoImage" translatesAutoresizingMaskIntoConstraints="NO" id="z5L-FW-5ec">
-                                                <rect key="frame" x="0.0" y="0.0" width="390.5" height="322.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="390.5" height="301"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="원하는 시간대에 알림을 받고 하루에 한개의 커밋을 성공하세요!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="cFp-jj-gg4">
-                                                <rect key="frame" x="0.0" y="352.5" width="390.5" height="62.5"/>
+                                                <rect key="frame" x="0.0" y="331" width="390.5" height="56"/>
                                                 <fontDescription key="fontDescription" name="BMEULJIRO" family="BM EULJIRO" pointSize="30"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -351,7 +351,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="1OV-Tj-e8a">
-                                        <rect key="frame" x="74.5" y="445" width="265" height="329"/>
+                                        <rect key="frame" x="74.5" y="417" width="265" height="357"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="center" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hvk-7s-88m">
                                                 <rect key="frame" x="0.0" y="0.0" width="265" height="50"/>
@@ -372,7 +372,7 @@
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5ml-jm-90x">
-                                                <rect key="frame" x="0.0" y="150" width="265" height="179"/>
+                                                <rect key="frame" x="0.0" y="150" width="265" height="207"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                         </subviews>
@@ -505,6 +505,12 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qOs-A2-dsj" customClass="GIFImageView" customModule="Gifu">
+                                <rect key="frame" x="0.0" y="98" width="67" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="8j9-TF-AZ7"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ok6-bi-ehc"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -512,9 +518,12 @@
                         <constraints>
                             <constraint firstItem="ok6-bi-ehc" firstAttribute="bottom" secondItem="pPV-4O-bxs" secondAttribute="bottom" constant="100" id="E4B-wr-1kf"/>
                             <constraint firstItem="39T-0d-6I3" firstAttribute="trailing" secondItem="ok6-bi-ehc" secondAttribute="trailing" id="L0F-5r-8Gg"/>
+                            <constraint firstItem="pPV-4O-bxs" firstAttribute="leading" secondItem="qOs-A2-dsj" secondAttribute="trailing" constant="20" id="NH1-yx-vBs"/>
                             <constraint firstItem="pPV-4O-bxs" firstAttribute="leading" secondItem="ok6-bi-ehc" secondAttribute="leading" constant="87" id="PpR-no-Jpo"/>
+                            <constraint firstItem="qOs-A2-dsj" firstAttribute="leading" secondItem="ok6-bi-ehc" secondAttribute="leading" id="RgA-no-q40"/>
                             <constraint firstItem="ok6-bi-ehc" firstAttribute="trailing" secondItem="pPV-4O-bxs" secondAttribute="trailing" constant="87" id="VXm-7Q-9Gg"/>
                             <constraint firstItem="39T-0d-6I3" firstAttribute="leading" secondItem="ok6-bi-ehc" secondAttribute="leading" id="Vdg-VQ-etx"/>
+                            <constraint firstItem="qOs-A2-dsj" firstAttribute="top" secondItem="39T-0d-6I3" secondAttribute="bottom" constant="10" id="chX-Sc-xxD"/>
                             <constraint firstItem="39T-0d-6I3" firstAttribute="top" secondItem="ok6-bi-ehc" secondAttribute="top" id="ud0-Wk-gsj"/>
                             <constraint firstItem="pPV-4O-bxs" firstAttribute="top" secondItem="39T-0d-6I3" secondAttribute="bottom" constant="60" id="wFR-gd-Ueu"/>
                         </constraints>
@@ -527,6 +536,7 @@
                         <outlet property="commentLabel" destination="b5j-ix-SlQ" id="mNt-So-o1V"/>
                         <outlet property="commitCountLabel" destination="fxh-N7-Kbr" id="pAI-vz-ngB"/>
                         <outlet property="levelImage" destination="uHc-Lt-K4G" id="Am3-gy-Q0N"/>
+                        <outlet property="networkImageView" destination="qOs-A2-dsj" id="TnI-KO-M47"/>
                         <outlet property="repositoryName" destination="xNU-mr-DLg" id="CTn-2r-Mz4"/>
                         <outlet property="repositoryPicker" destination="xNU-mr-DLg" id="31q-Nu-ygA"/>
                     </connections>
@@ -538,7 +548,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="487" y="799"/>
+            <point key="canvasLocation" x="486.95652173913049" y="798.88392857142856"/>
         </scene>
         <!--푸시알림-->
         <scene sceneID="WLI-5c-JfS">

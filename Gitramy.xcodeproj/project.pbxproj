@@ -10,7 +10,6 @@
 		5312A8B82715B65A0045F4B3 /* AddAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312A8B72715B65A0045F4B3 /* AddAlertViewController.swift */; };
 		5331729327281C4D0021BFB3 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5331729227281C4D0021BFB3 /* LoginManager.swift */; };
 		5335F9A027434875006DAF3B /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5335F99F27434875006DAF3B /* TabbarViewController.swift */; };
-		5335F9A227436D51006DAF3B /* ChartManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5335F9A127436D51006DAF3B /* ChartManager.swift */; };
 		533B7B13271D0C98002A1359 /* UNNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533B7B12271D0C98002A1359 /* UNNotificationCenter.swift */; };
 		536186B0274D138400755903 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 536186AF274D138400755903 /* Main.storyboard */; };
 		536186B2274D13DE00755903 /* Loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = 536186B1274D13DE00755903 /* Loading.gif */; };
@@ -28,6 +27,9 @@
 		53AD614C27151587001E51B7 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53AD614B27151587001E51B7 /* Alert.swift */; };
 		53B280AF2731594200CFD634 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B280AE2731594200CFD634 /* Repository.swift */; };
 		53BABC122723D51D008C7F50 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53BABC112723D51D008C7F50 /* GoogleService-Info.plist */; };
+		53D086E5274DDFD100CC4797 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D086E4274DDFD100CC4797 /* NetworkMonitor.swift */; };
+		53D086E9274DF6A600CC4797 /* disConnectedNetwork.gif in Resources */ = {isa = PBXBuildFile; fileRef = 53D086E7274DF6A600CC4797 /* disConnectedNetwork.gif */; };
+		53D086EB274DF9F200CC4797 /* ConnectedNetwork.gif in Resources */ = {isa = PBXBuildFile; fileRef = 53D086EA274DF9F200CC4797 /* ConnectedNetwork.gif */; };
 		53FC5D14272809E9002F368C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FC5D13272809E9002F368C /* HomeViewController.swift */; };
 		53FC5D1627280C66002F368C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FC5D1527280C66002F368C /* User.swift */; };
 		53FC8CBD27322B5A00FAEC43 /* Commit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FC8CBC27322B5A00FAEC43 /* Commit.swift */; };
@@ -39,7 +41,6 @@
 		5312A8B72715B65A0045F4B3 /* AddAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlertViewController.swift; sourceTree = "<group>"; };
 		5331729227281C4D0021BFB3 /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		5335F99F27434875006DAF3B /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
-		5335F9A127436D51006DAF3B /* ChartManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartManager.swift; sourceTree = "<group>"; };
 		533B7B12271D0C98002A1359 /* UNNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNNotificationCenter.swift; sourceTree = "<group>"; };
 		536186AF274D138400755903 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		536186B1274D13DE00755903 /* Loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Loading.gif; sourceTree = "<group>"; };
@@ -59,6 +60,9 @@
 		53AD614B27151587001E51B7 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		53B280AE2731594200CFD634 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		53BABC112723D51D008C7F50 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		53D086E4274DDFD100CC4797 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		53D086E7274DF6A600CC4797 /* disConnectedNetwork.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = disConnectedNetwork.gif; sourceTree = "<group>"; };
+		53D086EA274DF9F200CC4797 /* ConnectedNetwork.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ConnectedNetwork.gif; sourceTree = "<group>"; };
 		53FC5D13272809E9002F368C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		53FC5D1527280C66002F368C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		53FC8CBC27322B5A00FAEC43 /* Commit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commit.swift; sourceTree = "<group>"; };
@@ -140,6 +144,8 @@
 				53A44838270B215C000FA3C8 /* SceneDelegate.swift */,
 				533B7B12271D0C98002A1359 /* UNNotificationCenter.swift */,
 				536186B1274D13DE00755903 /* Loading.gif */,
+				53D086EA274DF9F200CC4797 /* ConnectedNetwork.gif */,
+				53D086E7274DF6A600CC4797 /* disConnectedNetwork.gif */,
 				536186AF274D138400755903 /* Main.storyboard */,
 				536186B3274D15E400755903 /* LaunchScreen.storyboard */,
 				53A4483F270B215D000FA3C8 /* Assets.xcassets */,
@@ -158,7 +164,7 @@
 				53B280AE2731594200CFD634 /* Repository.swift */,
 				53FC8CBC27322B5A00FAEC43 /* Commit.swift */,
 				5331729227281C4D0021BFB3 /* LoginManager.swift */,
-				5335F9A127436D51006DAF3B /* ChartManager.swift */,
+				53D086E4274DDFD100CC4797 /* NetworkMonitor.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -247,6 +253,8 @@
 				536186B4274D15E400755903 /* LaunchScreen.storyboard in Resources */,
 				53BABC122723D51D008C7F50 /* GoogleService-Info.plist in Resources */,
 				539D4129271478A500ED3606 /* AlarmTableViewCell.xib in Resources */,
+				53D086E9274DF6A600CC4797 /* disConnectedNetwork.gif in Resources */,
+				53D086EB274DF9F200CC4797 /* ConnectedNetwork.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,7 +309,6 @@
 			files = (
 				53FC8CBD27322B5A00FAEC43 /* Commit.swift in Sources */,
 				533B7B13271D0C98002A1359 /* UNNotificationCenter.swift in Sources */,
-				5335F9A227436D51006DAF3B /* ChartManager.swift in Sources */,
 				539D41252714789500ED3606 /* AlarmTableViewController.swift in Sources */,
 				53FD9EA42737FBE8004944EC /* LoadingViewController.swift in Sources */,
 				5312A8B82715B65A0045F4B3 /* AddAlertViewController.swift in Sources */,
@@ -315,6 +322,7 @@
 				53A44839270B215C000FA3C8 /* SceneDelegate.swift in Sources */,
 				539D4128271478A500ED3606 /* AlarmTableViewCell.swift in Sources */,
 				53AD614C27151587001E51B7 /* Alert.swift in Sources */,
+				53D086E5274DDFD100CC4797 /* NetworkMonitor.swift in Sources */,
 				53A4484D270B33CB000FA3C8 /* ChartViewController.swift in Sources */,
 				53FC5D1627280C66002F368C /* User.swift in Sources */,
 			);

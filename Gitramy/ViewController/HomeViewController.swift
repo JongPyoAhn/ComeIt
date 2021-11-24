@@ -6,9 +6,10 @@
 //
 
 import UIKit
-
+import Gifu
 class HomeViewController: UIViewController {
     
+    @IBOutlet weak var networkImageView: GIFImageView!
     @IBOutlet weak var repositoryName: UITextField!
     @IBOutlet weak var commitCountLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
@@ -24,7 +25,12 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         repositoryPicker.tintColor = .clear
-            
+        if NetworkMonitor.shared.isConnected {
+            networkImageView.animate(withGIFNamed: "ConnectedNetwork")
+        }else{
+            networkImageView.animate(withGIFNamed: "disConnectedNetwork")
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
