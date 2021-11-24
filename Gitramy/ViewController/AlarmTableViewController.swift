@@ -44,8 +44,8 @@ class AlarmTableViewController: UITableViewController {
             
             self.alerts = alertList
             UserDefaults.standard.set(try? PropertyListEncoder().encode(self.alerts), forKey:  "alerts")
-            //오늘커밋데이터가져와서 커밋이 1이상이면 isCommit은 true 1 미만이면 isCommit은 false
             
+            //오늘커밋데이터가져와서 커밋이 1이상이면 isCommit은 true 1 미만이면 isCommit은 false
             self.userNotification.addNotificaionRequest(by: newAlert)
             
             self.tableView.reloadData()
@@ -78,7 +78,6 @@ extension AlarmTableViewController {
         //각각의 인덱스에 있는 스위치의 상태를 알기위함
         cell.toggleSwitch.tag = indexPath.row
         
-        
         return cell
     }
     
@@ -92,6 +91,11 @@ extension AlarmTableViewController {
         switch editingStyle{
         case .delete:
             userNotification.removePendingNotificationRequests(withIdentifiers: [alerts[indexPath.row].id])
+            alerts.remove(at: indexPath.row)
+            UserDefaults.standard.set(try? PropertyListEncoder().encode(self.alerts), forKey: "alerts")
+            DispatchQueue.main.async {
+                tableView.reloadData()
+            }
             return
         default:
             break
