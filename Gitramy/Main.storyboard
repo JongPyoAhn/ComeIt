@@ -37,7 +37,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Z2l-0n-vfR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.96607202290000005" green="0.96607202290000005" blue="0.96607202290000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -83,13 +83,13 @@
                                                         <rect key="frame" x="0.0" y="130" width="412" height="350"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="✅✅이번주 저장소 순위✅✅" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QOA-bv-4F5">
-                                                                <rect key="frame" x="85" y="0.0" width="242" height="23.5"/>
+                                                                <rect key="frame" x="87" y="0.0" width="238.5" height="22.5"/>
                                                                 <fontDescription key="fontDescription" name="BMEULJIRO" family="BM EULJIRO" pointSize="20"/>
                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ujs-xK-Bha" customClass="LineChartView" customModule="Charts">
-                                                                <rect key="frame" x="62" y="31.5" width="288" height="318.5"/>
+                                                                <rect key="frame" x="62" y="30.5" width="288" height="319.5"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             </view>
                                                         </subviews>
@@ -103,13 +103,13 @@
                                                         <rect key="frame" x="0.0" y="500" width="412" height="350"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🇰🇷🇰🇷언어 사용 비율🇰🇷🇰🇷" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6nu-oB-C58">
-                                                                <rect key="frame" x="102.5" y="0.0" width="207" height="23.5"/>
+                                                                <rect key="frame" x="104" y="0.0" width="204" height="22.5"/>
                                                                 <fontDescription key="fontDescription" name="BMEULJIRO" family="BM EULJIRO" pointSize="20"/>
                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eIc-84-uAY" customClass="BarChartView" customModule="Charts">
-                                                                <rect key="frame" x="62" y="31.5" width="288" height="318.5"/>
+                                                                <rect key="frame" x="62" y="30.5" width="288" height="319.5"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             </view>
                                                         </subviews>
@@ -173,70 +173,66 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillEqually" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="jBf-F1-ufx">
-                                <rect key="frame" x="100" y="200" width="214" height="338"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rl3-9Z-EYb" userLabel="프로필이미지">
+                                <rect key="frame" x="100" y="150" width="214" height="214"/>
                                 <subviews>
-                                    <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="rl3-9Z-EYb" userLabel="프로필이미지">
-                                        <rect key="frame" x="0.0" y="0.0" width="214" height="166.5"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ejy-bI-ZwY">
+                                        <rect key="frame" x="0.0" y="0.0" width="214" height="214"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="ejy-bI-ZwY" secondAttribute="bottom" id="G2G-0G-K3a"/>
+                                    <constraint firstAttribute="width" secondItem="rl3-9Z-EYb" secondAttribute="height" multiplier="1:1" id="qoL-Ib-zd4"/>
+                                    <constraint firstItem="ejy-bI-ZwY" firstAttribute="top" secondItem="rl3-9Z-EYb" secondAttribute="top" id="sNi-Qc-T1h"/>
+                                    <constraint firstAttribute="trailing" secondItem="ejy-bI-ZwY" secondAttribute="trailing" id="wXq-ic-wKf"/>
+                                    <constraint firstItem="ejy-bI-ZwY" firstAttribute="leading" secondItem="rl3-9Z-EYb" secondAttribute="leading" id="wbf-0G-0lb"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillProportionally" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="34n-5x-AUq">
+                                <rect key="frame" x="50" y="374" width="314" height="134"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="uqO-m2-ogX">
+                                        <rect key="frame" x="73" y="0.0" width="168" height="57"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ejy-bI-ZwY">
-                                                <rect key="frame" x="0.0" y="0.0" width="214" height="166.5"/>
-                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HongGilDong" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5iK-Tk-FnW">
+                                                <rect key="frame" x="11.5" y="0.0" width="145" height="28.5"/>
+                                                <fontDescription key="fontDescription" name="BMEULJIRO" family="BM EULJIRO" pointSize="25"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="honggildong@naver.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uX6-3h-jZP">
+                                                <rect key="frame" x="0.0" y="28.5" width="168" height="28.5"/>
+                                                <fontDescription key="fontDescription" name="BMEULJIRO" family="BM EULJIRO" pointSize="15"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <constraints>
-                                            <constraint firstItem="ejy-bI-ZwY" firstAttribute="top" secondItem="rl3-9Z-EYb" secondAttribute="top" id="KhX-fJ-KiY"/>
-                                            <constraint firstItem="ejy-bI-ZwY" firstAttribute="leading" secondItem="rl3-9Z-EYb" secondAttribute="leading" id="mzL-Wz-mjV"/>
-                                            <constraint firstAttribute="trailing" secondItem="ejy-bI-ZwY" secondAttribute="trailing" id="zEp-Pi-WaL"/>
-                                            <constraint firstAttribute="bottom" secondItem="ejy-bI-ZwY" secondAttribute="bottom" id="zSB-ei-bI3"/>
-                                        </constraints>
-                                    </view>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="34n-5x-AUq">
-                                        <rect key="frame" x="23" y="171.5" width="168" height="166.5"/>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="EwK-sF-e6o">
+                                        <rect key="frame" x="78.5" y="62" width="157" height="72"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="uqO-m2-ogX">
-                                                <rect key="frame" x="0.0" y="0.0" width="168" height="64.5"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HongGilDong" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5iK-Tk-FnW">
-                                                        <rect key="frame" x="11.5" y="0.0" width="145" height="32.5"/>
-                                                        <fontDescription key="fontDescription" name="BMEULJIRO" family="BM EULJIRO" pointSize="25"/>
-                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="honggildong@naver.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uX6-3h-jZP">
-                                                        <rect key="frame" x="0.0" y="32.5" width="168" height="32"/>
-                                                        <fontDescription key="fontDescription" name="BMEULJIRO" family="BM EULJIRO" pointSize="15"/>
-                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                            </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="EwK-sF-e6o">
-                                                <rect key="frame" x="5.5" y="84.5" width="157" height="82"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="소속 : 애플코리아" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0T9-4j-lAe">
-                                                        <rect key="frame" x="0.0" y="0.0" width="116.5" height="19.5"/>
-                                                        <fontDescription key="fontDescription" name="BMEULJIRO" family="BM EULJIRO" pointSize="17"/>
-                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="총 레파지토리 : 20" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hDf-jq-WJ2">
-                                                        <rect key="frame" x="0.0" y="24.5" width="127.5" height="19.5"/>
-                                                        <fontDescription key="fontDescription" name="BMEULJIRO" family="BM EULJIRO" pointSize="17"/>
-                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dhj-Ek-zj8">
-                                                        <rect key="frame" x="0.0" y="49" width="157" height="33"/>
-                                                        <fontDescription key="fontDescription" name="BMEULJIRO" family="BM EULJIRO" pointSize="18"/>
-                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                        <state key="normal" title="Repositories로 이동"/>
-                                                        <connections>
-                                                            <action selector="moveToRepositoryButtonTapped:" destination="cMP-Ns-IZd" eventType="touchUpInside" id="rlC-1A-OlS"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                            </stackView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="소속 : 애플코리아" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0T9-4j-lAe">
+                                                <rect key="frame" x="0.0" y="0.0" width="116.5" height="19.5"/>
+                                                <fontDescription key="fontDescription" name="BMEULJIRO" family="BM EULJIRO" pointSize="17"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="총 레파지토리 : 20" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hDf-jq-WJ2">
+                                                <rect key="frame" x="0.0" y="19.5" width="127.5" height="19.5"/>
+                                                <fontDescription key="fontDescription" name="BMEULJIRO" family="BM EULJIRO" pointSize="17"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dhj-Ek-zj8">
+                                                <rect key="frame" x="0.0" y="39" width="157" height="33"/>
+                                                <fontDescription key="fontDescription" name="BMEULJIRO" family="BM EULJIRO" pointSize="18"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Repositories로 이동"/>
+                                                <connections>
+                                                    <action selector="moveToRepositoryButtonTapped:" destination="cMP-Ns-IZd" eventType="touchUpInside" id="rlC-1A-OlS"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -245,10 +241,12 @@
                         <viewLayoutGuide key="safeArea" id="HD5-L0-8ko"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="HD5-L0-8ko" firstAttribute="trailing" secondItem="jBf-F1-ufx" secondAttribute="trailing" constant="100" id="7BI-Vh-yvO"/>
-                            <constraint firstItem="HD5-L0-8ko" firstAttribute="bottom" secondItem="jBf-F1-ufx" secondAttribute="bottom" constant="270" id="GZT-Uc-rIS"/>
-                            <constraint firstItem="jBf-F1-ufx" firstAttribute="top" secondItem="HD5-L0-8ko" secondAttribute="top" constant="200" id="RMT-xx-gVa"/>
-                            <constraint firstItem="jBf-F1-ufx" firstAttribute="leading" secondItem="HD5-L0-8ko" secondAttribute="leading" constant="100" id="VrQ-Ob-eKa"/>
+                            <constraint firstItem="rl3-9Z-EYb" firstAttribute="top" secondItem="HD5-L0-8ko" secondAttribute="top" constant="150" id="2UZ-dA-Cax"/>
+                            <constraint firstItem="34n-5x-AUq" firstAttribute="top" secondItem="rl3-9Z-EYb" secondAttribute="bottom" constant="10" id="F2b-mB-Dqi"/>
+                            <constraint firstItem="34n-5x-AUq" firstAttribute="leading" secondItem="HD5-L0-8ko" secondAttribute="leading" constant="50" id="KQG-8B-D48"/>
+                            <constraint firstItem="HD5-L0-8ko" firstAttribute="trailing" secondItem="34n-5x-AUq" secondAttribute="trailing" constant="50" id="L10-ef-Fum"/>
+                            <constraint firstItem="rl3-9Z-EYb" firstAttribute="leading" secondItem="HD5-L0-8ko" secondAttribute="leading" constant="100" id="bTX-4f-KJW"/>
+                            <constraint firstItem="HD5-L0-8ko" firstAttribute="trailing" secondItem="rl3-9Z-EYb" secondAttribute="trailing" constant="100" id="xVP-zN-pPu"/>
                         </constraints>
                     </view>
                     <connections>
@@ -291,32 +289,32 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="160" translatesAutoresizingMaskIntoConstraints="NO" id="Ees-VV-vhQ">
-                                <rect key="frame" x="30" y="118" width="354" height="114"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="Ees-VV-vhQ">
+                                <rect key="frame" x="30" y="138" width="354" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="hGb-iR-uMR">
-                                        <rect key="frame" x="0.0" y="40" width="97" height="34"/>
+                                        <rect key="frame" x="0.0" y="8" width="127" height="34"/>
                                         <fontDescription key="fontDescription" name="BMEULJIRO" family="BM EULJIRO" pointSize="30"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="AVD-hJ-jH3">
-                                        <rect key="frame" x="257" y="11.5" width="97" height="91"/>
+                                        <rect key="frame" x="227" y="0.0" width="127" height="50"/>
                                         <locale key="locale" localeIdentifier="ko_KR"/>
                                     </datePicker>
                                 </subviews>
+                                <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="S0S-WZ-FPN"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Ees-VV-vhQ" firstAttribute="leading" secondItem="S0S-WZ-FPN" secondAttribute="leading" constant="30" id="VTs-FF-aq0"/>
-                            <constraint firstItem="S0S-WZ-FPN" firstAttribute="bottom" secondItem="Ees-VV-vhQ" secondAttribute="bottom" constant="630" id="acR-IP-8q6"/>
                             <constraint firstItem="S0S-WZ-FPN" firstAttribute="trailing" secondItem="Ees-VV-vhQ" secondAttribute="trailing" constant="30" id="bml-Qw-QNj"/>
                             <constraint firstItem="EUa-G5-vzX" firstAttribute="top" secondItem="S0S-WZ-FPN" secondAttribute="top" id="ctz-sr-pQ6"/>
                             <constraint firstItem="EUa-G5-vzX" firstAttribute="trailing" secondItem="S0S-WZ-FPN" secondAttribute="trailing" id="iIL-Hk-ccx"/>
                             <constraint firstItem="EUa-G5-vzX" firstAttribute="leading" secondItem="S0S-WZ-FPN" secondAttribute="leading" id="tLw-xl-e4z"/>
-                            <constraint firstItem="Ees-VV-vhQ" firstAttribute="top" secondItem="EUa-G5-vzX" secondAttribute="bottom" constant="30" id="wpk-AO-PgH"/>
+                            <constraint firstItem="Ees-VV-vhQ" firstAttribute="top" secondItem="EUa-G5-vzX" secondAttribute="bottom" constant="50" id="wpk-AO-PgH"/>
                         </constraints>
                     </view>
                     <connections>
@@ -335,56 +333,60 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="4GC-GZ-ghH">
-                                <rect key="frame" x="0.0" y="88" width="414" height="448.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="7Hh-Tp-LRL">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoImage" translatesAutoresizingMaskIntoConstraints="NO" id="z5L-FW-5ec">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="341"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="원하는 시간대에 알림을 받고 하루에 한개의 커밋을 성공하세요!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="cFp-jj-gg4">
-                                        <rect key="frame" x="0.0" y="381" width="414" height="67.5"/>
-                                        <fontDescription key="fontDescription" name="BMEULJIRO" family="BM EULJIRO" pointSize="30"/>
-                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="4GC-GZ-ghH">
+                                        <rect key="frame" x="12" y="0.0" width="390.5" height="415"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoImage" translatesAutoresizingMaskIntoConstraints="NO" id="z5L-FW-5ec">
+                                                <rect key="frame" x="0.0" y="0.0" width="390.5" height="322.5"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="원하는 시간대에 알림을 받고 하루에 한개의 커밋을 성공하세요!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="cFp-jj-gg4">
+                                                <rect key="frame" x="0.0" y="352.5" width="390.5" height="62.5"/>
+                                                <fontDescription key="fontDescription" name="BMEULJIRO" family="BM EULJIRO" pointSize="30"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="1OV-Tj-e8a">
+                                        <rect key="frame" x="74.5" y="445" width="265" height="329"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="center" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hvk-7s-88m">
+                                                <rect key="frame" x="0.0" y="0.0" width="265" height="50"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="265" id="WHS-R9-4Gl"/>
+                                                    <constraint firstAttribute="height" constant="50" id="Z20-sR-UyI"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="BMEULJIRO" family="BM EULJIRO" pointSize="25"/>
+                                                <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <inset key="imageEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="깃허브로 계속하기" image="logo_github">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="LoginButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mob-z9-LcO"/>
+                                                </connections>
+                                            </button>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5ml-jm-90x">
+                                                <rect key="frame" x="0.0" y="150" width="265" height="179"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
-                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="6lk-go-YA4">
-                                <rect key="frame" x="70" y="631.5" width="274" height="60.5"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="center" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hvk-7s-88m">
-                                        <rect key="frame" x="0.0" y="0.0" width="274" height="60.5"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" name="BMEULJIRO" family="BM EULJIRO" pointSize="25"/>
-                                        <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <inset key="imageEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="깃허브로 계속하기" image="logo_github">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="LoginButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mob-z9-LcO"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="hvk-7s-88m" firstAttribute="top" secondItem="6lk-go-YA4" secondAttribute="top" id="ACC-QX-mZ4"/>
-                                    <constraint firstAttribute="bottom" secondItem="hvk-7s-88m" secondAttribute="bottom" id="TZi-OG-Oho"/>
-                                    <constraint firstAttribute="trailing" secondItem="hvk-7s-88m" secondAttribute="trailing" id="ZlQ-l6-TWt"/>
-                                    <constraint firstItem="hvk-7s-88m" firstAttribute="leading" secondItem="6lk-go-YA4" secondAttribute="leading" id="tvp-bV-hiM"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="4GC-GZ-ghH" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="57r-Yz-KB0"/>
-                            <constraint firstItem="6lk-go-YA4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="70" id="9Jm-Tj-dQu"/>
-                            <constraint firstItem="4GC-GZ-ghH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="DEl-cs-6Wi"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6lk-go-YA4" secondAttribute="trailing" constant="70" id="RS4-Rh-tp3"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="6lk-go-YA4" secondAttribute="bottom" constant="170" id="V4r-Dm-Tbf"/>
-                            <constraint firstItem="6lk-go-YA4" firstAttribute="top" secondItem="4GC-GZ-ghH" secondAttribute="bottom" constant="95" id="m2Z-c3-g2y"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4GC-GZ-ghH" secondAttribute="trailing" id="xef-h5-9hF"/>
+                            <constraint firstItem="7Hh-Tp-LRL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="0XH-ef-f85"/>
+                            <constraint firstItem="7Hh-Tp-LRL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="1VK-yC-3Ar"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7Hh-Tp-LRL" secondAttribute="trailing" id="V1W-e7-gGb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="7Hh-Tp-LRL" secondAttribute="bottom" id="c4L-Rf-5Ta"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zVv-f0-6cO"/>
@@ -433,27 +435,51 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="pPV-4O-bxs">
-                                <rect key="frame" x="87" y="154" width="240" height="539"/>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="39T-0d-6I3">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="nxa-1v-W9l"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="홈" id="ILl-Dl-dOE">
+                                        <barButtonItem key="rightBarButtonItem" style="plain" id="sgh-uT-fyQ">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Gb1-eT-iCy">
+                                                <rect key="frame" x="344" y="5" width="50" height="34"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="person.fill" catalog="system">
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="17"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <segue destination="cMP-Ns-IZd" kind="presentation" id="nXS-5a-412"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="pPV-4O-bxs">
+                                <rect key="frame" x="87" y="148" width="240" height="565"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillProportionally" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="LTk-IZ-Rbn">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="355.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="392"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="저장소를 선택하세요." borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xNU-mr-DLg">
-                                                <rect key="frame" x="3.5" y="0.0" width="233" height="49.5"/>
+                                                <rect key="frame" x="3.5" y="0.0" width="233" height="54.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="BMEULJIRO" family="BM EULJIRO" pointSize="25"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오늘의 커밋 수" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XOh-zg-Wf3">
-                                                <rect key="frame" x="36.5" y="64.5" width="167.5" height="44.5"/>
+                                                <rect key="frame" x="36.5" y="69.5" width="167.5" height="49"/>
                                                 <fontDescription key="fontDescription" name="BMEULJIRO" family="BM EULJIRO" pointSize="30"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gitubSquare" translatesAutoresizingMaskIntoConstraints="NO" id="uHc-Lt-K4G">
-                                                <rect key="frame" x="0.0" y="124" width="240" height="231.5"/>
+                                                <rect key="frame" x="0.0" y="133.5" width="240" height="258.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="240" id="4dM-WX-nK7"/>
                                                 </constraints>
@@ -461,16 +487,16 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dFF-0u-a4r">
-                                        <rect key="frame" x="18.5" y="405.5" width="203" height="133.5"/>
+                                        <rect key="frame" x="18.5" y="422" width="203" height="143"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?? 번" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxh-N7-Kbr">
-                                                <rect key="frame" x="49.5" y="0.0" width="104" height="83.5"/>
+                                                <rect key="frame" x="49.5" y="0.0" width="104" height="89"/>
                                                 <fontDescription key="fontDescription" name="BMEULJIRO" family="BM EULJIRO" pointSize="50"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="빨리 커밋하세요!!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="b5j-ix-SlQ">
-                                                <rect key="frame" x="0.0" y="83.5" width="203" height="50"/>
+                                                <rect key="frame" x="0.0" y="89" width="203" height="54"/>
                                                 <fontDescription key="fontDescription" name="BMEULJIRO" family="BM EULJIRO" pointSize="30"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -479,29 +505,18 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gb1-eT-iCy">
-                                <rect key="frame" x="334" y="64" width="50" height="34"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="person.fill" catalog="system">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="17"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <segue destination="cMP-Ns-IZd" kind="presentation" id="nXS-5a-412"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ok6-bi-ehc"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="ok6-bi-ehc" firstAttribute="trailing" secondItem="Gb1-eT-iCy" secondAttribute="trailing" constant="30" id="1fX-FT-K0w"/>
-                            <constraint firstItem="Gb1-eT-iCy" firstAttribute="leading" secondItem="ok6-bi-ehc" secondAttribute="leading" constant="334" id="BLs-he-b98"/>
-                            <constraint firstItem="ok6-bi-ehc" firstAttribute="bottom" secondItem="pPV-4O-bxs" secondAttribute="bottom" constant="120" id="E4B-wr-1kf"/>
-                            <constraint firstItem="pPV-4O-bxs" firstAttribute="top" secondItem="ok6-bi-ehc" secondAttribute="top" constant="110" id="Fcs-mP-k6d"/>
+                            <constraint firstItem="ok6-bi-ehc" firstAttribute="bottom" secondItem="pPV-4O-bxs" secondAttribute="bottom" constant="100" id="E4B-wr-1kf"/>
+                            <constraint firstItem="39T-0d-6I3" firstAttribute="trailing" secondItem="ok6-bi-ehc" secondAttribute="trailing" id="L0F-5r-8Gg"/>
                             <constraint firstItem="pPV-4O-bxs" firstAttribute="leading" secondItem="ok6-bi-ehc" secondAttribute="leading" constant="87" id="PpR-no-Jpo"/>
                             <constraint firstItem="ok6-bi-ehc" firstAttribute="trailing" secondItem="pPV-4O-bxs" secondAttribute="trailing" constant="87" id="VXm-7Q-9Gg"/>
-                            <constraint firstItem="Gb1-eT-iCy" firstAttribute="top" secondItem="ok6-bi-ehc" secondAttribute="top" constant="20" id="wYk-Ir-wmg"/>
+                            <constraint firstItem="39T-0d-6I3" firstAttribute="leading" secondItem="ok6-bi-ehc" secondAttribute="leading" id="Vdg-VQ-etx"/>
+                            <constraint firstItem="39T-0d-6I3" firstAttribute="top" secondItem="ok6-bi-ehc" secondAttribute="top" id="ud0-Wk-gsj"/>
+                            <constraint firstItem="pPV-4O-bxs" firstAttribute="top" secondItem="39T-0d-6I3" secondAttribute="bottom" constant="60" id="wFR-gd-Ueu"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="w8h-Kk-s4w" appends="YES" id="md6-lb-i05"/>
@@ -538,6 +553,7 @@
                         <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="Lbe-QF-Tmu">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" systemColor="systemGray2Color"/>
                             <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <textAttributes key="titleTextAttributes">
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -594,6 +610,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
