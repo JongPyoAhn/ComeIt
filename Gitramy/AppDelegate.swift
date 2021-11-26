@@ -12,7 +12,7 @@ import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
-
+    
     let userNotificationCenter = UNUserNotificationCenter.current()
     // Portrait모드로 고정
     var orientationLock = UIInterfaceOrientationMask.portrait

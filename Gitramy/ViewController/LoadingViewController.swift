@@ -14,20 +14,19 @@ class LoadingViewController: UIViewController {
         super.viewDidLoad()
         gifImageView.animate(withGIFNamed: "Loading")
         
-        
-        //로그인한 유저정보 미리 가져오기.
-        loginManager.fetchUser { user in
-            self.loginManager.user = user
-            self.loginManager.fetchRepository(user.name) { repositories in
-                self.loginManager.repositories = repositories
-                print("========================================================================================\(self.loginManager.repositories)")
-                self.loginManager.commitToDict()
-                
-                DispatchQueue.main.async {
-                    self.moveToTabbar()
+            //로그인한 유저정보 미리 가져오기.
+            loginManager.fetchUser { user in
+                self.loginManager.user = user
+                self.loginManager.fetchRepository(user.name) { repositories in
+                    self.loginManager.repositories = repositories
+                    print("========================================================================================\(self.loginManager.repositories)")
+                    self.loginManager.commitToDict()
+                    
+                    DispatchQueue.main.async {
+                        self.moveToTabbar()
+                    }
                 }
             }
-        }
         
     }
     

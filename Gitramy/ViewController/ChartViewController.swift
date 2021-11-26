@@ -44,6 +44,8 @@ class ChartViewController: UIViewController, ChartViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //커밋 수 많은 위에서 5개만 추려야됨.
+        //dict에서 오름차순이나 내림차순으로 쓰기.
         setLineChartView()
         repositorySetData()
         setBarChartView()
@@ -53,24 +55,31 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         print("subViewCounts : \(contributionStackView.arrangedSubviews.count)")
         if contributionStackView.arrangedSubviews.count < 2{
             getContributionSvgImageFile()
+            
         }
+        
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        //커밋 수 많은 위에서 5개만 추려야됨.
-        //dict에서 오름차순이나 내림차순으로 쓰기.
-        
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+//        NetworkMonitor.shared.getCurrentVC()
     }
     func getContributionSvgImageFile(){
         let imageURL = URL(string: "https://ghchart.rshah.org/\(self.loginManager.user.name)")
         let svgImageView = SVGImageView.init(contentsOf: imageURL!)
         svgImageView.frame = view.bounds
         svgImageView.contentMode = .scaleAspectFit
+        
         if contributionStackView.arrangedSubviews.count >= 2{
             contributionStackView.removeArrangedSubview(svgImageView)
         }else {
             contributionStackView.addArrangedSubview(svgImageView)
+//            let margins = contributionStackView.layoutMarginsGuide
+//            svgImageView.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
+//            svgImageView.backgroundColor = .white
+//            svgImageView.layer.cornerRadius = 10
+//            svgImageView.contentMode = .scaleAspectFit
+//            contributionStackView.alignment = .leading
         }
     }
     
@@ -126,13 +135,13 @@ extension ChartViewController {
         let set1 = LineChartDataSet(entries: repositoryValues, label: "🙈레포지토리 커밋개수")
         set1.lineWidth = 5 //선의 굵기
         //그래프 바깥쪽 원 크기와 색상
-        set1.circleColors = [NSUIColor.init(rgb: 0xFF5500)]
+        set1.circleColors = [NSUIColor.init(rgb: 0x369F36)]
         set1.circleRadius = 5.0
         //그래프 안쪽 원 크기와 색상
         set1.circleHoleColor = UIColor.white
         set1.circleHoleRadius = 4.0
 //        set1.mode = .cubicBezier //선 유연하게
-        set1.setColor(UIColor(rgb: 0xFF7F00)) //선의 색깔
+        set1.setColor(UIColor(rgb: 0x65CD3C))//선의 색깔
         set1.highlightColor = .systemRed //누르면서 움직이면 빨간색나오게함
         
         
@@ -158,8 +167,8 @@ extension ChartViewController {
         
         //그래프 밑에 색 채우는거
         func getGradientFilling() -> CGGradient {
-            let coloTop = UIColor(rgb: 0xFF6A00).cgColor
-            let colorBottom = UIColor(rgb: 0xFFFDABF).cgColor
+            let coloTop = UIColor(rgb: 0x3FE87F).cgColor
+            let colorBottom = UIColor(rgb: 0x78EFAD).cgColor
             // Colors of the gradient
             let gradientColors = [coloTop, colorBottom] as CFArray
             // Positioning of the gradient
@@ -191,9 +200,9 @@ extension ChartViewController {
         repositoryChartView.legend.verticalAlignment = .top //범례 위치 지정.
         repositoryChartView.legend.textColor = UIColor.black//범례 텍스트 색상지정.
         repositoryChartView.legend.form = .circle
-        repositoryChartView.layer.borderWidth = 2
-        repositoryChartView.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
-        
+//        repositoryChartView.layer.borderWidth = 2
+//        repositoryChartView.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
+//
         
         let yAxis = repositoryChartView.leftAxis
         let xAxis = repositoryChartView.xAxis
@@ -267,6 +276,8 @@ extension ChartViewController {
         languageChartView.doubleTapToZoomEnabled = false
     }
     
+ 
+    
 }
 //HexColor Using
 extension UIColor {
@@ -285,4 +296,6 @@ extension UIColor {
            blue: rgb & 0xFF
        )
    }
+    
+    
 }

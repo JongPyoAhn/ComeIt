@@ -8,11 +8,9 @@
 import UIKit
 
 class TabbarViewController: UITabBarController {
-    let loginManager = LoginManager.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         
     }
     

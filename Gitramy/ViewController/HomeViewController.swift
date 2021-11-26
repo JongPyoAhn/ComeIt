@@ -6,10 +6,9 @@
 //
 
 import UIKit
-import Gifu
+
 class HomeViewController: UIViewController {
     
-    @IBOutlet weak var networkImageView: GIFImageView!
     @IBOutlet weak var repositoryName: UITextField!
     @IBOutlet weak var commitCountLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
@@ -24,19 +23,15 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        repositoryPicker.tintColor = .clear
-        if NetworkMonitor.shared.isConnected {
-            networkImageView.animate(withGIFNamed: "ConnectedNetwork")
-        }else{
-            networkImageView.animate(withGIFNamed: "disConnectedNetwork")
-        }
         
+        repositoryPicker.tintColor = .clear
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+       
         loginManager.fetchRepository(loginManager.user.name) {[weak self]repositories in
+            
             guard let self = self else {return}
             self.repoNames = repositories//레포지토리정보가져오기
             print("repoNames: --------\(self.repoNames)")
@@ -46,11 +41,18 @@ class HomeViewController: UIViewController {
 //            self.loginManager.commitToDict()
         }
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        NetworkMonitor.shared.getCurrentVC()
+    }
     
     @IBAction func backgroundTapped(_ sender: Any) {
         //픽커뷰에서 안돼고 텍스트필드에 적용하니까 된다.
         repositoryPicker.resignFirstResponder()
     }
+    
+   
+
     
     
     
@@ -155,5 +157,6 @@ extension HomeViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicke
             return 0
         }
     }
+    
     
 }

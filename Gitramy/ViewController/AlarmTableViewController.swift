@@ -15,6 +15,7 @@ class AlarmTableViewController: UITableViewController {
 
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,7 +27,6 @@ class AlarmTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         alerts = alertList()
     }
-    
 
     @IBAction func addAlertAction(_ sender: Any) {
         guard let addAlertVC = storyboard?.instantiateViewController(identifier: "AddAlertViewController") as? AddAlertViewController else {return}
