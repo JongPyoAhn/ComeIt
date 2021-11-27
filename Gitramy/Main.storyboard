@@ -117,7 +117,7 @@
                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eIc-84-uAY" customClass="BarChartView" customModule="Charts">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eIc-84-uAY" customClass="PieChartView" customModule="Charts">
                                                                 <rect key="frame" x="0.0" y="30.5" width="281.5" height="269.5"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             </view>
@@ -167,7 +167,7 @@
                     <tabBarItem key="tabBarItem" title="통계" image="chart.line.uptrend.xyaxis" catalog="system" id="EqS-sM-je3"/>
                     <connections>
                         <outlet property="contributionStackView" destination="Ioh-av-AUb" id="Mjm-e4-OuV"/>
-                        <outlet property="languageChartView" destination="eIc-84-uAY" id="87w-DP-bwt"/>
+                        <outlet property="languagePieChartView" destination="eIc-84-uAY" id="2NR-um-XfY"/>
                         <outlet property="repositoryChartView" destination="Ujs-xK-Bha" id="jIr-v8-BVd"/>
                         <outlet property="scrollView" destination="Qug-wT-Ld3" id="z8D-a8-0Ik"/>
                     </connections>
@@ -728,7 +728,7 @@
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="logo_github" width="42.5" height="42.5"/>
         <image name="minus" catalog="system" width="128" height="24"/>
-        <image name="network" width="184" height="167"/>
+        <image name="network" width="184" height="167.5"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">

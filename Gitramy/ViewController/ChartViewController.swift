@@ -15,32 +15,24 @@ import CoreMedia
 class ChartViewController: UIViewController, ChartViewDelegate {
     let loginManager = LoginManager.shared
     static let shared = ChartViewController()
-
+    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contributionStackView: UIStackView!
     @IBOutlet weak var contributionView: UIView!
     
     @IBOutlet weak var repositoryChartView: LineChartView!
-    @IBOutlet weak var languageChartView: BarChartView!
     
-    
-    var stackView: UIStackView!
+    @IBOutlet weak var languagePieChartView: PieChartView!
     
     
     var repositoryNames: [String] = []//x축을 레파지토리 이름 받아오기
     let languageNames = ["Swift", "Java", "python", "Ruby", "C++"]//
     let test = ["Swift", "Java", "python", "Ruby", "C++"]
+    let pieChartDataEntries: [PieChartDataEntry] = []
+    
     
     //모든 레포지토리 데이터 받아와서 y축을 총커밋수
     var repositoryValues: [ChartDataEntry] = []
-    
-    let languageValues: [BarChartDataEntry] = [
-        BarChartDataEntry(x: 0, y: 0.5),
-        BarChartDataEntry(x: 1, y: 0.1),
-        BarChartDataEntry(x: 2, y: 0.2),
-        BarChartDataEntry(x: 3, y: 0.4),
-        BarChartDataEntry(x: 4, y: 0.6)
-    ]
     
     let refresh = UIRefreshControl()
     
@@ -60,7 +52,7 @@ class ChartViewController: UIViewController, ChartViewDelegate {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
+        
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -98,7 +90,7 @@ extension ChartViewController{
         refresh.attributedTitle = NSAttributedString(string: "데이터를 불러오는중...",
                                                      attributes: [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 20)])
         //ScrollView에 UIRefreshControl 적용
-            self.scrollView.refreshControl = refresh
+        self.scrollView.refreshControl = refresh
     }
     
     @objc func updateUI(){
@@ -112,8 +104,8 @@ extension ChartViewController{
             print("repoTotal : \(self.loginManager.repoTotal)")
             setLineChartView()
             repositorySetData()
-            setBarChartView()
-            languageSetData(languageValues)
+            setPieChartView()
+            languageSetData()
             initRefresh()
             print("subViewCounts : \(contributionStackView.arrangedSubviews.count)")
             if contributionStackView.arrangedSubviews.count < 2{
@@ -163,7 +155,7 @@ extension ChartViewController {
         //그래프 안쪽 원 크기와 색상
         set1.circleHoleColor = UIColor.white
         set1.circleHoleRadius = 4.0
-//        set1.mode = .cubicBezier //선 유연하게
+        //        set1.mode = .cubicBezier //선 유연하게
         set1.setColor(UIColor(rgb: 0x65CD3C))//선의 색깔
         set1.highlightColor = .systemRed //누르면서 움직이면 빨간색나오게함
         
@@ -182,7 +174,7 @@ extension ChartViewController {
         set1.valueFont = UIFont.boldSystemFont(ofSize: 10)
         
         //        set1.mode = .stepped //선의 종류
-//        set1.drawCirclesEnabled = false //선 꼭짓점에 생기던 동그란원이 사라짐
+        //        set1.drawCirclesEnabled = false //선 꼭짓점에 생기던 동그란원이 사라짐
         let data = LineChartData(dataSet: set1)
         data.setValueTextColor(.black)
         data.setDrawValues(true)//꼭지점에 데이터표시
@@ -200,7 +192,7 @@ extension ChartViewController {
             // Gradient Object
             return CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradientColors, locations: colorLocations)!
         }
-
+        
     }
     
     //꺽은선그래프 꾸미기
@@ -227,20 +219,20 @@ extension ChartViewController {
         
         repositoryChartView.setExtraOffsets(left: 30, top: 0, right: 30, bottom: 0)
         repositoryChartView.fitScreen()
-//        repositoryChartView.layer.borderWidth = 2
-//        repositoryChartView.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
-//
+        //        repositoryChartView.layer.borderWidth = 2
+        //        repositoryChartView.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
+        //
         
         let yAxis = repositoryChartView.leftAxis
         let xAxis = repositoryChartView.xAxis
         yAxis.setLabelCount(repositoryNames.count, force: true) //왼쪽 y축 눈금의 수를 설정
         
         yAxis.enabled = false
-//        yAxis.gridColor = .clear //격자 선 지우기
-//        yAxis.labelTextColor = .black //왼쪽 y축 눈금의 색을 설정
-//        yAxis.axisLineColor = .black //왼쪽 y축 눈금선의 색을 설정
-//        yAxis.valueFormatter = DefaultAxisValueFormatter(decimals: 0)
-
+        //        yAxis.gridColor = .clear //격자 선 지우기
+        //        yAxis.labelTextColor = .black //왼쪽 y축 눈금의 색을 설정
+        //        yAxis.axisLineColor = .black //왼쪽 y축 눈금선의 색을 설정
+        //        yAxis.valueFormatter = DefaultAxisValueFormatter(decimals: 0)
+        
         print("여기 : \(repositoryNames)")
         
         xAxis.valueFormatter = IndexAxisValueFormatter(values: repositoryNames)
@@ -249,81 +241,95 @@ extension ChartViewController {
         xAxis.granularity = 1
         xAxis.gridColor = .clear
         xAxis.granularityEnabled = true
-    
-//        xAxis.labelFont = .boldSystemFont(ofSize: 5) //x축 폰트 설정
+        
+        //        xAxis.labelFont = .boldSystemFont(ofSize: 5) //x축 폰트 설정
         xAxis.labelFont = UIFont(name: "BM EULJIRO", size: 6)!
         xAxis.avoidFirstLastClippingEnabled = false
-
-//        repositoryChartView.data?.setDrawValues(false)
+        
+        //        repositoryChartView.data?.setDrawValues(false)
         xAxis.labelTextColor = .black //x축 글자색깔
         xAxis.axisLineColor = .clear //x축 눈금선의 색을 설정
-
-       
+        
+        
         
         repositoryChartView.doubleTapToZoomEnabled = false
         repositoryChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)//애니메이션 설정
         
     }
     
-  
+    
     //        yAxis.labelFont = .boldSystemFont(ofSize: 12) //왼쪽 y축 눈금의 폰트를 설정
-
-
     
-    //MARK: - 언어 막대그래프
-    func languageSetData(_ values: [BarChartDataEntry]){
-        let set2 = BarChartDataSet(entries: values, label: "Language")
-        let data = BarChartData(dataSet: set2)
+    
+    
+    //MARK: - 언어 원형그래프
+    func languageSetData(){
+            for index in 0..<sortedDates.count
+            {
+                //todo : 언어데이터 가져와서 value에 넣어보기.(퍼센트로되면 두고 아니면 내가변환)
+                //storedDates가 언어종류 저장해놓는곳.
+                //value에는 언어데이터의 값이 들어있는것을 넣으면됨.
+                //처음에 가져올때 딕셔너리로 가져오면될듯?
+                //언어: 값 이런식으로.
+                let year = sortedDates[index]
+
+                       guard let costs = dataPoints[year] else {
+                           return
+                       }
+
+                let dataEntry = PieChartDataEntry(value: costs, label: year)
+                pieChartDataEntries.append(dataEntry)
+            }
+        let set2 = PieChartDataSet(entries: pieChartDataEntries, label: "Language")
+        set2.sliceSpace = 2.0
+        set2.yValuePosition = PieChartDataSet.ValuePosition.outsideSlice
+        
+        let data = PieChartData(dataSet: set2)
         data.setDrawValues(false)
-        languageChartView.data = data
+        languagePieChartView.data = data
     }
     
-    func setBarChartView(){
-        languageChartView.backgroundColor = .darkGray
-        languageChartView.rightAxis.enabled = false
-        let yAxis = languageChartView.leftAxis
-        let xAxis = languageChartView.xAxis
-        
-        yAxis.gridColor = .clear //격자 선 지우기
-        xAxis.gridColor = .clear
+    func setPieChartView(){
 
-        yAxis.labelFont = .boldSystemFont(ofSize: 12) //왼쪽 y축 눈금의 폰트를 설정
-        yAxis.labelTextColor = .white //왼쪽 y축 눈금의 색을 설정
-        yAxis.axisLineColor = .white //왼쪽 y축 눈금선의 색을 설정
+    
+        languagePieChartView.usePercentValuesEnabled = true
+        languagePieChartView.drawSlicesUnderHoleEnabled = false
+        languagePieChartView.holeRadiusPercent = 0.40
+        languagePieChartView.transparentCircleRadiusPercent = 0.43
+        languagePieChartView.drawHoleEnabled = true
+        languagePieChartView.rotationAngle = 0.0
+        languagePieChartView.rotationEnabled = true
+        languagePieChartView.highlightPerTapEnabled = false
         
-//        xAxis.labelPosition = .bottom //위에 있던 x축 눈금이 아래로 내려옴
-        xAxis.labelPosition = .topInside
-        xAxis.labelFont = .boldSystemFont(ofSize: 12) //x축 폰트 설정
-        xAxis.labelTextColor = .white //x축 글자색깔
-        xAxis.axisLineColor = .clear //x축 눈금선의 색을 설정
-       
+        let pieChartLegend = languagePieChartView.legend
+        pieChartLegend.horizontalAlignment = Legend.HorizontalAlignment.right
+        pieChartLegend.verticalAlignment = Legend.VerticalAlignment.top
+        pieChartLegend.orientation = Legend.Orientation.vertical
+        pieChartLegend.drawInside = false
+        pieChartLegend.yOffset = 10.0
         
-        xAxis.valueFormatter = IndexAxisValueFormatter(values:languageNames)
-        xAxis.granularity = 1
+        languagePieChartView.legend.enabled = true
         
-        languageChartView.doubleTapToZoomEnabled = false
+        
     }
-    
- 
-    
 }
 //HexColor Using
 extension UIColor {
-   convenience init(red: Int, green: Int, blue: Int) {
-       assert(red >= 0 && red <= 255, "Invalid red component")
-       assert(green >= 0 && green <= 255, "Invalid green component")
-       assert(blue >= 0 && blue <= 255, "Invalid blue component")
-
-       self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
-   }
-
-   convenience init(rgb: Int) {
-       self.init(
-           red: (rgb >> 16) & 0xFF,
-           green: (rgb >> 8) & 0xFF,
-           blue: rgb & 0xFF
-       )
-   }
+    convenience init(red: Int, green: Int, blue: Int) {
+        assert(red >= 0 && red <= 255, "Invalid red component")
+        assert(green >= 0 && green <= 255, "Invalid green component")
+        assert(blue >= 0 && blue <= 255, "Invalid blue component")
+        
+        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+    }
+    
+    convenience init(rgb: Int) {
+        self.init(
+            red: (rgb >> 16) & 0xFF,
+            green: (rgb >> 8) & 0xFF,
+            blue: rgb & 0xFF
+        )
+    }
     
     
 }
