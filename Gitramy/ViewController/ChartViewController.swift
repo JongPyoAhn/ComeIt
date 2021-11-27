@@ -47,22 +47,12 @@ class ChartViewController: UIViewController, ChartViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigationTitle()
         //커밋 수 많은 위에서 5개만 추려야됨.
         //dict에서 오름차순이나 내림차순으로 쓰기.
-//        if NetworkMonitor.shared.isConnected{
-//            updateUI()
-////            setLineChartView()
-////            repositorySetData()
-////            setBarChartView()
-////            languageSetData(languageValues)
-////            initRefresh()
-////            //웹URL SVG가져오기.
-////            print("subViewCounts : \(contributionStackView.arrangedSubviews.count)")
-////            if contributionStackView.arrangedSubviews.count < 2{
-////                getContributionSvgImageFile()
-////            }
-//        }
     }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateUI()
@@ -76,6 +66,14 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         super.viewDidDisappear(animated)
         print("viewDisappear")
     }
+    func setNavigationTitle(){
+        let attrs = [
+            NSAttributedString.Key.foregroundColor: UIColor.black,
+            NSAttributedString.Key.font: UIFont(name: "BM EULJIRO", size: 20)!
+        ]
+        UINavigationBar.appearance().titleTextAttributes = attrs
+    }
+    
     func getContributionSvgImageFile(){
         let imageURL = URL(string: "https://ghchart.rshah.org/\(self.loginManager.user.name)")
         let svgImageView = SVGImageView.init(contentsOf: imageURL!)
@@ -171,6 +169,7 @@ extension ChartViewController {
         
         
         
+        
         //누르고 쭉 당기면 노란줄생기는거 없어짐.
         set1.drawHorizontalHighlightIndicatorEnabled = false
         set1.drawVerticalHighlightIndicatorEnabled = false
@@ -225,6 +224,9 @@ extension ChartViewController {
         repositoryChartView.legend.verticalAlignment = .top //범례 위치 지정.
         repositoryChartView.legend.textColor = UIColor.black//범례 텍스트 색상지정.
         repositoryChartView.legend.form = .circle
+        
+        repositoryChartView.setExtraOffsets(left: 30, top: 0, right: 30, bottom: 0)
+        repositoryChartView.fitScreen()
 //        repositoryChartView.layer.borderWidth = 2
 //        repositoryChartView.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
 //
@@ -244,22 +246,23 @@ extension ChartViewController {
         xAxis.valueFormatter = IndexAxisValueFormatter(values: repositoryNames)
         xAxis.setLabelCount(repositoryNames.count, force: true) //x축 레이블의 수를 설정
         xAxis.labelPosition = .top //x축 눈금 위치 조정
-//        xAxis.granularity = 1
+        xAxis.granularity = 1
         xAxis.gridColor = .clear
         xAxis.granularityEnabled = true
     
-        xAxis.labelFont = .boldSystemFont(ofSize: 8) //x축 폰트 설정
-        
+//        xAxis.labelFont = .boldSystemFont(ofSize: 5) //x축 폰트 설정
+        xAxis.labelFont = UIFont(name: "BM EULJIRO", size: 6)!
+        xAxis.avoidFirstLastClippingEnabled = false
 
 //        repositoryChartView.data?.setDrawValues(false)
         xAxis.labelTextColor = .black //x축 글자색깔
         xAxis.axisLineColor = .clear //x축 눈금선의 색을 설정
-        
+
        
         
         repositoryChartView.doubleTapToZoomEnabled = false
         repositoryChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)//애니메이션 설정
-        repositoryChartView.fitScreen()
+        
     }
     
   
@@ -293,7 +296,7 @@ extension ChartViewController {
         xAxis.labelFont = .boldSystemFont(ofSize: 12) //x축 폰트 설정
         xAxis.labelTextColor = .white //x축 글자색깔
         xAxis.axisLineColor = .clear //x축 눈금선의 색을 설정
-        
+       
         
         xAxis.valueFormatter = IndexAxisValueFormatter(values:languageNames)
         xAxis.granularity = 1

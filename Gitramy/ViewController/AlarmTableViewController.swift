@@ -18,7 +18,7 @@ class AlarmTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setNavigationTitle()
         let nibName = UINib(nibName: "AlarmTableViewCell", bundle: nil)
         tableView.register(nibName, forCellReuseIdentifier: "AlarmTableViewCell")
     }
@@ -26,6 +26,14 @@ class AlarmTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         alerts = alertList()
+    }
+    
+    func setNavigationTitle(){
+        let attrs = [
+            NSAttributedString.Key.foregroundColor: UIColor.black,
+            NSAttributedString.Key.font: UIFont(name: "BM EULJIRO", size: 20)!
+        ]
+        UINavigationBar.appearance().titleTextAttributes = attrs
     }
 
     @IBAction func addAlertAction(_ sender: Any) {

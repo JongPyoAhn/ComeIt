@@ -9,6 +9,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var repositoryName: UITextField!
     @IBOutlet weak var commitCountLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
@@ -23,6 +24,8 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigationTitle()
+        
         
         repositoryPicker.tintColor = .clear
     }
@@ -41,16 +44,20 @@ class HomeViewController: UIViewController {
 //            self.loginManager.commitToDict()
         }
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        
+  
+    func setNavigationTitle(){
+        let attrs = [
+            NSAttributedString.Key.foregroundColor: UIColor.black,
+            NSAttributedString.Key.font: UIFont(name: "BM EULJIRO", size: 20)!
+        ]
+        UINavigationBar.appearance().titleTextAttributes = attrs
     }
     
     @IBAction func backgroundTapped(_ sender: Any) {
         //픽커뷰에서 안돼고 텍스트필드에 적용하니까 된다.
         repositoryPicker.resignFirstResponder()
     }
+    
     
    
 
@@ -74,11 +81,15 @@ extension HomeViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicke
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        repositoryPicker.text = repoNames[row].name
-        //유저가 피커뷰에 설정해놓은 값 저장
-        UserDefaults.standard.set(repoNames[row].name, forKey: "currentSelectedRepository")
-        //선택한 레포지토리의 정보를 가지고와서 몇번 커밋했는지 나타내줄거임.
-        commitTextChange(row)
+        if NetworkMonitor.shared.isConnected{
+            repositoryPicker.text = repoNames[row].name
+            //유저가 피커뷰에 설정해놓은 값 저장
+            UserDefaults.standard.set(repoNames[row].name, forKey: "currentSelectedRepository")
+            //선택한 레포지토리의 정보를 가지고와서 몇번 커밋했는지 나타내줄거임.
+            commitTextChange(row)
+        }else{
+            moveDisConnected()
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
@@ -159,5 +170,11 @@ extension HomeViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicke
         }
     }
     
-    
+    func moveDisConnected(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let disConnectedVC = storyboard.instantiateViewController(withIdentifier: "DisConnectedViewController")
+        disConnectedVC.modalPresentationStyle = .fullScreen
+        disConnectedVC.modalTransitionStyle = .crossDissolve
+        self.present(disConnectedVC, animated: false, completion: nil)
+    }
 }

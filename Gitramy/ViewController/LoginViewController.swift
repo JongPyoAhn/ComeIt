@@ -16,7 +16,9 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var githubLoginButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if !NetworkMonitor.shared.isConnected{
+            moveDisConnected()
+        }
         githubLoginButton.layer.borderWidth = 3
         githubLoginButton.layer.borderColor = UIColor.black.cgColor
         githubLoginButton.layer.cornerRadius = 25
@@ -28,9 +30,7 @@ class LoginViewController: UIViewController {
         self.loginManager.autoLogin {
             self.moveToLoadingViewController()
         }
-        if !NetworkMonitor.shared.isConnected{
-            moveDisConnected()
-        }
+        
     }
     
     @IBAction func LoginButtonTapped(_ sender: Any) {
@@ -43,7 +43,7 @@ class LoginViewController: UIViewController {
     func moveToLoadingViewController(){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let startVC = storyboard.instantiateViewController(withIdentifier: "LoadingViewController") as! LoadingViewController
-        startVC.modalPresentationStyle = .overFullScreen
+        startVC.modalPresentationStyle = .fullScreen
         startVC.modalTransitionStyle = .crossDissolve
         self.present(startVC, animated: true, completion: nil)
     }

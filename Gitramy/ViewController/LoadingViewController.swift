@@ -42,7 +42,7 @@ class LoadingViewController: UIViewController {
     func moveToTabbar(){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let startVC = storyboard.instantiateViewController(withIdentifier: "tabbarController") as! UITabBarController
-        startVC.modalPresentationStyle = .overFullScreen
+        startVC.modalPresentationStyle = .fullScreen
         startVC.modalTransitionStyle = .crossDissolve
         self.present(startVC, animated: true, completion: nil)
     }
