@@ -344,26 +344,70 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DisConnectedViewController" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fXx-qb-IPm">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="naY-PO-moQ">
+                                <rect key="frame" x="0.0" y="294" width="414" height="318"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="network" translatesAutoresizingMaskIntoConstraints="NO" id="Omg-AQ-cYU">
+                                        <rect key="frame" x="103.5" y="0.0" width="207" height="63.5"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="데이터 요청에 실패했습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fXx-qb-IPm">
+                                        <rect key="frame" x="17.5" y="93.5" width="379.5" height="34.5"/>
+                                        <fontDescription key="fontDescription" name="BMEULJIRO" family="BM EULJIRO" pointSize="35"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="잠시후 다시 시도해주세요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EuU-sP-eAa">
+                                        <rect key="frame" x="104.5" y="158" width="205.5" height="20"/>
+                                        <fontDescription key="fontDescription" name="BMEULJIRO" family="BM EULJIRO" pointSize="20"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKT-d2-CER">
+                                        <rect key="frame" x="155" y="208" width="104" height="110"/>
+                                        <fontDescription key="fontDescription" name="BMEULJIRO" family="BM EULJIRO" pointSize="30"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="새로고침">
+                                            <color key="titleColor" systemColor="tintColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="refreshButtonTapped:" destination="Fbb-aG-rSO" eventType="touchUpInside" id="1u2-9x-8jk"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Omg-AQ-cYU" firstAttribute="width" secondItem="naY-PO-moQ" secondAttribute="width" multiplier="0.5" id="CZc-1F-4Qd"/>
+                                    <constraint firstItem="Omg-AQ-cYU" firstAttribute="height" secondItem="naY-PO-moQ" secondAttribute="height" multiplier="0.2" id="kim-GV-8HB"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="oCX-Dy-ko0"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.81568627450980391" green="0.81711316109999999" blue="0.81711316109999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="fXx-qb-IPm" firstAttribute="leading" secondItem="oCX-Dy-ko0" secondAttribute="leading" id="DhX-Tw-Tce"/>
-                            <constraint firstItem="oCX-Dy-ko0" firstAttribute="trailing" secondItem="fXx-qb-IPm" secondAttribute="trailing" id="cJc-ne-hPB"/>
-                            <constraint firstItem="oCX-Dy-ko0" firstAttribute="bottom" secondItem="fXx-qb-IPm" secondAttribute="bottom" id="cY9-9Q-xP2"/>
-                            <constraint firstItem="fXx-qb-IPm" firstAttribute="top" secondItem="oCX-Dy-ko0" secondAttribute="top" id="d9i-3I-v2k"/>
+                            <constraint firstItem="naY-PO-moQ" firstAttribute="leading" secondItem="oCX-Dy-ko0" secondAttribute="leading" id="8Kq-LM-JsN"/>
+                            <constraint firstItem="naY-PO-moQ" firstAttribute="top" secondItem="oCX-Dy-ko0" secondAttribute="top" constant="250" id="MXt-IM-DQP"/>
+                            <constraint firstItem="oCX-Dy-ko0" firstAttribute="bottom" secondItem="naY-PO-moQ" secondAttribute="bottom" constant="250" id="hcE-0G-TeC"/>
+                            <constraint firstAttribute="trailing" secondItem="naY-PO-moQ" secondAttribute="trailing" id="xoZ-xN-5Vr"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xsb-7t-h24" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-314" y="-610"/>
+            <point key="canvasLocation" x="2067" y="80"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="NBD-pf-mjv">
+            <objects>
+                <viewController id="KLM-R7-F5m" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Vne-Za-xM8">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="zeF-y5-lwv"/>
+                        <color key="backgroundColor" red="0.81568627450980391" green="0.81506985425949097" blue="0.81506985425949097" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="veS-Kd-3X6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="530" y="-610"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -658,6 +702,7 @@
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="logo_github" width="42.5" height="42.5"/>
         <image name="minus" catalog="system" width="128" height="24"/>
+        <image name="network" width="126.5" height="165"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
@@ -665,6 +710,9 @@
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tintColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

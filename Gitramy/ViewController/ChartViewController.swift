@@ -14,7 +14,7 @@ import CoreMedia
 
 class ChartViewController: UIViewController, ChartViewDelegate {
     let loginManager = LoginManager.shared
-
+    static let shared = ChartViewController()
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contributionStackView: UIStackView!
@@ -22,6 +22,9 @@ class ChartViewController: UIViewController, ChartViewDelegate {
     
     @IBOutlet weak var repositoryChartView: LineChartView!
     @IBOutlet weak var languageChartView: BarChartView!
+    
+    
+    var stackView: UIStackView!
     
     
     var repositoryNames: [String] = []//x축을 레파지토리 이름 받아오기
@@ -46,23 +49,32 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         super.viewDidLoad()
         //커밋 수 많은 위에서 5개만 추려야됨.
         //dict에서 오름차순이나 내림차순으로 쓰기.
-        setLineChartView()
-        repositorySetData()
-        setBarChartView()
-        languageSetData(languageValues)
-        initRefresh()
-        //웹URL SVG가져오기.
-        print("subViewCounts : \(contributionStackView.arrangedSubviews.count)")
-        if contributionStackView.arrangedSubviews.count < 2{
-            getContributionSvgImageFile()
-            
-        }
-        
+//        if NetworkMonitor.shared.isConnected{
+//            updateUI()
+////            setLineChartView()
+////            repositorySetData()
+////            setBarChartView()
+////            languageSetData(languageValues)
+////            initRefresh()
+////            //웹URL SVG가져오기.
+////            print("subViewCounts : \(contributionStackView.arrangedSubviews.count)")
+////            if contributionStackView.arrangedSubviews.count < 2{
+////                getContributionSvgImageFile()
+////            }
+//        }
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateUI()
+        print("viewWillAppear")
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        NetworkMonitor.shared.getCurrentVC()
+
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        print("viewDisappear")
     }
     func getContributionSvgImageFile(){
         let imageURL = URL(string: "https://ghchart.rshah.org/\(self.loginManager.user.name)")
@@ -74,12 +86,6 @@ class ChartViewController: UIViewController, ChartViewDelegate {
             contributionStackView.removeArrangedSubview(svgImageView)
         }else {
             contributionStackView.addArrangedSubview(svgImageView)
-//            let margins = contributionStackView.layoutMarginsGuide
-//            svgImageView.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
-//            svgImageView.backgroundColor = .white
-//            svgImageView.layer.cornerRadius = 10
-//            svgImageView.contentMode = .scaleAspectFit
-//            contributionStackView.alignment = .leading
         }
     }
     
@@ -87,42 +93,61 @@ class ChartViewController: UIViewController, ChartViewDelegate {
 //MARK: -refresh
 extension ChartViewController{
     func initRefresh() {
+        
         refresh.addTarget(self, action: #selector(updateUI), for: .valueChanged)
         refresh.backgroundColor = UIColor.clear
         //UIRefreshControl의 attributedTitle
         refresh.attributedTitle = NSAttributedString(string: "데이터를 불러오는중...",
                                                      attributes: [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 20)])
         //ScrollView에 UIRefreshControl 적용
-        self.scrollView.refreshControl = refresh
+            self.scrollView.refreshControl = refresh
     }
     
     @objc func updateUI(){
-        if !repositoryNames.isEmpty{
-            repositoryNames.removeAll()
-            repositoryValues.removeAll()
-            repositoryChartView.clear()
+        if NetworkMonitor.shared.isConnected{
+            if !repositoryNames.isEmpty{
+                repositoryNames.removeAll()
+                repositoryValues.removeAll()
+                repositoryChartView.clear()
+            }
+            self.loginManager.commitToDict()
+            print("repoTotal : \(self.loginManager.repoTotal)")
+            setLineChartView()
+            repositorySetData()
+            setBarChartView()
+            languageSetData(languageValues)
+            initRefresh()
+            print("subViewCounts : \(contributionStackView.arrangedSubviews.count)")
+            if contributionStackView.arrangedSubviews.count < 2{
+                getContributionSvgImageFile()
+            }
+            self.refresh.endRefreshing() //새로고침종료
+        }else{
+            moveDisConnected()
         }
-        self.loginManager.commitToDict()
-        print("repoTotal : \(self.loginManager.repoTotal)")
-        setLineChartView()
-        repositorySetData()
-        setBarChartView()
-        languageSetData(languageValues)
-        
-        getContributionSvgImageFile()
-        
-        
-        
-        self.refresh.endRefreshing() //새로고침종료
+    }
+    
+    func moveDisConnected(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let disConnectedVC = storyboard.instantiateViewController(withIdentifier: "DisConnectedViewController")
+        disConnectedVC.modalPresentationStyle = .fullScreen
+        disConnectedVC.modalTransitionStyle = .crossDissolve
+        self.present(disConnectedVC, animated: false, completion: nil)
     }
 }
 
-//차트관련
+//MARK: -AutoLayout
+extension ChartViewController {
+    
+}
+
+
+//MARK: -차트관련
 extension ChartViewController {
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         print(entry)
     }
-    //MARK: - 레포지토리 꺽은선 그래프
+    //레포지토리 꺽은선 그래프
     func repositorySetData(){
         var x: Double = 0
         for i in repositoryNames{

@@ -25,9 +25,11 @@ class LoginViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         self.loginManager.autoLogin {
             self.moveToLoadingViewController()
+        }
+        if !NetworkMonitor.shared.isConnected{
+            moveDisConnected()
         }
     }
     
@@ -46,6 +48,12 @@ class LoginViewController: UIViewController {
         self.present(startVC, animated: true, completion: nil)
     }
     
-    
+    func moveDisConnected(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let disConnectedVC = storyboard.instantiateViewController(withIdentifier: "DisConnectedViewController")
+        disConnectedVC.modalPresentationStyle = .fullScreen
+        disConnectedVC.modalTransitionStyle = .crossDissolve
+        self.present(disConnectedVC, animated: false, completion: nil)
+    }
    
 }

@@ -15,6 +15,15 @@ class LoadingViewController: UIViewController {
         gifImageView.animate(withGIFNamed: "Loading")
         
             //로그인한 유저정보 미리 가져오기.
+            
+            
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if !NetworkMonitor.shared.isConnected{
+            moveDisConnected()
+        }else{
             loginManager.fetchUser { user in
                 self.loginManager.user = user
                 self.loginManager.fetchRepository(user.name) { repositories in
@@ -27,9 +36,8 @@ class LoadingViewController: UIViewController {
                     }
                 }
             }
-        
+        }
     }
-    
     
     func moveToTabbar(){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -39,6 +47,13 @@ class LoadingViewController: UIViewController {
         self.present(startVC, animated: true, completion: nil)
     }
     
+    func moveDisConnected(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let disConnectedVC = storyboard.instantiateViewController(withIdentifier: "DisConnectedViewController")
+        disConnectedVC.modalPresentationStyle = .fullScreen
+        disConnectedVC.modalTransitionStyle = .crossDissolve
+        self.present(disConnectedVC, animated: false, completion: nil)
+    }
 }
 
 

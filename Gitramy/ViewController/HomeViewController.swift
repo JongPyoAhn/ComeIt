@@ -29,7 +29,7 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-       
+        
         loginManager.fetchRepository(loginManager.user.name) {[weak self]repositories in
             
             guard let self = self else {return}
@@ -43,7 +43,8 @@ class HomeViewController: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        NetworkMonitor.shared.getCurrentVC()
+        
+        
     }
     
     @IBAction func backgroundTapped(_ sender: Any) {
