@@ -264,52 +264,85 @@ extension ChartViewController {
     
     //MARK: - 언어 원형그래프
     func languageSetData(){
-            for index in 0..<sortedDates.count
-            {
-                //todo : 언어데이터 가져와서 value에 넣어보기.(퍼센트로되면 두고 아니면 내가변환)
-                //storedDates가 언어종류 저장해놓는곳.
-                //value에는 언어데이터의 값이 들어있는것을 넣으면됨.
-                //처음에 가져올때 딕셔너리로 가져오면될듯?
-                //언어: 값 이런식으로.
-                let year = sortedDates[index]
-
-                       guard let costs = dataPoints[year] else {
-                           return
-                       }
-
-                let dataEntry = PieChartDataEntry(value: costs, label: year)
-                pieChartDataEntries.append(dataEntry)
-            }
-        let set2 = PieChartDataSet(entries: pieChartDataEntries, label: "Language")
-        set2.sliceSpace = 2.0
-        set2.yValuePosition = PieChartDataSet.ValuePosition.outsideSlice
         
+        let track = ["Income", "Expense", "Wallet", "Bank"]
+           let money = [650, 456.13, 78.67, 856.52]
+
+           var entries = [PieChartDataEntry]()
+           for (index, value) in money.enumerated() {
+               let entry = PieChartDataEntry(value: value, label: "\(track[index])", data: value)
+               entries.append(entry)
+           }
+        let set2 = PieChartDataSet(entries: entries)
+        set2.sliceSpace = 2.0
+        set2.entryLabelFont = UIFont(name: "BM EULJIRO", size: 12)!
+        set2.entryLabelColor = UIColor.black
+        set2.yValuePosition = .outsideSlice
+        set2.xValuePosition = .outsideSlice
+        
+        var colors: [UIColor] = []
+        for _ in 0..<money.count {
+                let red = Double(arc4random_uniform(256))
+                let green = Double(arc4random_uniform(256))
+                let blue = Double(arc4random_uniform(256))
+                let color = UIColor(red: CGFloat(red/255), green: CGFloat(green/255), blue: CGFloat(blue/255), alpha: 1)
+                colors.append(color)
+            }
+        
+        set2.colors = colors
         let data = PieChartData(dataSet: set2)
-        data.setDrawValues(false)
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .percent
+        formatter.maximumFractionDigits = 0
+        formatter.multiplier = 1.0
+        formatter.percentSymbol = "%"
+        
+        data.setValueFormatter(DefaultValueFormatter(formatter: formatter))
+        
+        
+        data.setValueTextColor(UIColor.black)
+        data.setValueFont(UIFont(name: "BM EULJIRO", size: 11)!) //퍼센트글씨체
+        data.setDrawValues(true)
         languagePieChartView.data = data
+        
+       
+      
     }
     
     func setPieChartView(){
-
-    
+        //오른쪽아래에 설명적는코드
+//        let d = Description()
+//        d.text = ""
+//        languagePieChartView.chartDescription = d
+        
+        languagePieChartView.centerText = "Pie Chart"
+        languagePieChartView.transparentCircleColor = UIColor.clear //가운데구멍 겉에 색상
+        languagePieChartView.transparentCircleRadiusPercent = 0.43
         languagePieChartView.usePercentValuesEnabled = true
         languagePieChartView.drawSlicesUnderHoleEnabled = false
-        languagePieChartView.holeRadiusPercent = 0.40
-        languagePieChartView.transparentCircleRadiusPercent = 0.43
+        languagePieChartView.holeRadiusPercent = 0.40 //가운데구멍크기
+        
         languagePieChartView.drawHoleEnabled = true
         languagePieChartView.rotationAngle = 0.0
         languagePieChartView.rotationEnabled = true
         languagePieChartView.highlightPerTapEnabled = false
         
-        let pieChartLegend = languagePieChartView.legend
-        pieChartLegend.horizontalAlignment = Legend.HorizontalAlignment.right
-        pieChartLegend.verticalAlignment = Legend.VerticalAlignment.top
-        pieChartLegend.orientation = Legend.Orientation.vertical
-        pieChartLegend.drawInside = false
-        pieChartLegend.yOffset = 10.0
+        //모서리둥글게
+        languagePieChartView.backgroundColor = .white
+        languagePieChartView.layer.cornerRadius = 20
+        languagePieChartView.layer.masksToBounds = true
         
-        languagePieChartView.legend.enabled = true
+//        let pieChartLegend = languagePieChartView.legend
+//        pieChartLegend.horizontalAlignment = Legend.HorizontalAlignment.right
+//        pieChartLegend.verticalAlignment = Legend.VerticalAlignment.top
+//        pieChartLegend.orientation = Legend.Orientation.vertical
+//        pieChartLegend.drawInside = false
+//        pieChartLegend.yOffset = 10.0
+        languagePieChartView.legend.enabled = false
         
+        
+        languagePieChartView.animate(yAxisDuration: 2.0, easingOption: .easeInBack)
+
         
     }
 }
