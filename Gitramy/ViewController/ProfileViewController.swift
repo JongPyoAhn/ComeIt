@@ -29,11 +29,7 @@ class ProfileViewController: UIViewController {
         emailLabel.text = user.email
         companyLabel.text = "소속 : \(user.company)"
         repositoriesLabel.text = "총 레포지토리 수 : \(user.reposPublic + user.reposPrivate)"
-        
-
     }
-    
-   
     @IBAction func moveToRepositoryButtonTapped(_ sender: Any) {
         if let url = URL(string: "https://github.com/\(self.loginManager.user.name)?tab=repositories"){
             UIApplication.shared.open(url, options: [:])

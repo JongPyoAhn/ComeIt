@@ -9,8 +9,8 @@ import UIKit
 import Kingfisher
 import PocketSVG
 import Charts
-import SwiftUI
-import CoreMedia
+
+
 
 class ChartViewController: UIViewController, ChartViewDelegate {
     let loginManager = LoginManager.shared
@@ -330,16 +330,26 @@ extension ChartViewController {
 //        let d = Description()
 //        d.text = ""
 //        languagePieChartView.chartDescription = d
+        let font =
+        UIFont(name: "BM EULJIRO", size: 15)!
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: font,
+            .foregroundColor: UIColor.red,
+        ]
         
-        languagePieChartView.centerText = "Pie Chart"
-        languagePieChartView.transparentCircleColor = UIColor.clear //가운데구멍 겉에 색상
-        languagePieChartView.transparentCircleRadiusPercent = 0.43
+        let oneString =  NSAttributedString(string: "가장 많이 사용하는 언어는 Swift 입니다.", attributes: attributes)
+
+        languagePieChartView.centerAttributedText = oneString
+        languagePieChartView.drawCenterTextEnabled = true
+        
+        languagePieChartView.transparentCircleColor = UIColor.white //가운데구멍 겉에 색상
+        languagePieChartView.transparentCircleRadiusPercent = 0
         languagePieChartView.usePercentValuesEnabled = true
         languagePieChartView.drawSlicesUnderHoleEnabled = false
         languagePieChartView.holeRadiusPercent = 0.40 //가운데구멍크기
         
         languagePieChartView.drawHoleEnabled = true
-        languagePieChartView.rotationAngle = 0.0
+        languagePieChartView.rotationAngle = 90.0
         languagePieChartView.rotationEnabled = true
         languagePieChartView.highlightPerTapEnabled = false
         
@@ -348,16 +358,10 @@ extension ChartViewController {
         languagePieChartView.layer.cornerRadius = 20
         languagePieChartView.layer.masksToBounds = true
         
-//        let pieChartLegend = languagePieChartView.legend
-//        pieChartLegend.horizontalAlignment = Legend.HorizontalAlignment.right
-//        pieChartLegend.verticalAlignment = Legend.VerticalAlignment.top
-//        pieChartLegend.orientation = Legend.Orientation.vertical
-//        pieChartLegend.drawInside = false
-//        pieChartLegend.yOffset = 10.0
         languagePieChartView.legend.enabled = false
         
         
-        languagePieChartView.animate(yAxisDuration: 2.0, easingOption: .easeInBack)
+        languagePieChartView.animate(yAxisDuration: 1.7, easingOption: .easeInBack)
 
         
     }

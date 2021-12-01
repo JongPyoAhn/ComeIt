@@ -25,8 +25,6 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationTitle()
-        
-        
         repositoryPicker.tintColor = .clear
     }
     

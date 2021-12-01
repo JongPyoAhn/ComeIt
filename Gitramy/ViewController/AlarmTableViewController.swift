@@ -12,9 +12,6 @@ class AlarmTableViewController: UITableViewController {
 
     var alerts: [Alert] = []
     let userNotification = UNUserNotificationCenter.current()
-
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,28 +37,20 @@ class AlarmTableViewController: UITableViewController {
         guard let addAlertVC = storyboard?.instantiateViewController(identifier: "AddAlertViewController") as? AddAlertViewController else {return}
         addAlertVC.pickedDate = {[weak self] date in
             guard let self = self else {return}
-            
             var alertList = self.alertList()
             print(self.alertList())
-           
-            
             let newAlert = Alert(date: date, isOn: true)
-            
             alertList.append(newAlert)
             alertList.sort{$0.date < $1.date}
-            
             self.alerts = alertList
             UserDefaults.standard.set(try? PropertyListEncoder().encode(self.alerts), forKey:  "alerts")
             
             //오늘커밋데이터가져와서 커밋이 1이상이면 isCommit은 true 1 미만이면 isCommit은 false
             self.userNotification.addNotificaionRequest(by: newAlert)
-            
             self.tableView.reloadData()
-            
         }
         self.present(addAlertVC, animated: true, completion: nil)
     }
-    
     
     func alertList() -> [Alert] {
         guard let data = UserDefaults.standard.value(forKey: "alerts") as? Data,
@@ -92,9 +81,11 @@ extension AlarmTableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
+    
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle{
         case .delete:

@@ -10,15 +10,12 @@ import Gifu
 class LoadingViewController: UIViewController {
     @IBOutlet weak var gifImageView: GIFImageView!
     let loginManager = LoginManager.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         gifImageView.animate(withGIFNamed: "Loading")
-        
-   
-            
-            
-        
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if !NetworkMonitor.shared.isConnected{
@@ -29,7 +26,7 @@ class LoadingViewController: UIViewController {
                 self.loginManager.user = user
                 self.loginManager.fetchRepository(user.name) { repositories in
                     self.loginManager.repositories = repositories
-                    print("========================================================================================\(self.loginManager.repositories)")
+                    print("==\(self.loginManager.repositories)")
                     self.loginManager.commitToDict()
                     
                     DispatchQueue.main.async {

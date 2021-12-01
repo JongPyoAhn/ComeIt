@@ -15,6 +15,7 @@ class AlarmTableViewCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var toggleSwitch: UISwitch!
     @IBOutlet weak var meridiumLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -22,8 +23,8 @@ class AlarmTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
     }
+    
     @IBAction func alertSwitchValueChanged(_ sender: UISwitch) {
         guard let data = UserDefaults.standard.value(forKey: "alerts") as? Data,
               var alerts = try? PropertyListDecoder().decode([Alert].self, from: data) else {return}
@@ -35,7 +36,5 @@ class AlarmTableViewCell: UITableViewCell {
         }else {
             userNotificaionCenter.removePendingNotificationRequests(withIdentifiers: [alerts[sender.tag].id])
         }
-        
     }
-    
 }

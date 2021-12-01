@@ -8,8 +8,6 @@
 import UIKit
 import FirebaseAuth
 
-
-
 class LoginViewController: UIViewController {
     let loginManager = LoginManager.shared //싱글톤 사용
     let firebaseAuth = Auth.auth()
@@ -40,6 +38,7 @@ class LoginViewController: UIViewController {
             self.moveToLoadingViewController()
         }
     }
+    
     func moveToLoadingViewController(){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let startVC = storyboard.instantiateViewController(withIdentifier: "LoadingViewController") as! LoadingViewController

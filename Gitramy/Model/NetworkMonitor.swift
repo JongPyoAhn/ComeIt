@@ -50,8 +50,6 @@ final class NetworkMonitor{
             //결론 : 같이 탭바에있으면 currentVC가 어디든지 프레젠트는 다 된다.
             if self?.isConnected == true{
                 print("연결이된 상태임!")
-    
-                
             }else{
                 print("연결 안된 상태임!")
     
