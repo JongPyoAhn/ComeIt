@@ -11,7 +11,7 @@ struct Repository: Decodable{
     var id: Int
     var name: String
     var full_name: String
-    
+    var language: String
     
     enum codingKeys: String, CodingKey {
         case id, name, full_name

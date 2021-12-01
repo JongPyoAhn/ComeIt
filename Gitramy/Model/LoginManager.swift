@@ -143,10 +143,11 @@ class LoginManager{
                     
                     guard let id = dic["id"] as? Int,
                           let name = dic["name"] as? String,
-                          let full_name = dic["full_name"] as? String
-                          else {return nil}
+                          let full_name = dic["full_name"] as? String,
+                          let language = dic["language"] as? String
+                        else {return nil}
                     
-                    return Repository(id: id, name: name, full_name: full_name)
+                    return Repository(id: id, name: name, full_name: full_name, language: language)
                 }
             }
             .subscribe(onNext: {repositories in
@@ -207,6 +208,7 @@ class LoginManager{
             })
             .disposed(by: disposeBag)
     }
+    
     
     func autoLogin(completion: @escaping ()-> Void){
         if let userAccessToken =  UserDefaults.standard.string(forKey: "userAccessToken"){

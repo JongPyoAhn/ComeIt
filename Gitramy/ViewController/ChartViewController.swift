@@ -15,7 +15,7 @@ import CoreMedia
 class ChartViewController: UIViewController, ChartViewDelegate {
     let loginManager = LoginManager.shared
     static let shared = ChartViewController()
-    
+    var languageDict = [String: Int]()
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contributionStackView: UIStackView!
     @IBOutlet weak var contributionView: UIView!
@@ -26,8 +26,6 @@ class ChartViewController: UIViewController, ChartViewDelegate {
     
     
     var repositoryNames: [String] = []//x축을 레파지토리 이름 받아오기
-    let languageNames = ["Swift", "Java", "python", "Ruby", "C++"]//
-    let test = ["Swift", "Java", "python", "Ruby", "C++"]
     let pieChartDataEntries: [PieChartDataEntry] = []
     
     
@@ -40,13 +38,16 @@ class ChartViewController: UIViewController, ChartViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationTitle()
-        //커밋 수 많은 위에서 5개만 추려야됨.
-        //dict에서 오름차순이나 내림차순으로 쓰기.
+        setLanguageDict()
+        
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        //커밋 수 많은 위에서 5개만 추려야됨.
+        //dict에서 오름차순이나 내림차순으로 쓰기.
+        
         updateUI()
         print("viewWillAppear")
     }
@@ -58,6 +59,16 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         super.viewDidDisappear(animated)
         print("viewDisappear")
     }
+    func setLanguageDict(){
+        for i in self.loginManager.repositories{
+            languageDict["\(i.language)"] = 0
+        }
+        for i in self.loginManager.repositories{
+            languageDict["\(i.language)"]! += 1
+        }
+        print("languageDict: \(languageDict)")
+    }
+    
     func setNavigationTitle(){
         let attrs = [
             NSAttributedString.Key.foregroundColor: UIColor.black,
@@ -264,13 +275,18 @@ extension ChartViewController {
     
     //MARK: - 언어 원형그래프
     func languageSetData(){
-        
-        let track = ["Income", "Expense", "Wallet", "Bank"]
-           let money = [650, 456.13, 78.67, 856.52]
+        setLanguageDict()
+        var language = [String]()
+        var languageValue = [Int]()
+        for (key, value) in languageDict{
+            language.append(key)
+            languageValue.append(value)
+        }
+           
 
            var entries = [PieChartDataEntry]()
-           for (index, value) in money.enumerated() {
-               let entry = PieChartDataEntry(value: value, label: "\(track[index])", data: value)
+           for (index, value) in languageValue.enumerated() {
+               let entry = PieChartDataEntry(value: Double(value), label: "\(language[index])", data: value)
                entries.append(entry)
            }
         let set2 = PieChartDataSet(entries: entries)
@@ -278,10 +294,10 @@ extension ChartViewController {
         set2.entryLabelFont = UIFont(name: "BM EULJIRO", size: 12)!
         set2.entryLabelColor = UIColor.black
         set2.yValuePosition = .outsideSlice
-        set2.xValuePosition = .outsideSlice
+        set2.xValuePosition = .insideSlice
         
         var colors: [UIColor] = []
-        for _ in 0..<money.count {
+        for _ in 0..<languageValue.count {
                 let red = Double(arc4random_uniform(256))
                 let green = Double(arc4random_uniform(256))
                 let blue = Double(arc4random_uniform(256))

@@ -14,7 +14,7 @@ class LoadingViewController: UIViewController {
         super.viewDidLoad()
         gifImageView.animate(withGIFNamed: "Loading")
         
-            //로그인한 유저정보 미리 가져오기.
+   
             
             
         
@@ -24,6 +24,7 @@ class LoadingViewController: UIViewController {
         if !NetworkMonitor.shared.isConnected{
             moveDisConnected()
         }else{
+            //로그인한 유저정보 미리 가져오기.
             loginManager.fetchUser { user in
                 self.loginManager.user = user
                 self.loginManager.fetchRepository(user.name) { repositories in
