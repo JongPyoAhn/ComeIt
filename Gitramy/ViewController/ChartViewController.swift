@@ -16,6 +16,8 @@ class ChartViewController: UIViewController, ChartViewDelegate {
     let loginManager = LoginManager.shared
     static let shared = ChartViewController()
     var languageDict = [String: Int]()
+    var language = [String]()
+    var languageValue = [Int]()
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contributionStackView: UIStackView!
     @IBOutlet weak var contributionView: UIView!
@@ -276,19 +278,24 @@ extension ChartViewController {
     //MARK: - 언어 원형그래프
     func languageSetData(){
         setLanguageDict()
-        var language = [String]()
-        var languageValue = [Int]()
-        for (key, value) in languageDict{
+        
+        let sortedDict = languageDict.sorted(by: {$0.value > $1.value})
+//        language.append("C++")
+//        languageValue.append(5)
+        for (key, value) in sortedDict{
+            if language.count > 4{
+                break
+            }
             language.append(key)
             languageValue.append(value)
         }
-           
-
-           var entries = [PieChartDataEntry]()
-           for (index, value) in languageValue.enumerated() {
-               let entry = PieChartDataEntry(value: Double(value), label: "\(language[index])", data: value)
-               entries.append(entry)
-           }
+        
+        var entries = [PieChartDataEntry]()
+        for (index, value) in languageValue.enumerated() {
+            let entry = PieChartDataEntry(value: Double(value), label: "\(language[index])", data: value)
+            entries.append(entry)
+        }
+        
         let set2 = PieChartDataSet(entries: entries)
         set2.sliceSpace = 2.0
         set2.entryLabelFont = UIFont(name: "BM EULJIRO", size: 12)!
@@ -297,15 +304,20 @@ extension ChartViewController {
         set2.xValuePosition = .insideSlice
         
         var colors: [UIColor] = []
-        for _ in 0..<languageValue.count {
-                let red = Double(arc4random_uniform(256))
-                let green = Double(arc4random_uniform(256))
-                let blue = Double(arc4random_uniform(256))
-                let color = UIColor(red: CGFloat(red/255), green: CGFloat(green/255), blue: CGFloat(blue/255), alpha: 1)
-                colors.append(color)
-            }
-        
+//        for _ in 0..<languageValue.count {
+//            let red = Double(arc4random_uniform(256))
+//            let green = Double(arc4random_uniform(256))
+//            let blue = Double(arc4random_uniform(256))
+//            let color = UIColor(red: CGFloat(red/255), green: CGFloat(green/255), blue: CGFloat(blue/255), alpha: 1)
+//            colors.append(color)
+//        }
+        colors.append(UIColor(red: 237, green: 234, blue: 215))
+        colors.append(UIColor(red: 232, green: 194, blue: 192))
+        colors.append(UIColor(red: 147, green: 136, blue: 140))
+        colors.append(UIColor(red: 51, green: 52, blue: 57))
+        colors.append(UIColor(red: 72, green: 94, blue: 108))
         set2.colors = colors
+        
         let data = PieChartData(dataSet: set2)
         let formatter = NumberFormatter()
         formatter.numberStyle = .percent
@@ -321,25 +333,37 @@ extension ChartViewController {
         data.setDrawValues(true)
         languagePieChartView.data = data
         
-       
-      
+        
+        
     }
     
     func setPieChartView(){
         //오른쪽아래에 설명적는코드
-//        let d = Description()
-//        d.text = ""
-//        languagePieChartView.chartDescription = d
-        let font =
-        UIFont(name: "BM EULJIRO", size: 15)!
-        let attributes: [NSAttributedString.Key: Any] = [
-            .font: font,
-            .foregroundColor: UIColor.red,
-        ]
+        //        let d = Description()
+        //        d.text = ""
+        //        languagePieChartView.chartDescription = d
         
-        let oneString =  NSAttributedString(string: "가장 많이 사용하는 언어는 Swift 입니다.", attributes: attributes)
-
-        languagePieChartView.centerAttributedText = oneString
+        let normalFontAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "BM EULJIRO", size: 13)!]
+        let languageAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemTeal, NSAttributedString.Key.font: UIFont(name: "BM EULJIRO", size: 13)!]
+        let partOne = NSMutableAttributedString(string: "가장 많이 사용하신 언어는 ", attributes: normalFontAttributes)
+        let combination = NSMutableAttributedString()
+        combination.append(partOne)
+        
+        let sort = languageDict.sorted {
+            $0.value > $1.value
+        }
+        
+        if let first = sort.first {
+            let partTwo = NSMutableAttributedString(string: "\(first.key)", attributes: languageAttributes)
+            combination.append(partTwo)
+        }else {
+            let partTwo = NSMutableAttributedString(string: "????", attributes: languageAttributes)
+            combination.append(partTwo)
+        }
+        let partThree = NSMutableAttributedString(string: " 입니다.", attributes: normalFontAttributes)
+        combination.append(partThree)
+        
+        languagePieChartView.centerAttributedText = combination
         languagePieChartView.drawCenterTextEnabled = true
         
         languagePieChartView.transparentCircleColor = UIColor.white //가운데구멍 겉에 색상
@@ -362,7 +386,7 @@ extension ChartViewController {
         
         
         languagePieChartView.animate(yAxisDuration: 1.7, easingOption: .easeInBack)
-
+        
         
     }
 }
