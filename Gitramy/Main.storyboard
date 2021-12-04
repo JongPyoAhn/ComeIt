@@ -448,7 +448,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="4GC-GZ-ghH">
                                         <rect key="frame" x="12" y="0.0" width="390.5" height="385"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoImage" translatesAutoresizingMaskIntoConstraints="NO" id="z5L-FW-5ec">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="applogo" translatesAutoresizingMaskIntoConstraints="NO" id="z5L-FW-5ec">
                                                 <rect key="frame" x="0.0" y="0.0" width="390.5" height="299"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="원하는 시간대에 알림을 받고 하루에 한개의 커밋을 성공하세요!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="cFp-jj-gg4">
@@ -721,8 +721,8 @@
     </scenes>
     <resources>
         <image name="Loading.gif" width="1024" height="1024"/>
-        <image name="LogoImage" width="341" height="341"/>
         <image name="alarm.fill" catalog="system" width="124" height="128"/>
+        <image name="applogo" width="341" height="341"/>
         <image name="chart.line.uptrend.xyaxis" catalog="system" width="128" height="101"/>
         <image name="gitubSquare" width="170.5" height="170.5"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
