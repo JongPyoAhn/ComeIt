@@ -18,7 +18,6 @@ class HomeViewController: UIViewController {
     let loginManager = LoginManager.shared
     var latestDayOfCommit = 0
     var repoNames: [Repository] = []
-    var user: User?
     let pickerView = UIPickerView()
     var defaultRowIndex: Int = 0
     
@@ -26,11 +25,16 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         setNavigationTitle()
         repositoryPicker.tintColor = .clear
+        repositoryPicker.layer.cornerRadius = 8.0
+        repositoryPicker.layer.borderWidth = 0.8
+        repositoryPicker.layer.borderColor = CGColor(red: 255, green: 255, blue: 255, alpha: 1.0)
+        repositoryPicker.layer.masksToBounds = true
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        print("--------------------------------------------------")
         loginManager.fetchRepository(loginManager.user.name) {[weak self]repositories in
             
             guard let self = self else {return}
@@ -123,20 +127,22 @@ extension HomeViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicke
         self.loginManager.fetchCommit(loginManager.user.name, repoNames[row].name) {[weak self] commits in
             guard let self = self else {return}
             
-            print(commits.last!)
-            //오늘 요일의 커밋을 정보에서 빼내옴.
-            self.latestDayOfCommit = commits.last!.days[Int(self.getNowDay())! - 1]
-            print("오늘 커밋한 횟수 : \(commits.last!.days[Int(self.getNowDay())! - 1])")
-            self.commitCountLabel.text = "\(self.latestDayOfCommit)번!!"
-            if self.latestDayOfCommit >= 1{
-                //오늘 커밋여부를 알고 알림하기위해 저장.
-                UserDefaults.standard.set(true, forKey: "isCommit")
-                self.commentLabel.text = "😍성공하셨습니다😍"
-            }else{
-                UserDefaults.standard.set(false, forKey: "isCommit")
-                self.commentLabel.text = "🥺오늘은 안하실건가요?🥺"
+            if let commitLast = commits.last{
+                print(commitLast)
+                //오늘 요일의 커밋을 정보에서 빼내옴.
+                self.latestDayOfCommit = commitLast.days[Int(self.getNowDay())! - 1]
+                print("오늘 커밋한 횟수 : \(commitLast.days[Int(self.getNowDay())! - 1])")
+                self.commitCountLabel.text = "\(self.latestDayOfCommit)번!!"
+                if self.latestDayOfCommit >= 1{
+                    //오늘 커밋여부를 알고 알림하기위해 저장.
+                    UserDefaults.standard.set(true, forKey: "isCommit")
+                    self.commentLabel.text = "😍성공하셨습니다😍"
+                }else{
+                    UserDefaults.standard.set(false, forKey: "isCommit")
+                    self.commentLabel.text = "🥺오늘은 안하실건가요?🥺"
+                }
+                
             }
-            
         }
     }
     

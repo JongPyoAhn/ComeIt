@@ -34,21 +34,12 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오전" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h3l-3c-bXi">
-                                        <rect key="frame" x="0.0" y="26.5" width="56" height="13.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="56" height="12"/>
                                         <fontDescription key="fontDescription" name="BMEULJIRO" family="BM EULJIRO" pointSize="15"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="OBt-AG-Gol" firstAttribute="top" secondItem="l6S-Tq-zni" secondAttribute="top" id="0wi-c6-E8h"/>
-                                    <constraint firstItem="OBt-AG-Gol" firstAttribute="leading" secondItem="l6S-Tq-zni" secondAttribute="leading" id="Xnj-YZ-ih9"/>
-                                    <constraint firstItem="h3l-3c-bXi" firstAttribute="top" secondItem="OBt-AG-Gol" secondAttribute="bottom" constant="5" id="c3J-LU-GSu"/>
-                                    <constraint firstAttribute="trailing" secondItem="OBt-AG-Gol" secondAttribute="trailing" id="han-cg-u16"/>
-                                    <constraint firstAttribute="bottom" secondItem="h3l-3c-bXi" secondAttribute="bottom" id="m9B-jk-eg4"/>
-                                    <constraint firstAttribute="trailing" secondItem="h3l-3c-bXi" secondAttribute="trailing" id="rcT-9l-hCn"/>
-                                    <constraint firstItem="h3l-3c-bXi" firstAttribute="leading" secondItem="l6S-Tq-zni" secondAttribute="leading" id="zxr-ww-aMt"/>
-                                </constraints>
                             </stackView>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cpM-9Y-jf8">
                                 <rect key="frame" x="261" y="0.0" width="51" height="40"/>

@@ -14,9 +14,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var githubLoginButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        if !NetworkMonitor.shared.isConnected{
-            moveDisConnected()
-        }
+        
         githubLoginButton.layer.borderWidth = 3
         githubLoginButton.layer.borderColor = UIColor.black.cgColor
         githubLoginButton.layer.cornerRadius = 25
@@ -34,8 +32,12 @@ class LoginViewController: UIViewController {
     @IBAction func LoginButtonTapped(_ sender: Any) {
         //firebase를 통한 로그인
         //로그인이 성공적으로 완료되었을 때 탭바로 넘어감. @escaping closure !!
-        loginManager.getCredential(){
-            self.moveToLoadingViewController()
+        if !NetworkMonitor.shared.isConnected{
+            moveDisConnected()
+        }else{
+            loginManager.getCredential(){
+                self.moveToLoadingViewController()
+            }
         }
     }
     
