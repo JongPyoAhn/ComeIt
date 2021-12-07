@@ -24,24 +24,24 @@
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="205" translatesAutoresizingMaskIntoConstraints="NO" id="PiQ-X2-yzb">
                         <rect key="frame" x="32.5" y="20" width="310" height="40"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="l6S-Tq-zni">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="l6S-Tq-zni">
                                 <rect key="frame" x="0.0" y="0.0" width="56" height="40"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OBt-AG-Gol">
-                                        <rect key="frame" x="0.0" y="0.0" width="56" height="18"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="56" height="20"/>
                                         <fontDescription key="fontDescription" name="BMEULJIRO" family="BM EULJIRO" pointSize="20"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오전" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h3l-3c-bXi">
-                                        <rect key="frame" x="0.0" y="28" width="56" height="12"/>
+                                        <rect key="frame" x="0.0" y="25" width="56" height="15"/>
                                         <fontDescription key="fontDescription" name="BMEULJIRO" family="BM EULJIRO" pointSize="15"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cpM-9Y-jf8">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cpM-9Y-jf8">
                                 <rect key="frame" x="261" y="0.0" width="51" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="c6H-Ya-Ayt"/>

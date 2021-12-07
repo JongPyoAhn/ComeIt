@@ -20,6 +20,8 @@ class HomeViewController: UIViewController {
     var repoNames: [Repository] = []
     let pickerView = UIPickerView()
     var defaultRowIndex: Int = 0
+    //커밋 0번이면 노티키고 1번이상이면 노티끄기위해서.
+    let userNotification = UNUserNotificationCenter.current()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +29,8 @@ class HomeViewController: UIViewController {
         repositoryPicker.tintColor = .clear
         repositoryPicker.layer.cornerRadius = 8.0
         repositoryPicker.layer.borderWidth = 0.8
-        repositoryPicker.layer.borderColor = CGColor(red: 255, green: 255, blue: 255, alpha: 1.0)
         repositoryPicker.layer.masksToBounds = true
+        
         
     }
     
@@ -87,6 +89,9 @@ extension HomeViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicke
             repositoryPicker.text = repoNames[row].name
             //유저가 피커뷰에 설정해놓은 값 저장
             UserDefaults.standard.set(repoNames[row].name, forKey: "currentSelectedRepository")
+            
+           
+            
             //선택한 레포지토리의 정보를 가지고와서 몇번 커밋했는지 나타내줄거임.
             commitTextChange(row)
         }else{
@@ -133,15 +138,34 @@ extension HomeViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicke
                 self.latestDayOfCommit = commitLast.days[Int(self.getNowDay())! - 1]
                 print("오늘 커밋한 횟수 : \(commitLast.days[Int(self.getNowDay())! - 1])")
                 self.commitCountLabel.text = "\(self.latestDayOfCommit)번!!"
+                self.alertOnOff()
+                //0번이면 노티에 현재있는 알람들 isOn = true해주고
+                //1번이상이면 노티에 현재있는 알람들 isOn = false
                 if self.latestDayOfCommit >= 1{
                     //오늘 커밋여부를 알고 알림하기위해 저장.
+                    
                     UserDefaults.standard.set(true, forKey: "isCommit")
                     self.commentLabel.text = "😍성공하셨습니다😍"
                 }else{
+                   
                     UserDefaults.standard.set(false, forKey: "isCommit")
                     self.commentLabel.text = "🥺오늘은 안하실건가요?🥺"
                 }
                 
+            }
+        }
+    }
+    func alertOnOff(){
+        guard let data = UserDefaults.standard.value(forKey: "alerts") as? Data,
+              let alerts = try? PropertyListDecoder().decode([Alert].self, from: data) else {return}
+        UserDefaults.standard.set(try? PropertyListEncoder().encode(alerts), forKey: "alerts")
+        if self.latestDayOfCommit >= 1 {
+            for i in 0..<alerts.count{
+                self.userNotification.removePendingNotificationRequests(withIdentifiers: [alerts[i].id])
+            }
+        }else{
+            for i in 0..<alerts.count{
+                self.userNotification.addNotificaionRequest(by: alerts[i])
             }
         }
     }

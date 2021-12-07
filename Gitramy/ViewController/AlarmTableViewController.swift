@@ -22,7 +22,18 @@ class AlarmTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("alarmTableViewController")
+        
         alerts = alertList()
+        for i in 0..<alerts.count{
+            if !UserDefaults.standard.bool(forKey: "isCommit"){
+                alerts[i].isOn = true
+            }else{
+                alerts[i].isOn = false
+            }
+        }
+        UserDefaults.standard.set(try? PropertyListEncoder().encode(self.alerts), forKey:  "alerts")
+        tableView.reloadData()
     }
     
     func setNavigationTitle(){
@@ -39,14 +50,19 @@ class AlarmTableViewController: UITableViewController {
             guard let self = self else {return}
             var alertList = self.alertList()
             print(self.alertList())
-            let newAlert = Alert(date: date, isOn: true)
+            var newAlert = Alert(date: date, isOn: true)
+            if UserDefaults.standard.bool(forKey: "isCommit"){
+                newAlert.isOn = false
+            }
             alertList.append(newAlert)
             alertList.sort{$0.date < $1.date}
             self.alerts = alertList
             UserDefaults.standard.set(try? PropertyListEncoder().encode(self.alerts), forKey:  "alerts")
             
             //오늘커밋데이터가져와서 커밋이 1이상이면 isCommit은 true 1 미만이면 isCommit은 false
-            self.userNotification.addNotificaionRequest(by: newAlert)
+            if !UserDefaults.standard.bool(forKey: "isCommit"){
+                self.userNotification.addNotificaionRequest(by: newAlert)
+            }
             self.tableView.reloadData()
         }
         self.present(addAlertVC, animated: true, completion: nil)
