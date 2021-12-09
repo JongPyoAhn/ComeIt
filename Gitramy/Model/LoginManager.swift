@@ -23,6 +23,7 @@ class LoginManager{
     private var userAccessToken: String?
     let disposeBag = DisposeBag()
     var email = "등록된 이메일이 없습니다."
+    var company = "등록된 소속이 없습니다."
     var repoTotal: [String:Int] = [:]
     var repositoryChartNames: [String] = []
     
@@ -91,16 +92,18 @@ class LoginManager{
             .map { object -> User in
                 print("==========================\(object)")
                 guard let name = object["login"] as? String,
-                      let company = object["company"] as? String,
                       let reposPublic = object["public_repos"] as? Int,
                       let reposPrivate = object["total_private_repos"] as? Int,
                       let imageURL = object["avatar_url"] as? String else{
                           return User(imageURL: "", name: "Null", company: "Null" , email: "", reposPublic: 0, reposPrivate: 0)
                       }
+                if let company = object["company"] as? String{
+                    self.company = company
+                }
                 if let email = object["email"] as? String {
                     self.email = email
                 }
-                return User(imageURL: imageURL, name: name, company: company, email: self.email, reposPublic: reposPublic, reposPrivate: reposPrivate )
+                return User(imageURL: imageURL, name: name, company: self.company, email: self.email, reposPublic: reposPublic, reposPrivate: reposPrivate )
             }
             .subscribe { user in
 //                self?.userInformation.onNext(user)
