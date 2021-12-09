@@ -122,8 +122,9 @@ extension ChartViewController{
             print("repoTotal : \(self.loginManager.repoTotal)")
             setLineChartView()
             repositorySetData()
-            setPieChartView()
             languageSetData()
+            setPieChartView()
+            
             initRefresh()
             print("subViewCounts : \(contributionStackView.arrangedSubviews.count)")
             if contributionStackView.arrangedSubviews.count < 2{
@@ -301,6 +302,7 @@ extension ChartViewController {
                 language.append(key)
                 languageValue.append(value)
             }
+            
         }
         if language.isEmpty{
             language.append("Null")
@@ -359,12 +361,12 @@ extension ChartViewController {
         let combination = NSMutableAttributedString()
         combination.append(partOne)
         
-        let sort = languageDict.sorted {
-            $0.value > $1.value
-        }
-        
-        if let first = sort.first {
-            let partTwo = NSMutableAttributedString(string: "\(first.key)", attributes: languageAttributes)
+//        let sort = languageDict.sorted {
+//            $0.value > $1.value
+//        }
+        print("languageFirst : \(language.first!)")
+        if let first = language.first {
+            let partTwo = NSMutableAttributedString(string: "\(first)", attributes: languageAttributes)
             combination.append(partTwo)
         }else {
             let partTwo = NSMutableAttributedString(string: "????", attributes: languageAttributes)
