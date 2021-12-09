@@ -13,6 +13,8 @@ pod 'RxSwift' , '6.2.0'
 pod 'RxCocoa' , '6.2.0'
 pod 'Gifu'
 pod 'PocketSVG', '~> 2.6'
+pod 'LicensePlist'
+# Installation path: `${PODS_ROOT}/LicensePlist/license-plist`
   # Pods for Gitramy
 
 end

@@ -95,6 +95,7 @@ PODS:
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.7.0)
   - Kingfisher (7.0.0)
+  - LicensePlist (3.15.0)
   - nanopb (2.30908.0):
     - nanopb/decode (= 2.30908.0)
     - nanopb/encode (= 2.30908.0)
@@ -116,6 +117,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Gifu
   - Kingfisher (~> 7.0)
+  - LicensePlist
   - PocketSVG (~> 2.6)
   - RxCocoa (= 6.2.0)
   - RxSwift (= 6.2.0)
@@ -136,6 +138,7 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMSessionFetcher
     - Kingfisher
+    - LicensePlist
     - nanopb
     - PocketSVG
     - PromisesObjC
@@ -158,6 +161,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: 684ee790a24f73ebb2d1d966e9711c203f2a4237
   GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
   Kingfisher: 5efc54fec3980f92354898532e562cc17f31efb4
+  LicensePlist: bd3175ce3a27978e7b98c0c16a034b71cc14a7fc
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PocketSVG: 5e0ff20c8a661586b2f2c295cd18b3e8f06de552
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
@@ -166,6 +170,6 @@ SPEC CHECKSUMS:
   RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
   SwiftSVG: ca7f64e403b8ea7ea8eba8c823b83ba4a059834c
 
-PODFILE CHECKSUM: 9a9d0131ee010a1ff68ab76a1c02a14b82bc3433
+PODFILE CHECKSUM: 0c8421f1fc513f93afedb31252363847f964d775
 
 COCOAPODS: 1.11.2
