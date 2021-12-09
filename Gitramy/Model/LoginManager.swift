@@ -116,6 +116,7 @@ class LoginManager{
         Observable.just(name)
             .map { name -> URLRequest  in
                 let url = URL(string: "https://api.github.com/users/\(name)/repos")!
+//                print("url : \(url)")
                 var request = URLRequest(url: url)
                 request.httpMethod = "GET"
                 request.addValue("token \(self.userAccessToken!)", forHTTPHeaderField: "Authorization")//헤더추가
@@ -143,11 +144,15 @@ class LoginManager{
                     
                     guard let id = dic["id"] as? Int,
                           let name = dic["name"] as? String,
-                          let full_name = dic["full_name"] as? String,
-                          let language = dic["language"] as? String
+                          let full_name = dic["full_name"] as? String
                         else {return nil}
+                    if let language = dic["language"] as? String {
+                        return Repository(id: id, name: name, full_name: full_name, language: language)
+                    }else{
+                        return Repository(id: id, name: name, full_name: full_name, language: "Null")
+                    }
                     
-                    return Repository(id: id, name: name, full_name: full_name, language: language)
+                    
                 }
             }
             .subscribe(onNext: {repositories in
@@ -180,13 +185,17 @@ class LoginManager{
                 return 200..<300 ~= responds.statusCode
             }
             .map { _, data -> [[String:Any]] in
+                
                 guard let json = try? JSONSerialization.jsonObject(with: data, options: []),
                       let result = json as? [[String: Any]] else {
                           return []
                       }
+                
                 return result
+                
             }
             .filter { result in
+                
                 result.count > 0
             }
             .map { objects in

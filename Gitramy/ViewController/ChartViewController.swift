@@ -113,6 +113,11 @@ extension ChartViewController{
                 repositoryValues.removeAll()
                 repositoryChartView.clear()
             }
+            if !language.isEmpty{
+                language.removeAll()
+                languageValue.removeAll()
+                languagePieChartView.clear()
+            }
             self.loginManager.commitToDict()
             print("repoTotal : \(self.loginManager.repoTotal)")
             setLineChartView()
@@ -216,8 +221,14 @@ extension ChartViewController {
         sorted.sort{
             $0.key < $1.key
         }
-        for i in 0...4{
-            self.repositoryNames.append(sorted[i].key)
+        if sorted.count > 4{
+            for i in 0...4{
+                self.repositoryNames.append(sorted[i].key)
+            }
+        }else {
+            for i in 0..<sorted.count{
+                self.repositoryNames.append(sorted[i].key)
+            }
         }
         print("repositoryNames : \(repositoryNames)")
         repositoryChartView.backgroundColor = .white
@@ -286,8 +297,14 @@ extension ChartViewController {
             if language.count > 4{
                 break
             }
-            language.append(key)
-            languageValue.append(value)
+            if key != "Null"{
+                language.append(key)
+                languageValue.append(value)
+            }
+        }
+        if language.isEmpty{
+            language.append("Null")
+            languageValue.append(1)
         }
         
         var entries = [PieChartDataEntry]()
@@ -304,13 +321,6 @@ extension ChartViewController {
         set2.xValuePosition = .insideSlice
         
         var colors: [UIColor] = []
-//        for _ in 0..<languageValue.count {
-//            let red = Double(arc4random_uniform(256))
-//            let green = Double(arc4random_uniform(256))
-//            let blue = Double(arc4random_uniform(256))
-//            let color = UIColor(red: CGFloat(red/255), green: CGFloat(green/255), blue: CGFloat(blue/255), alpha: 1)
-//            colors.append(color)
-//        }
         colors.append(UIColor(red: 237, green: 234, blue: 215))
         colors.append(UIColor(red: 232, green: 194, blue: 192))
         colors.append(UIColor(red: 147, green: 136, blue: 140))

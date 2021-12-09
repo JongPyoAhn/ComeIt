@@ -24,6 +24,8 @@ class LoadingViewController: UIViewController {
             //로그인한 유저정보 미리 가져오기.
             loginManager.fetchUser { user in
                 self.loginManager.user = user
+                print("userName : \(user.name)")
+                print("userName : \(user.name)")
                 self.loginManager.fetchRepository(user.name) { repositories in
                     self.loginManager.repositories = repositories
                     print("==\(self.loginManager.repositories)")

@@ -38,7 +38,6 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         print("--------------------------------------------------")
         loginManager.fetchRepository(loginManager.user.name) {[weak self]repositories in
-            
             guard let self = self else {return}
             self.repoNames = repositories//레포지토리정보가져오기
             print("repoNames: --------\(self.repoNames)")
@@ -129,9 +128,9 @@ extension HomeViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicke
     
     //커밋횟수 가져오고 UI에 표현
     func commitTextChange(_ row: Int){
-        self.loginManager.fetchCommit(loginManager.user.name, repoNames[row].name) {[weak self] commits in
+        let confirm: () = self.loginManager.fetchCommit(loginManager.user.name, repoNames[row].name) {[weak self] commits in
             guard let self = self else {return}
-            
+            print("commits : \(commits)")
             if let commitLast = commits.last{
                 print(commitLast)
                 //오늘 요일의 커밋을 정보에서 빼내옴.
@@ -151,9 +150,13 @@ extension HomeViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicke
                     UserDefaults.standard.set(false, forKey: "isCommit")
                     self.commentLabel.text = "🥺오늘은 안하실건가요?🥺"
                 }
-                
             }
         }
+        if confirm == () {
+            self.commitCountLabel.text = "없음"
+            self.commentLabel.text = "😔커밋하신적이 없습니다😔"
+        }
+        
     }
     func alertOnOff(){
         guard let data = UserDefaults.standard.value(forKey: "alerts") as? Data,
