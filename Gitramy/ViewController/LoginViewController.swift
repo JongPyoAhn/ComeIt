@@ -10,6 +10,7 @@ import FirebaseAuth
 
 class LoginViewController: UIViewController {
     let loginManager = LoginManager.shared //싱글톤 사용
+   
     let firebaseAuth = Auth.auth()
     @IBOutlet weak var githubLoginButton: UIButton!
     override func viewDidLoad() {
@@ -26,6 +27,7 @@ class LoginViewController: UIViewController {
         self.loginManager.autoLogin {
             self.moveToLoadingViewController()
         }
+     
         
     }
     

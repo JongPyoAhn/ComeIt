@@ -7,10 +7,10 @@
 
 import UIKit
 import Gifu
+import RxSwift
 class LoadingViewController: UIViewController {
     @IBOutlet weak var gifImageView: GIFImageView!
     let loginManager = LoginManager.shared
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         gifImageView.animate(withGIFNamed: "Loading")
@@ -30,12 +30,15 @@ class LoadingViewController: UIViewController {
                     self.loginManager.repositories = repositories
                     print("==\(self.loginManager.repositories)")
                     self.loginManager.commitToDict()
-                    
+                
                     DispatchQueue.main.async {
                         self.moveToTabbar()
                     }
+
                 }
             }
+            
+            
         }
     }
     
@@ -55,6 +58,7 @@ class LoadingViewController: UIViewController {
         self.present(disConnectedVC, animated: false, completion: nil)
     }
 }
+
 
 
 

@@ -28,7 +28,6 @@ class LoginManager{
     var repositoryChartNames: [String] = []
     
     func getCredential(completion: @escaping () -> Void){
-        
         print("getCredential")
         provider.scopes = ["repo, user"] //저장소와 유저정보를 가져오겠다고 허가받기.
         provider.getCredentialWith(nil) { credential, error in
@@ -55,6 +54,13 @@ class LoginManager{
     }
 
 }
+    func getUserAccessToken() -> String{
+        if let userAccessToken = userAccessToken {
+            return userAccessToken
+        }else{
+            return ""
+        }
+    }
     
     func fetchUser(completion:@escaping (User) -> Void) {
         /*객체 하나만 받아오면됨.
@@ -78,6 +84,7 @@ class LoginManager{
             }
             .filter { responds, _ in
                 return 200..<300 ~= responds.statusCode
+                
             }
             .map { _, data -> [String:Any] in
                 guard let json = try? JSONSerialization.jsonObject(with: data, options: []),

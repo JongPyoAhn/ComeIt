@@ -46,4 +46,12 @@ class ProfileViewController: UIViewController {
         
     }
     
+    @IBAction func logoutButtonTapped(_ sender: Any) {
+        //자동로그인방지
+        print("눌림")
+        UserDefaults.standard.removeObject(forKey: "userAccessToken")
+        self.dismiss(animated: true) {
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
 }

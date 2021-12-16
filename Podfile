@@ -14,6 +14,7 @@ pod 'RxCocoa' , '6.2.0'
 pod 'Gifu'
 pod 'PocketSVG', '~> 2.6'
 pod 'LicensePlist'
+pod 'Alamofire', '~> 5.5'
 # Installation path: `${PODS_ROOT}/LicensePlist/license-plist`
   # Pods for Gitramy
 

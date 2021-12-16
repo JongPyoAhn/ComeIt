@@ -92,10 +92,10 @@
 		530F862A270B358000343BA1 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				53A4483A270B215C000FA3C8 /* LoginViewController.swift */,
+				53FD9EA32737FBE8004944EC /* LoadingViewController.swift */,
 				53A4484C270B33CB000FA3C8 /* ChartViewController.swift */,
 				53FC5D13272809E9002F368C /* HomeViewController.swift */,
-				53FD9EA32737FBE8004944EC /* LoadingViewController.swift */,
-				53A4483A270B215C000FA3C8 /* LoginViewController.swift */,
 				5312A8B72715B65A0045F4B3 /* AddAlertViewController.swift */,
 				539D4126271478A500ED3606 /* AlarmTableViewCell.swift */,
 				539D41242714789500ED3606 /* AlarmTableViewController.swift */,

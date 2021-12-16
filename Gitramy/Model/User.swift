@@ -8,7 +8,7 @@
 import UIKit
 
 
-struct User : Decodable{
+struct User : Codable{
     var imageURL: String
     var name: String
     var company: String
