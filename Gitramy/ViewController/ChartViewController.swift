@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 import PocketSVG
 import Charts
-
+import RxSwift
 
 
 class ChartViewController: UIViewController, ChartViewDelegate {
@@ -21,10 +21,11 @@ class ChartViewController: UIViewController, ChartViewDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contributionStackView: UIStackView!
     @IBOutlet weak var contributionView: UIView!
-    
     @IBOutlet weak var repositoryChartView: LineChartView!
-    
     @IBOutlet weak var languagePieChartView: PieChartView!
+    
+    //rx
+    let disposedBag = DisposeBag()
     
     
     var repositoryNames: [String] = []//x축을 레파지토리 이름 받아오기
@@ -78,18 +79,23 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         ]
         UINavigationBar.appearance().titleTextAttributes = attrs
     }
+
     
-    func getContributionSvgImageFile(){
-        let imageURL = URL(string: "https://ghchart.rshah.org/\(self.loginManager.user.name)")
-        let svgImageView = SVGImageView.init(contentsOf: imageURL!)
-        svgImageView.frame = view.bounds
-        svgImageView.contentMode = .scaleAspectFit
-        
-        if contributionStackView.arrangedSubviews.count >= 2{
-            contributionStackView.removeArrangedSubview(svgImageView)
-        }else {
-            contributionStackView.addArrangedSubview(svgImageView)
-        }
+    func getContributionSvgImage(name: String ,_ completion: @escaping (SVGImageView)->Void) {
+        Observable.just(name)
+            .map{"https://ghchart.rshah.org/\($0)"}
+            .map{URL(string: $0)}
+            .filter{$0 != nil}
+            .map{ $0!}
+            .observe(on: ConcurrentDispatchQueueScheduler(qos: .default))
+            .map{SVGImageView.init(contentsOf: $0)}
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { image in
+                image.frame = self.view.bounds
+                image.contentMode = .scaleAspectFit
+                completion(image)
+            })
+            .disposed(by: disposedBag)
     }
     
 }
@@ -127,8 +133,16 @@ extension ChartViewController{
             
             initRefresh()
             print("subViewCounts : \(contributionStackView.arrangedSubviews.count)")
-            if contributionStackView.arrangedSubviews.count < 2{
-                getContributionSvgImageFile()
+//            if contributionStackView.arrangedSubviews.count < 2{
+//                getContributionSvgImageFile()
+//            }
+            getContributionSvgImage(name: self.loginManager.user.name) { svgImage in
+                
+                if self.contributionStackView.arrangedSubviews.count >= 2{
+                    self.contributionStackView.removeArrangedSubview(svgImage)
+                }else {
+                    self.contributionStackView.addArrangedSubview(svgImage)
+                }
             }
             self.refresh.endRefreshing() //새로고침종료
         }else{
