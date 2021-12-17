@@ -24,8 +24,6 @@ struct User : Codable{
         case company, email
         case reposPublic = "public_repos"
         case reposPrivate = "total_private_repos"
-        
-        
     }
 }
 

@@ -17,7 +17,7 @@ class LoginManager{
     //파이어베이스
     let firebaseAuth = Auth.auth()
     let provider = OAuthProvider(providerID: "github.com")
-//    let repositoryInformation = BehaviorSubject<[Repository]>(value: [])
+    //    let repositoryInformation = BehaviorSubject<[Repository]>(value: [])
     var user = User(imageURL: "", name: "Null", company: "Null" , email: "", reposPublic: 0, reposPrivate: 0)
     var repositories: [Repository] = []
     private var userAccessToken: String?
@@ -49,11 +49,11 @@ class LoginManager{
                             completion()
                         }
                     }
+                }
             }
         }
+        
     }
-
-}
     func getUserAccessToken() -> String{
         if let userAccessToken = userAccessToken {
             return userAccessToken
@@ -63,12 +63,6 @@ class LoginManager{
     }
     
     func fetchUser(completion:@escaping (User) -> Void) {
-        /*객체 하나만 받아오면됨.
-        유저액세스토큰을 map으로 가공해서 전달할거임.
-        옵저버블.just(1)이 있으면 1을 onNext로 나한테 방출하는 거임.
-        여기선 userAcessToken을 이용해서 여러형태로 변환하고 파싱해서 마지막에
-        userInformation = PublishSubject<User>()에 onNext로 방출해준거임.
-         */
         Observable.just(userAccessToken)
             .map { userAccessToken -> URLRequest  in
                 let url = URL(string: "https://api.github.com/user")!
@@ -76,7 +70,6 @@ class LoginManager{
                 request.httpMethod = "GET"
                 request.addValue("token \(userAccessToken!)", forHTTPHeaderField: "Authorization")//헤더추가
                 request.addValue("application/vnd.github.v3+json", forHTTPHeaderField: "Accept")//헤더추가
-//                print(request)
                 return request
             }
             .flatMap { request -> Observable<(response: HTTPURLResponse, data: Data)> in
@@ -113,20 +106,20 @@ class LoginManager{
                 return User(imageURL: imageURL, name: name, company: self.company, email: self.email, reposPublic: reposPublic, reposPrivate: reposPrivate )
             }
             .subscribe { user in
-//                self?.userInformation.onNext(user)
+                //                self?.userInformation.onNext(user)
                 DispatchQueue.main.async {
                     completion(user)
                 }
             }
             .disposed(by: disposeBag)
         
-        }
-        
+    }
+    
     func fetchRepository(_ name: String,  completion: @escaping ([Repository])->Void){
         Observable.just(name)
             .map { name -> URLRequest  in
                 let url = URL(string: "https://api.github.com/users/\(name)/repos")!
-//                print("url : \(url)")
+                //                print("url : \(url)")
                 var request = URLRequest(url: url)
                 request.httpMethod = "GET"
                 request.addValue("token \(self.userAccessToken!)", forHTTPHeaderField: "Authorization")//헤더추가
@@ -155,7 +148,7 @@ class LoginManager{
                     guard let id = dic["id"] as? Int,
                           let name = dic["name"] as? String,
                           let full_name = dic["full_name"] as? String
-                        else {return nil}
+                    else {return nil}
                     if let language = dic["language"] as? String {
                         return Repository(id: id, name: name, full_name: full_name, language: language)
                     }else{
@@ -166,7 +159,7 @@ class LoginManager{
                 }
             }
             .subscribe(onNext: {repositories in
-               
+                
                 DispatchQueue.main.async {
                     completion(repositories)
                 }
@@ -175,9 +168,9 @@ class LoginManager{
         
         
         
-    
+        
     }
-
+    
     func fetchCommit(_ name: String,_ repository: String ,completion: @escaping ([Commit])->Void){
         Observable.just(name)
             .map { name -> URLRequest  in
@@ -220,7 +213,7 @@ class LoginManager{
                 }
             }
             .subscribe(onNext: {commits in
-               
+                
                 DispatchQueue.main.async {
                     completion(commits)
                 }
