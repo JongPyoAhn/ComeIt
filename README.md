@@ -19,7 +19,7 @@
 > - No more grey field on GitHub
 > - Keep in touch on `Widget`, Coding never stop til get **fully green field**
 
-*** 컴잇 - 원하는 시간대에 푸시알림을 설정하여 잊지말고 1일 1커밋 하도록해요.**
+**컴잇 - 원하는 시간대에 푸시알림을 설정하여 잊지말고 1일 1커밋 하도록해요.**
 
 ## Concept
 
