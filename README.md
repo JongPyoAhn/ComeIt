@@ -1,18 +1,18 @@
-# ComeIt <img src = "https://github.com/JongPyoAhn/Gitramy/blob/main/Gitramy/Assets.xcassets/AppIcon.appiconset/1024.png?raw=true" width = 50 align = right>
+# ComeIt <img src = "https://github.com/JongPyoAhn/Gitramy/blob/main/ComeIt/Assets.xcassets/AppIcon.appiconset/1024.png?raw=true" width = 50 align = right>
 
 > **첫 번째 개인 Project**
 
 [<img src = "https://devimages-cdn.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg">](https://apps.apple.com/kr/app/컴잇/id1599428215?mt=8)
 
 ## Contents
-* [About ComeIt](https://github.com/JongPyoAhn/Gitramy/blob/main/README.md#about-ComeIt)
-* [Concept](https://github.com/JongPyoAhn/Gitramy/blob/main/README.md#concept)
-* [Update](https://github.com/JongPyoAhn/Gitramy/blob/main/README.md#update)
-* [Contact ME](https://github.com/JongPyoAhn/Gitramy/blob/main/README.md#contact-me)
+* [About ComeIt](https://github.com/JongPyoAhn/ComeIt/blob/main/README.md#about-ComeIt)
+* [Concept](https://github.com/JongPyoAhn/ComeIt/blob/main/README.md#concept)
+* [Update](https://github.com/JongPyoAhn/ComeIt/blob/main/README.md#update)
+* [Contact ME](https://github.com/JongPyoAhn/ComeIt/blob/main/README.md#contact-me)
 
 ## About ComeIt
 
-<img src = "https://github.com/JongPyoAhn/Gitramy/blob/main/ScreenShots/ComeitScreenshot.png?raw=true">
+<img src = "https://github.com/JongPyoAhn/ComeIt/blob/main/ScreenShots/ComeitScreenshot.png?raw=true">
 
 > - **1일 1커밋**
 > - 선택된 저장소에 관해 오늘 자신이 몇번의 커밋을 했는지 볼 수 있습니다.
