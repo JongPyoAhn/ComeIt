@@ -1,4 +1,4 @@
-# GITGET <img src = "https://github.com/fimuxd/GITGET/blob/develop/GITGET/Resource/Assets.xcassets/AppIcon.appiconset/mac_app_icon_1024.png?raw=true" width = 50 align = right>
+# 컴잇 <img src = "https://github.com/fimuxd/GITGET/blob/develop/GITGET/Resource/Assets.xcassets/AppIcon.appiconset/mac_app_icon_1024.png?raw=true" width = 50 align = right>
 
 > **첫 번째 개인 Project**
 
