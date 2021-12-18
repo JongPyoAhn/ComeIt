@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_GitramyVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_GitramyVersionString[];
+FOUNDATION_EXPORT double Pods_ComeItVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_ComeItVersionString[];
 

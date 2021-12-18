@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E38818B626AD9F6624B9519A03E25E0E"
-               BuildableName = "Pods_Gitramy.framework"
-               BlueprintName = "Pods-Gitramy"
+               BlueprintIdentifier = "2E26D07443DF374241C54656116160C5"
+               BuildableName = "Pods_ComeIt.framework"
+               BlueprintName = "Pods-ComeIt"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
