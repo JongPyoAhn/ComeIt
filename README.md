@@ -12,7 +12,7 @@
 
 ## About ComeIt
 
-<img src = "https://github.com/fimuxd/GITGET/blob/master/screenshots/devices.png?raw=true">
+<img src = "https://github.com/JongPyoAhn/Gitramy/blob/main/ScreenShots/ComeitScreenshot.png?raw=true">
 
 > - `GitHub` + `Widget`
 > - No three meals a day, three commits a day!
