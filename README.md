@@ -14,10 +14,10 @@
 
 <img src = "https://github.com/JongPyoAhn/Gitramy/blob/main/ScreenShots/ComeitScreenshot.png?raw=true">
 
-> - `GitHub` + `Widget`
-> - No three meals a day, three commits a day!
-> - No more grey field on GitHub
-> - Keep in touch on `Widget`, Coding never stop til get **fully green field**
+> - **1일 1커밋**
+> - 선택된 저장소에 관해 오늘 자신이 몇번의 커밋을 했는지 볼 수 있습니다.
+> - 푸시알림을 여러개 추가하여 여러개의 푸시알림을 받을 수 있습니다.
+> - 시각적인 통계를 통해 이번주 저장소의 순위와 자주 사용하는 언어의 통계를 확인할 수 있습니다.
 
 **컴잇 - 원하는 시간대에 푸시알림을 설정하여 잊지말고 1일 1커밋 하도록해요.**
 
@@ -47,4 +47,4 @@
 - 📧 whdvy3@naver.com
 
 ***
-***Thanks For Reading My ReadMe ***
+***Thanks For, Watching My ReadMe ***
