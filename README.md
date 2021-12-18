@@ -47,4 +47,4 @@
 - 📧 whdvy3@naver.com
 
 ***
-***Thanks For, Watching My ReadMe ***
+**Thanks For, Watching My ReadMe**
