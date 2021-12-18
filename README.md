@@ -6,9 +6,9 @@
 
 ## Contents
 * [About ComeIt](https://github.com/JongPyoAhn/Gitramy/blob/main/README.md#about-ComeIt)
-* [Concept](https://github.com/JongPyoAhn/ComeIt#concept)
-* [Update](https://github.com/JongPyoAhn/ComeIt#update)
-* [Contact ME](https://github.com/JongPyoAhn/ComeIt#contact-me)
+* [Concept](https://github.com/JongPyoAhn/Gitramy/blob/main/README.md#concept)
+* [Update](https://github.com/JongPyoAhn/Gitramy/blob/main/README.ComeIt#update)
+* [Contact ME](https://github.com/JongPyoAhn/Gitramy/blob/main/README.ComeIt#contact-me)
 
 ## About ComeIt
 
