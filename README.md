@@ -5,13 +5,13 @@
 [<img src = "https://devimages-cdn.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg">](https://apps.apple.com/kr/app/컴잇/id1599428215?mt=8)
 
 ## Contents
-* [About GITGET](https://github.com/fimuxd/GITGET#about-gitget)
+* [About ComeIt](https://github.com/fimuxd/컴잇#about-컴잇)
 * [Concept](https://github.com/fimuxd/GITGET#concept)
 * [Update](https://github.com/fimuxd/GITGET#update)
 * [Contributors(Special Thanks)](https://github.com/fimuxd/GITGET#contributors-special-thanks)
 * [Contact ME](https://github.com/fimuxd/GITGET#contact-me)
 
-## About GITGET
+## About 컴잇
 
 <img src = "https://github.com/fimuxd/GITGET/blob/master/screenshots/devices.png?raw=true">
 
@@ -20,23 +20,24 @@
 > - No more grey field on GitHub
 > - Keep in touch on `Widget`, Coding never stop til get **fully green field**
 
-***GITGET - 우리 GitHub, 푸르게 푸르게***
+***컴잇 - 원하는 시간대에 푸시알림을 설정하여 잊지말고 1일 1커밋 하도록해요.**
 
 ## Concept
 
-- GITGET(이하 `깃젯`)은 2017년 5월, `Swift`로 코딩을 처음 접한 뒤 혼자서 완성한 첫 번째 앱입니다.
-- GitHub profile 페이지의 `contributions`를 `iPhone`의 `widget`상에 띄워서 볼 수 있게 하였습니다.
-- `깃젯`을 통해 다음과 같은 내용을 스터디할 수 있었습니다..
+- 컴잇(이하 `ComeIt`)은 2021년 12월, `Swift`로 코딩을 시작하고 완성하여 앱스토어에 올려본 첫 번째 앱입니다.
+- 푸시알림을 통하여 1커밋을 위한 알림을 여러개 설정할 수 있습니다.
+- 차트와 기여이미지를 통해 시각적인 통계를 확인할 수 있습니다.
+- `컴잇`을 통해 다음과 같은 내용을 스터디 하였습니다.
 
-    i. `Firebase`: Realtime Database 를 이용하여 백엔드 단을 Firebase로 대체하였습니다.
+    i. `Firebase`: FirebaseAuth 를 이용하여 깃허브 인증토큰을 받아왔습니다.
     
-    ii. `GitHub API`: API 통신 및 `OAuth 2.0` +  `Firebase Auth` 연동
+    ii. `GitHub API`: API 통신 및 `OAuth 2.0`
     
-    iii. `Today Extension`: Widget과 Host App간의 연동
+    iii. `RxSwift`: `API 통신` 부분과 `기여 이미지(Contribution)` 를 불러올 때 비동기 처리 하였습니다.
     
-    iv. `Realm`: 로컬저장소로써의 Realm 활용
+    iv. `UserNotifications`: 푸시알림 처리를 위해 사용했습니다.
     
-    v. `SwiftUI+Combine`: WidgetKit 적용 
+    v. `UIKit`: `StoryBoard`를 이용한 UI구성
 
 ## Update
 ### Ver. 2
@@ -52,19 +53,10 @@
 - v1.1.0: 위젯을 한번 탭하면 새로고침, 두번 탭하면 앱이 열리는 기능 추가. 위젯이 직접 통신
 - v1.0.1: 1차 App Store release (2017.11.28)
 
-## Contributors (Special Thanks) 
-> GITGET(깃젯)이 더욱 나을 수 있도록 기여를 해주신/해주고 계신 분들입니다. 직접적으로 PR을 보내주신 분, Swift Rookie인 저에게 많은 가르침을 주신 분, 무시할 수 없는 개선 아이디어를 보내주신 분들이 계십니다. 정말 감사드립니다 :)
-
-- [blackturtle2](https://github.com/blackturtle2) | [**blog**](http://blackturtle2.net)
-- [isjang98](https://github.com/isjang98) | [**blog**](https://medium.com/@zida.papa)
-- [joeseonmi](https://github.com/joeseonmi)
-- [unnnyong](https://github.com/unnnyong)
-- [woollim](https://github.com/woollim)
-
 ## Contact Me
-- 📱 +82 10.3316.1609
-- 📧 me@boyoung.dev
+- 📱 +82 10.7763.2458
+- 📧 whdvy3@naver.com
 - <img src = "https://assets.brandfolder.com/osogig-6gybeo-1fxfn9/original/Slack%20App%20Icon.png" width = 20> [gitget.slack.com](https://gitget.slack.com/messages)
 
 ***
-***Love is all or don't?***
+***내가 힘들면 다른사람도 힘들다***
