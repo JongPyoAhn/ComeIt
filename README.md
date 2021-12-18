@@ -2,7 +2,7 @@
 
 > **첫 번째 개인 Project**
 
-[<img src = "https://devimages-cdn.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg">](https://itunes.apple.com/us/app/gitget/id1317170245?mt=8) [<img src = "https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-mac-app-store.svg">](https://apps.apple.com/us/app/gitget/id1317170245)
+[<img src = "https://devimages-cdn.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg">](https://apps.apple.com/kr/app/컴잇/id1599428215?mt=8)
 
 ## Contents
 * [About GITGET](https://github.com/fimuxd/GITGET#about-gitget)
