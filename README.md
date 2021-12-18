@@ -6,9 +6,9 @@
 
 ## Contents
 * [About ComeIt](https://github.com/JongPyoAhn/Gitramy/blob/main/README.md#about-ComeIt)
-* [Concept](https://github.com/fimuxd/ComeIt#concept)
-* [Update](https://github.com/fimuxd/ComeIt#update)
-* [Contact ME](https://github.com/fimuxd/GIComeItTGET#contact-me)
+* [Concept](https://github.com/JongPyoAhn/ComeIt#concept)
+* [Update](https://github.com/JongPyoAhn/ComeIt#update)
+* [Contact ME](https://github.com/JongPyoAhn/ComeIt#contact-me)
 
 ## About ComeIt
 
@@ -19,7 +19,7 @@
 > - No more grey field on GitHub
 > - Keep in touch on `Widget`, Coding never stop til get **fully green field**
 
-*** 컴잇 - 원하는 시간대에 푸시알림을 설정하여 잊지말고 1일 1커밋 하도록해요.**
+**컴잇 - 원하는 시간대에 푸시알림을 설정하여 잊지말고 1일 1커밋 하도록해요.**
 
 ## Concept
 
