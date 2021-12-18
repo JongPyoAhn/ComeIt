@@ -36,16 +36,10 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("--------------------------------------------------")
-        loginManager.fetchRepository(loginManager.user.name) {[weak self]repositories in
-            guard let self = self else {return}
-            self.repoNames = repositories//레포지토리정보가져오기
-            print("repoNames: --------\(self.repoNames)")
-            self.createPickerView()
-            self.dismissPickerView()
-            self.commitTextChange(self.pickerDefaultSetting())
-//            self.loginManager.commitToDict()
-        }
+        self.repoNames = loginManager.repositories
+        self.createPickerView()
+        self.dismissPickerView()
+        self.commitTextChange(self.pickerDefaultSetting())
     }
   
     func setNavigationTitle(){
