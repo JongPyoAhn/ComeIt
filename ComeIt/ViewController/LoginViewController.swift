@@ -24,39 +24,11 @@ class LoginViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.loginManager.autoLogin {
-            self.moveToLoadingViewController()
-        }
-     
-        
+
     }
     
     @IBAction func LoginButtonTapped(_ sender: Any) {
         //firebase를 통한 로그인
-        //로그인이 성공적으로 완료되었을 때 탭바로 넘어감. @escaping closure !!
-        if !NetworkMonitor.shared.isConnected{
-            moveDisConnected()
-        }else{
-            loginManager.getCredential(){
-                self.moveToLoadingViewController()
-            }
-        }
+        loginManager.getCredential()
     }
-    
-    func moveToLoadingViewController(){
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let startVC = storyboard.instantiateViewController(withIdentifier: "LoadingViewController") as! LoadingViewController
-        startVC.modalPresentationStyle = .fullScreen
-        startVC.modalTransitionStyle = .crossDissolve
-        self.present(startVC, animated: true, completion: nil)
-    }
-    
-    func moveDisConnected(){
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let disConnectedVC = storyboard.instantiateViewController(withIdentifier: "DisConnectedViewController")
-        disConnectedVC.modalPresentationStyle = .fullScreen
-        disConnectedVC.modalTransitionStyle = .crossDissolve
-        self.present(disConnectedVC, animated: false, completion: nil)
-    }
-   
 }

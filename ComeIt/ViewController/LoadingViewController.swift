@@ -13,7 +13,7 @@ class LoadingViewController: UIViewController {
     var email = "등록된 이메일이 없습니다."
     var company = "등록된 소속이 없습니다."
     
-    
+    let githubController = GithubController.shared
     @IBOutlet weak var gifImageView: GIFImageView!
     let loginManager = LoginManager.shared
     override func viewDidLoad() {
@@ -23,20 +23,14 @@ class LoadingViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if !NetworkMonitor.shared.isConnected{
-            moveDisConnected()
-        }else{
-            fetchUser(loginManager.getUserAccessToken()) { user in
-                self.loginManager.user = user
-                print("userName : \(user.name)")
-                print("userName : \(user.name)")
-                self.loginManager.fetchRepository(user.name) { repositories in
-                    self.loginManager.repositories = repositories
-                    self.loginManager.commitToDict()
-                    
-                    DispatchQueue.main.async {
-                        self.moveToTabbar()
-                    }
+        fetchUser(loginManager.userAccessToken!) { user in
+            self.loginManager.user = user
+            self.githubController.fetchRepository(user.name, userAccessToken: self.loginManager.userAccessToken!) { repositories in
+                self.githubController.repositories = repositories
+//                self.loginManager.commitToDict()
+                
+                DispatchQueue.main.async {
+                    self.moveToTabbar()
                 }
             }
         }

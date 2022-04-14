@@ -7,7 +7,7 @@
 
 import UIKit
 
-
+//파이어베이스에서도 기본적인 User를 제공하지만, 내가 원하는형태의 유저정보를 사용하기위해 직접 모델링해서 싱글톤으로 사용
 struct User : Codable{
     var imageURL: String
     var name: String

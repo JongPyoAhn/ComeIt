@@ -16,6 +16,9 @@
 		536186B4274D15E400755903 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 536186B3274D15E400755903 /* LaunchScreen.storyboard */; };
 		536186B7274D171F00755903 /* BMEULJIRO.otf in Resources */ = {isa = PBXBuildFile; fileRef = 536186B6274D171F00755903 /* BMEULJIRO.otf */; };
 		5364AB34273E6A5D00A88E2E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5364AB33273E6A5D00A88E2E /* ProfileViewController.swift */; };
+		536534662808461D00DF30AF /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536534652808461D00DF30AF /* LoginController.swift */; };
+		5365346828084D3A00DF30AF /* GithubController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5365346728084D3A00DF30AF /* GithubController.swift */; };
+		5365346A28086CFA00DF30AF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5365346928086CFA00DF30AF /* GoogleService-Info.plist */; };
 		5376084B2750754B005AD4CE /* DisConnectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5376084A2750754B005AD4CE /* DisConnectedViewController.swift */; };
 		539D41252714789500ED3606 /* AlarmTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539D41242714789500ED3606 /* AlarmTableViewController.swift */; };
 		539D4128271478A500ED3606 /* AlarmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539D4126271478A500ED3606 /* AlarmTableViewCell.swift */; };
@@ -29,7 +32,6 @@
 		53B280AF2731594200CFD634 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B280AE2731594200CFD634 /* Repository.swift */; };
 		53B80CE827624B2500B53468 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53B80CE727624B2500B53468 /* Settings.bundle */; };
 		53BAA931276C6E81003F6C23 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BAA930276C6E81003F6C23 /* UserViewModel.swift */; };
-		53CEFACD27621D7E00E3E8DA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53CEFACC27621D7E00E3E8DA /* GoogleService-Info.plist */; };
 		53D086E5274DDFD100CC4797 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D086E4274DDFD100CC4797 /* NetworkMonitor.swift */; };
 		53FC5D14272809E9002F368C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FC5D13272809E9002F368C /* HomeViewController.swift */; };
 		53FC5D1627280C66002F368C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FC5D1527280C66002F368C /* User.swift */; };
@@ -50,6 +52,9 @@
 		536186B3274D15E400755903 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		536186B6274D171F00755903 /* BMEULJIRO.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMEULJIRO.otf; sourceTree = "<group>"; };
 		5364AB33273E6A5D00A88E2E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		536534652808461D00DF30AF /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		5365346728084D3A00DF30AF /* GithubController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubController.swift; sourceTree = "<group>"; };
+		5365346928086CFA00DF30AF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5376084A2750754B005AD4CE /* DisConnectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisConnectedViewController.swift; sourceTree = "<group>"; };
 		539D41242714789500ED3606 /* AlarmTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTableViewController.swift; sourceTree = "<group>"; };
 		539D4126271478A500ED3606 /* AlarmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTableViewCell.swift; sourceTree = "<group>"; };
@@ -66,7 +71,6 @@
 		53B80CE727624B2500B53468 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		53BAA930276C6E81003F6C23 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		53CEFACB2762166E00E3E8DA /* Gitramy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Gitramy.entitlements; sourceTree = "<group>"; };
-		53CEFACC27621D7E00E3E8DA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		53D086E4274DDFD100CC4797 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		53FC5D13272809E9002F368C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		53FC5D1527280C66002F368C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -111,6 +115,17 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		53653464280845ED00DF30AF /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				53A44836270B215C000FA3C8 /* AppDelegate.swift */,
+				53A44838270B215C000FA3C8 /* SceneDelegate.swift */,
+				536534652808461D00DF30AF /* LoginController.swift */,
+				5365346728084D3A00DF30AF /* GithubController.swift */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		53759879273917F10004FAB4 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,6 +137,7 @@
 		53A4482A270B215C000FA3C8 = {
 			isa = PBXGroup;
 			children = (
+				53653464280845ED00DF30AF /* Resource */,
 				53B80CE727624B2500B53468 /* Settings.bundle */,
 				53A44835270B215C000FA3C8 /* Gitramy */,
 				53A44834270B215C000FA3C8 /* Products */,
@@ -148,16 +164,14 @@
 				53BAA92F276C6E69003F6C23 /* ViewModel */,
 				53AD614A27151572001E51B7 /* Model */,
 				53759879273917F10004FAB4 /* View */,
-				53A44836270B215C000FA3C8 /* AppDelegate.swift */,
-				53A44838270B215C000FA3C8 /* SceneDelegate.swift */,
 				533B7B12271D0C98002A1359 /* UNNotificationCenter.swift */,
 				536186B1274D13DE00755903 /* Loading.gif */,
 				536186AF274D138400755903 /* Main.storyboard */,
 				535BE53B2761ABE400243161 /* InfoPlist.strings */,
 				536186B3274D15E400755903 /* LaunchScreen.storyboard */,
 				53A4483F270B215D000FA3C8 /* Assets.xcassets */,
+				5365346928086CFA00DF30AF /* GoogleService-Info.plist */,
 				53A44844270B215D000FA3C8 /* Info.plist */,
-				53CEFACC27621D7E00E3E8DA /* GoogleService-Info.plist */,
 				536186B5274D16A100755903 /* Font */,
 			);
 			name = Gitramy;
@@ -316,8 +330,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				536186B2274D13DE00755903 /* Loading.gif in Resources */,
+				5365346A28086CFA00DF30AF /* GoogleService-Info.plist in Resources */,
 				535BE53D2761ABE400243161 /* InfoPlist.strings in Resources */,
-				53CEFACD27621D7E00E3E8DA /* GoogleService-Info.plist in Resources */,
 				536186B0274D138400755903 /* Main.storyboard in Resources */,
 				536186B7274D171F00755903 /* BMEULJIRO.otf in Resources */,
 				53A44840270B215D000FA3C8 /* Assets.xcassets in Resources */,
@@ -380,11 +394,13 @@
 				533B7B13271D0C98002A1359 /* UNNotificationCenter.swift in Sources */,
 				539D41252714789500ED3606 /* AlarmTableViewController.swift in Sources */,
 				53FD9EA42737FBE8004944EC /* LoadingViewController.swift in Sources */,
+				5365346828084D3A00DF30AF /* GithubController.swift in Sources */,
 				5312A8B82715B65A0045F4B3 /* AddAlertViewController.swift in Sources */,
 				53A4483B270B215C000FA3C8 /* LoginViewController.swift in Sources */,
 				5364AB34273E6A5D00A88E2E /* ProfileViewController.swift in Sources */,
 				53A44837270B215C000FA3C8 /* AppDelegate.swift in Sources */,
 				5331729327281C4D0021BFB3 /* LoginManager.swift in Sources */,
+				536534662808461D00DF30AF /* LoginController.swift in Sources */,
 				53FC5D14272809E9002F368C /* HomeViewController.swift in Sources */,
 				5376084B2750754B005AD4CE /* DisConnectedViewController.swift in Sources */,
 				53B280AF2731594200CFD634 /* Repository.swift in Sources */,
@@ -465,7 +481,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -520,7 +536,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -536,7 +552,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Gitramy/Gitramy.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ComeIt/ComeIt.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5UYBRX8UM9;
@@ -547,12 +563,12 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.JPAhn.Comeit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -567,7 +583,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Gitramy/Gitramy.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ComeIt/ComeIt.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5UYBRX8UM9;
@@ -578,12 +594,12 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.JPAhn.Comeit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QaU-Sz-J1F">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QaU-Sz-J1F">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -54,7 +55,7 @@
         <!--통계-->
         <scene sceneID="fks-Cf-Ril">
             <objects>
-                <viewController restorationIdentifier="ChartViewController" id="k28-Aa-cyP" customClass="ChartViewController" customModule="Gitramy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="ChartViewController" id="k28-Aa-cyP" customClass="ChartViewController" customModule="ComeIt" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pFy-OV-eUb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -164,7 +165,7 @@
                             <constraint firstItem="qiu-NY-hod" firstAttribute="trailing" secondItem="Qug-wT-Ld3" secondAttribute="trailing" constant="1" id="ziC-bN-NiQ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="통계" image="chart.line.uptrend.xyaxis" catalog="system" id="EqS-sM-je3"/>
+                    <tabBarItem key="tabBarItem" title="통계" image="chart.bar.fill" catalog="system" id="EqS-sM-je3"/>
                     <connections>
                         <outlet property="contributionStackView" destination="Ioh-av-AUb" id="Mjm-e4-OuV"/>
                         <outlet property="languagePieChartView" destination="eIc-84-uAY" id="2NR-um-XfY"/>
@@ -179,13 +180,13 @@
         <!--Profile View Controller-->
         <scene sceneID="YNh-F6-CkW">
             <objects>
-                <viewController storyboardIdentifier="ProfileViewController" id="cMP-Ns-IZd" customClass="ProfileViewController" customModule="Gitramy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" id="cMP-Ns-IZd" customClass="ProfileViewController" customModule="ComeIt" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pRI-UG-Aat">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rl3-9Z-EYb" userLabel="프로필이미지">
-                                <rect key="frame" x="100" y="150" width="214" height="214"/>
+                                <rect key="frame" x="100" y="194" width="214" height="214"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ejy-bI-ZwY">
                                         <rect key="frame" x="0.0" y="0.0" width="214" height="214"/>
@@ -201,7 +202,7 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillProportionally" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="34n-5x-AUq">
-                                <rect key="frame" x="50" y="374" width="314" height="134"/>
+                                <rect key="frame" x="50" y="418" width="314" height="134"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="uqO-m2-ogX">
                                         <rect key="frame" x="73" y="0.0" width="168" height="57"/>
@@ -249,7 +250,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PLC-kZ-0P7">
-                                <rect key="frame" x="180" y="528" width="54" height="29"/>
+                                <rect key="frame" x="180" y="572" width="54" height="29"/>
                                 <fontDescription key="fontDescription" name="BMEULJIRO" family="BM EULJIRO" pointSize="15"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="로그아웃"/>
@@ -286,7 +287,7 @@
         <!--Add Alert View Controller-->
         <scene sceneID="jo9-sL-JGQ">
             <objects>
-                <viewController restorationIdentifier="AddAlertViewController" storyboardIdentifier="AddAlertViewController" id="V6r-dn-7DZ" customClass="AddAlertViewController" customModule="Gitramy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="AddAlertViewController" storyboardIdentifier="AddAlertViewController" id="V6r-dn-7DZ" customClass="AddAlertViewController" customModule="ComeIt" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wO9-C6-POk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -350,7 +351,7 @@
         <!--Dis Connected View Controller-->
         <scene sceneID="afK-m2-9nR">
             <objects>
-                <viewController restorationIdentifier="DisConnectedViewController" storyboardIdentifier="DisConnectedViewController" id="Fbb-aG-rSO" customClass="DisConnectedViewController" customModule="Gitramy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="DisConnectedViewController" storyboardIdentifier="DisConnectedViewController" id="Fbb-aG-rSO" customClass="DisConnectedViewController" customModule="ComeIt" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" restorationIdentifier="DisConnectedViewController" id="FK3-rC-bOl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -433,7 +434,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="Gitramy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="ComeIt" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -442,16 +443,16 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4GC-GZ-ghH">
-                                        <rect key="frame" x="42.5" y="0.0" width="329" height="398"/>
+                                        <rect key="frame" x="46.5" y="0.0" width="321" height="383.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="applogo" translatesAutoresizingMaskIntoConstraints="NO" id="z5L-FW-5ec">
-                                                <rect key="frame" x="0.0" y="0.0" width="329" height="329.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="321" height="321"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="z5L-FW-5ec" secondAttribute="height" multiplier="1:1" id="DVY-Mp-cVP"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="원하는 시간대에 알림을 받고 하루에 한개의 커밋을 성공하세요!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="cFp-jj-gg4">
-                                                <rect key="frame" x="0.0" y="339.5" width="329" height="58.5"/>
+                                                <rect key="frame" x="0.0" y="331" width="321" height="52.5"/>
                                                 <fontDescription key="fontDescription" name="BMEULJIRO" family="BM EULJIRO" pointSize="30"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -459,7 +460,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="1OV-Tj-e8a">
-                                        <rect key="frame" x="74.5" y="448" width="265" height="326"/>
+                                        <rect key="frame" x="74.5" y="433.5" width="265" height="340.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="center" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hvk-7s-88m">
                                                 <rect key="frame" x="0.0" y="0.0" width="265" height="50"/>
@@ -480,7 +481,7 @@
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5ml-jm-90x">
-                                                <rect key="frame" x="0.0" y="150" width="265" height="176"/>
+                                                <rect key="frame" x="0.0" y="150" width="265" height="190.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                         </subviews>
@@ -509,7 +510,7 @@
         <!--Loading View Controller-->
         <scene sceneID="DF5-4y-klz">
             <objects>
-                <viewController storyboardIdentifier="LoadingViewController" id="BWG-b4-tXX" customClass="LoadingViewController" customModule="Gitramy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoadingViewController" id="BWG-b4-tXX" customClass="LoadingViewController" customModule="ComeIt" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7qL-a4-vJc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -538,7 +539,7 @@
         <!--홈-->
         <scene sceneID="iy1-nl-4fl">
             <objects>
-                <viewController restorationIdentifier="HomeViewController" storyboardIdentifier="HomeViewController" id="JOk-81-N2g" customClass="HomeViewController" customModule="Gitramy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="HomeViewController" storyboardIdentifier="HomeViewController" id="JOk-81-N2g" customClass="HomeViewController" customModule="ComeIt" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="k9z-e7-oWA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -556,13 +557,13 @@
                                     <navigationItem title="홈" id="ILl-Dl-dOE">
                                         <barButtonItem key="rightBarButtonItem" id="sgh-uT-fyQ">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Gb1-eT-iCy">
-                                                <rect key="frame" x="344" y="5" width="50" height="34"/>
+                                                <rect key="frame" x="330" y="5" width="64" height="34"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="person.fill" catalog="system">
-                                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="17"/>
-                                                </buttonConfiguration>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" image="person.fill" catalog="system">
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17"/>
+                                                </state>
                                                 <connections>
                                                     <segue destination="cMP-Ns-IZd" kind="presentation" id="nXS-5a-412"/>
                                                 </connections>
@@ -671,7 +672,7 @@
         <!--푸시알림-->
         <scene sceneID="WLI-5c-JfS">
             <objects>
-                <tableViewController restorationIdentifier="AlarmTableViewController" storyboardIdentifier="AlarmTableViewController" id="3pf-6i-c8H" customClass="AlarmTableViewController" customModule="Gitramy" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController restorationIdentifier="AlarmTableViewController" storyboardIdentifier="AlarmTableViewController" id="3pf-6i-c8H" customClass="AlarmTableViewController" customModule="ComeIt" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="BhB-Md-vVu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -722,7 +723,7 @@
         <image name="Loading.gif" width="1024" height="1024"/>
         <image name="alarm.fill" catalog="system" width="124" height="128"/>
         <image name="applogo" width="341" height="341"/>
-        <image name="chart.line.uptrend.xyaxis" catalog="system" width="128" height="101"/>
+        <image name="chart.bar.fill" catalog="system" width="128" height="92"/>
         <image name="gitubSquare" width="170.5" height="170.5"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="logo_github" width="42.5" height="42.5"/>

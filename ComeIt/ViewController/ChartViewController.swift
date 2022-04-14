@@ -14,10 +14,12 @@ import RxSwift
 
 class ChartViewController: UIViewController, ChartViewDelegate {
     let loginManager = LoginManager.shared
+    let githubController = GithubController.shared
     static let shared = ChartViewController()
     var languageDict = [String: Int]()
     var language = [String]()
     var languageValue = [Int]()
+    var repoTotal: [String:Int] = [:] //차트에서 사용
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contributionStackView: UIStackView!
     @IBOutlet weak var contributionView: UIView!
@@ -62,11 +64,13 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         super.viewDidDisappear(animated)
         print("viewDisappear")
     }
+    
+    
     func setLanguageDict(){
-        for i in self.loginManager.repositories{
+        for i in githubController.repositories{
             languageDict["\(i.language)"] = 0
         }
-        for i in self.loginManager.repositories{
+        for i in githubController.repositories{
             languageDict["\(i.language)"]! += 1
         }
         print("languageDict: \(languageDict)")
@@ -97,6 +101,17 @@ class ChartViewController: UIViewController, ChartViewDelegate {
             })
             .disposed(by: disposedBag)
     }
+    //
+    func commitToDict(_ repositories: [Repository]){
+        for i in repositories{
+            //의존적인것은 아님 모든 커밋횟수를 가져와야하기 때문에 이런식으로 하지않으면 안됨(?)
+            githubController.fetchCommit(loginManager.user!.name, i.name, userAccessToken: loginManager.userAccessToken!) { commits in
+                let latestCommit = commits.last!
+                self.repoTotal[i.name] = latestCommit.total
+            }
+        }
+    }
+    
     
 }
 //MARK: -refresh
@@ -124,8 +139,8 @@ extension ChartViewController{
                 languageValue.removeAll()
                 languagePieChartView.clear()
             }
-            self.loginManager.commitToDict()
-            print("repoTotal : \(self.loginManager.repoTotal)")
+            self.commitToDict(githubController.repositories)
+            print("repoTotal : \(self.repoTotal)")
             setLineChartView()
             repositorySetData()
             languageSetData()
@@ -136,7 +151,7 @@ extension ChartViewController{
 //            if contributionStackView.arrangedSubviews.count < 2{
 //                getContributionSvgImageFile()
 //            }
-            getContributionSvgImage(name: self.loginManager.user.name) { svgImage in
+            getContributionSvgImage(name: self.loginManager.user!.name) { svgImage in
                 
                 if self.contributionStackView.arrangedSubviews.count >= 2{
                     self.contributionStackView.removeArrangedSubview(svgImage)
@@ -174,7 +189,7 @@ extension ChartViewController {
     func repositorySetData(){
         var x: Double = 0
         for i in repositoryNames{
-            let repoTotal = self.loginManager.repoTotal[i]!
+            let repoTotal = self.repoTotal[i]!
             repositoryValues.append(ChartDataEntry(x: x, y: Double(repoTotal)))
             x += 1.0 //xLabel에 이름이 안나왔던 원인임 차트는 1.0단위로해줘야함 ㅠㅠㅠㅠ
             //그동안 10으로해서 안나왔던것이다ㅠㅠㅠㅠㅠㅠㅠㅠㅠ
@@ -231,7 +246,7 @@ extension ChartViewController {
     //꺽은선그래프 꾸미기
     func setLineChartView(){
         //repoTotal딕셔너리에서 totalRepo가 많은순으로 내림차순 정렬
-        var sorted = self.loginManager.repoTotal.sorted { $0.value > $1.value}
+        var sorted = self.repoTotal.sorted { $0.value > $1.value}
         //저장소이름은 오름차순 정렬 딱히 의미x
         sorted.sort{
             $0.key < $1.key
@@ -436,3 +451,4 @@ extension UIColor {
     
     
 }
+

@@ -16,6 +16,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var repositoryPicker: UITextField!
     @IBOutlet weak var levelImage: UIImageView!
     let loginManager = LoginManager.shared
+    let githubController = GithubController.shared
     var latestDayOfCommit = 0
     var repoNames: [Repository] = []
     let pickerView = UIPickerView()
@@ -30,13 +31,12 @@ class HomeViewController: UIViewController {
         repositoryPicker.layer.cornerRadius = 8.0
         repositoryPicker.layer.borderWidth = 0.8
         repositoryPicker.layer.masksToBounds = true
-        
-        
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.repoNames = loginManager.repositories
+        self.repoNames = githubController.repositories
         self.createPickerView()
         self.dismissPickerView()
         self.commitTextChange(self.pickerDefaultSetting())
@@ -54,13 +54,7 @@ class HomeViewController: UIViewController {
         //픽커뷰에서 안돼고 텍스트필드에 적용하니까 된다.
         repositoryPicker.resignFirstResponder()
     }
-    
-    
-   
 
-    
-    
-    
 
 }
 
@@ -122,7 +116,7 @@ extension HomeViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicke
     
     //커밋횟수 가져오고 UI에 표현
     func commitTextChange(_ row: Int){
-        let confirm: () = self.loginManager.fetchCommit(loginManager.user.name, repoNames[row].name) {[weak self] commits in
+        let confirm: () = self.githubController.fetchCommit(loginManager.user!.name, repoNames[row].name, userAccessToken: loginManager.userAccessToken!) {[weak self] commits in
             guard let self = self else {return}
             print("commits : \(commits)")
             if let commitLast = commits.last{

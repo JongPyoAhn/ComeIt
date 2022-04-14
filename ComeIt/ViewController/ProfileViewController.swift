@@ -8,9 +8,7 @@
 import UIKit
 import FirebaseAuth
 class ProfileViewController: UIViewController {
-    let loginManager = LoginManager.shared
-    let user = LoginManager.shared.user
-    
+    let user = LoginManager.shared.user!
     @IBOutlet weak var repositoriesLabel: UILabel!
     @IBOutlet weak var companyLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
@@ -31,16 +29,10 @@ class ProfileViewController: UIViewController {
         companyLabel.text = "소속 : \(user.company)"
         repositoriesLabel.text = "총 레포지토리 수 : \(user.reposPublic + user.reposPrivate)"
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print(user.name)
-        print(user.email)
-        print(user.company)
-    }
     
     
     @IBAction func moveToRepositoryButtonTapped(_ sender: Any) {
-        if let url = URL(string: "https://github.com/\(self.loginManager.user.name)?tab=repositories"){
+        if let url = URL(string: "https://github.com/\(self.user)?tab=repositories"){
             UIApplication.shared.open(url, options: [:])
         }
         
