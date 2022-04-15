@@ -9,17 +9,18 @@ import UIKit
 import FirebaseAuth
 class LoginController{
     static let shared = LoginController()
+    let loginManager = LoginManager.shared
     private var window: UIWindow!
     private var rootViewController: UIViewController?{
-        //didSet은 프로퍼티의 값이 변경되기 직전을 감지하는것입니다.
-        didSet{
+        didSet{//didSet은 프로퍼티의 값이 변경되기 직전을 감지하는것입니다.
             window.rootViewController = rootViewController
         }
     }
-    
     init(){
         NotificationCenter.default.addObserver(self, selector: #selector(checkSignIn), name: .AuthStateDidChange, object: nil)
     }
+    
+    
     
     func show(in window: UIWindow?){
         guard let window = window else {
@@ -33,8 +34,8 @@ class LoginController{
         window.makeKeyAndVisible()
     }
     @objc private func checkSignIn(){
-        if let user = Auth.auth().currentUser{
-            print(user.displayName)
+        if let user = Auth.auth().currentUser, let userAccessToken = UserDefaults.standard.string(forKey: "userAccessToken"){
+            loginManager.userAccessToken = userAccessToken
             setHomeScene()
         }else{
             setLoginScene()
