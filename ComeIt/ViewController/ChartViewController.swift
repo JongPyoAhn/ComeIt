@@ -39,7 +39,7 @@ class ChartViewController: UIViewController, ChartViewDelegate {
     
     let refresh = UIRefreshControl()
     
-    
+    let networkMonitor = NetworkMonitor.shared
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationTitle()
@@ -52,7 +52,11 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         super.viewWillAppear(animated)
         //커밋 수 많은 위에서 5개만 추려야됨.
         //dict에서 오름차순이나 내림차순으로 쓰기.
-        
+        if !networkMonitor.isConnected{
+            let disConnetedVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DisConnectedViewController")
+            disConnetedVC.modalPresentationStyle = .fullScreen
+            self.present(disConnetedVC, animated: true)
+        }
         updateUI()
         print("viewWillAppear")
     }

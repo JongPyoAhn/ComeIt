@@ -12,11 +12,11 @@ import RxSwift
 
 final class NetworkMonitor{
     static let shared = NetworkMonitor()
-    
     private let queue = DispatchQueue.global(qos: .background)
     private let monitor: NWPathMonitor
     public private(set) var isConnected:Bool = false
     public private(set) var connectionType:ConnectionType = .unknown
+    
     
     /// 연결타입
     enum ConnectionType {
@@ -36,26 +36,21 @@ final class NetworkMonitor{
         print("===========================is Conneted : \(isConnected)")
         monitor.start(queue: queue)
         monitor.pathUpdateHandler = { [weak self] path in
-            //TopViewController를 이용해서 네트워크 연결이 끊어지면 탑뷰컨 위에 새로운 뷰컨(DisConnectedViewController)를 나타낸다.
-            //연결상태가 바뀌었는데 탑뷰컨이 DisConnectedViewController일 경우에는 연결안됨 -> 연결됨으로 바뀌는경우이기 때문에 dismiss해준다.
-            
             print("path :\(path)")
             
             self?.isConnected = path.status == .satisfied
             self?.getConenctionType(path)
             
-            //처음에 HomeView들어왔을 때 우선 탑뷰컨을 구해줌.(이유 : 처음에 연결되서 들어오면 UIApplication.topViewController()가 nil값이라서 그렇다. 앱이 시작하는 처음에 뷰컨이 없는건 당연하다..)
-            //HomeViewController가 다른 뷰컨들하고 같은 탭바에있어서 present가 된다.
-            //그 이후에는 켜고 끄는곳에서 각각 getCurrentVC해서 print보면 이름이 제대로 들어감.
-            //결론 : 같이 탭바에있으면 currentVC가 어디든지 프레젠트는 다 된다.
             if self?.isConnected == true{
                 print("연결이된 상태임!")
+                
             }else{
                 print("연결 안된 상태임!")
-    
+                
             }
         }
     }
+
     
     public func stopMonitoring(){
         print("stopMonitoring 호출")

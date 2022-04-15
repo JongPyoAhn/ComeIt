@@ -16,11 +16,10 @@ class LoginController{
             window.rootViewController = rootViewController
         }
     }
+    
     init(){
         NotificationCenter.default.addObserver(self, selector: #selector(checkSignIn), name: .AuthStateDidChange, object: nil)
     }
-    
-    
     
     func show(in window: UIWindow?){
         guard let window = window else {
@@ -34,7 +33,7 @@ class LoginController{
         window.makeKeyAndVisible()
     }
     @objc private func checkSignIn(){
-        if let user = Auth.auth().currentUser, let userAccessToken = UserDefaults.standard.string(forKey: "userAccessToken"){
+        if let _ = Auth.auth().currentUser, let userAccessToken = UserDefaults.standard.string(forKey: "userAccessToken"){
             loginManager.userAccessToken = userAccessToken
             setHomeScene()
         }else{

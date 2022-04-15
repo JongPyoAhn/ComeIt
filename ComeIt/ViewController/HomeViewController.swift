@@ -23,7 +23,7 @@ class HomeViewController: UIViewController {
     var defaultRowIndex: Int = 0
     //커밋 0번이면 노티키고 1번이상이면 노티끄기위해서.
     let userNotification = UNUserNotificationCenter.current()
-    
+    let networkMonitor = NetworkMonitor.shared
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationTitle()
@@ -31,7 +31,7 @@ class HomeViewController: UIViewController {
         repositoryPicker.layer.cornerRadius = 8.0
         repositoryPicker.layer.borderWidth = 0.8
         repositoryPicker.layer.masksToBounds = true
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,6 +40,11 @@ class HomeViewController: UIViewController {
         self.createPickerView()
         self.dismissPickerView()
         self.commitTextChange(self.pickerDefaultSetting())
+        if !networkMonitor.isConnected{
+            let disConnetedVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DisConnectedViewController")
+            disConnetedVC.modalPresentationStyle = .fullScreen
+            self.present(disConnetedVC, animated: true)
+        }
     }
   
     func setNavigationTitle(){

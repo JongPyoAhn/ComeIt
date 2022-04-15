@@ -14,6 +14,7 @@ class LoadingViewController: UIViewController {
     var company = "등록된 소속이 없습니다."
     
     let githubController = GithubController.shared
+    let networkMonitor = NetworkMonitor.shared
     @IBOutlet weak var gifImageView: GIFImageView!
     let loginManager = LoginManager.shared
     override func viewDidLoad() {
@@ -23,6 +24,11 @@ class LoadingViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if !networkMonitor.isConnected{
+            let disConnetedVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DisConnectedViewController")
+            disConnetedVC.modalPresentationStyle = .fullScreen
+            self.present(disConnetedVC, animated: true)
+        }
         fetchUser(loginManager.userAccessToken!) { user in
             self.loginManager.user = user
             self.githubController.fetchRepository(user.name, userAccessToken: self.loginManager.userAccessToken!) { repositories in
