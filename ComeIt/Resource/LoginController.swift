@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import Firebase
 class LoginController{
     static let shared = LoginController()
     let loginManager = LoginManager.shared
@@ -16,7 +17,7 @@ class LoginController{
             window.rootViewController = rootViewController
         }
     }
-    
+
     init(){
         NotificationCenter.default.addObserver(self, selector: #selector(checkSignIn), name: .AuthStateDidChange, object: nil)
     }
@@ -33,13 +34,18 @@ class LoginController{
         window.makeKeyAndVisible()
     }
     @objc private func checkSignIn(){
-        if let _ = Auth.auth().currentUser, let userAccessToken = UserDefaults.standard.string(forKey: "userAccessToken"){
+        if let _ = Auth.auth().currentUser, let userAccessToken =
+            UserDefaults.standard.string(forKey: "userAccessToken"){
+            print(userAccessToken)
             loginManager.userAccessToken = userAccessToken
             setHomeScene()
         }else{
+            
             setLoginScene()
+            
         }
     }
+
     private func setHomeScene(){
         let loadingVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoadingViewController")
         rootViewController = loadingVC

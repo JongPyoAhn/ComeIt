@@ -7,13 +7,18 @@
 
 import UIKit
 
-struct Repository: Decodable{
-    var id: Int
-    var name: String
-    var full_name: String
-    var language: String
+//널값 체크를 안해줘서 개오래걸림. 다음부턴 조심.
+struct Repository: Codable{
+    let name: String
+    let language: String
     
-    enum codingKeys: String, CodingKey {
-        case id, name, full_name
+    enum codingkeys: String, CodingKey{
+        case name, language
+    }
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: codingkeys.self)
+        name = try values.decode(String.self, forKey: .name)
+        language = (try? values.decode(String.self, forKey: .language)) ?? "없음"
     }
 }
+//

@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		5312A8B82715B65A0045F4B3 /* AddAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312A8B72715B65A0045F4B3 /* AddAlertViewController.swift */; };
+		5313AE5828197C3200977C04 /* keyedDecodingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5313AE5728197C3200977C04 /* keyedDecodingContainer.swift */; };
 		5331729327281C4D0021BFB3 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5331729227281C4D0021BFB3 /* LoginManager.swift */; };
 		533B7B13271D0C98002A1359 /* UNNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533B7B12271D0C98002A1359 /* UNNotificationCenter.swift */; };
+		53597A822813C4E800DE6A8B /* GihubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53597A812813C4E800DE6A8B /* GihubAPI.swift */; };
 		535BE53D2761ABE400243161 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 535BE53B2761ABE400243161 /* InfoPlist.strings */; };
 		536186B0274D138400755903 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 536186AF274D138400755903 /* Main.storyboard */; };
 		536186B2274D13DE00755903 /* Loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = 536186B1274D13DE00755903 /* Loading.gif */; };
@@ -41,8 +43,10 @@
 
 /* Begin PBXFileReference section */
 		5312A8B72715B65A0045F4B3 /* AddAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlertViewController.swift; sourceTree = "<group>"; };
+		5313AE5728197C3200977C04 /* keyedDecodingContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = keyedDecodingContainer.swift; sourceTree = "<group>"; };
 		5331729227281C4D0021BFB3 /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		533B7B12271D0C98002A1359 /* UNNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNNotificationCenter.swift; sourceTree = "<group>"; };
+		53597A812813C4E800DE6A8B /* GihubAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GihubAPI.swift; sourceTree = "<group>"; };
 		535BE53C2761ABE400243161 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		535BE53E2761AC0000243161 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		535BE53F2761AC0000243161 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -122,6 +126,8 @@
 				53A44838270B215C000FA3C8 /* SceneDelegate.swift */,
 				536534652808461D00DF30AF /* LoginController.swift */,
 				5365346728084D3A00DF30AF /* GithubController.swift */,
+				53597A812813C4E800DE6A8B /* GihubAPI.swift */,
+				5313AE5728197C3200977C04 /* keyedDecodingContainer.swift */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -140,7 +146,6 @@
 			isa = PBXGroup;
 			children = (
 				53D0DBE22808FDF40023EDFB /* etc */,
-				53653464280845ED00DF30AF /* Resource */,
 				53B80CE727624B2500B53468 /* Settings.bundle */,
 				53A44835270B215C000FA3C8 /* Gitramy */,
 				53A44834270B215C000FA3C8 /* Products */,
@@ -161,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				53CEFACB2762166E00E3E8DA /* Gitramy.entitlements */,
+				53653464280845ED00DF30AF /* Resource */,
 				530F862A270B358000343BA1 /* ViewController */,
 				53AD614A27151572001E51B7 /* Model */,
 				53759879273917F10004FAB4 /* View */,
@@ -358,6 +364,7 @@
 				5364AB34273E6A5D00A88E2E /* ProfileViewController.swift in Sources */,
 				53A44837270B215C000FA3C8 /* AppDelegate.swift in Sources */,
 				5331729327281C4D0021BFB3 /* LoginManager.swift in Sources */,
+				5313AE5828197C3200977C04 /* keyedDecodingContainer.swift in Sources */,
 				536534662808461D00DF30AF /* LoginController.swift in Sources */,
 				53FC5D14272809E9002F368C /* HomeViewController.swift in Sources */,
 				5376084B2750754B005AD4CE /* DisConnectedViewController.swift in Sources */,
@@ -365,6 +372,7 @@
 				53A44839270B215C000FA3C8 /* SceneDelegate.swift in Sources */,
 				539D4128271478A500ED3606 /* AlarmTableViewCell.swift in Sources */,
 				53AD614C27151587001E51B7 /* Alert.swift in Sources */,
+				53597A822813C4E800DE6A8B /* GihubAPI.swift in Sources */,
 				53D086E5274DDFD100CC4797 /* NetworkMonitor.swift in Sources */,
 				53A4484D270B33CB000FA3C8 /* ChartViewController.swift in Sources */,
 				53FC5D1627280C66002F368C /* User.swift in Sources */,

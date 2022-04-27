@@ -11,7 +11,7 @@ import PocketSVG
 import Charts
 import RxSwift
 
-
+//홈에서 fetchCommit한거를 GithubController에 가지고있다가 처음에 화면띄울떄 그거갖고와서 띄우고 리프레쉬할떄 다시 fetch하기.
 class ChartViewController: UIViewController, ChartViewDelegate {
     let loginManager = LoginManager.shared
     let githubController = GithubController.shared
@@ -44,7 +44,7 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         super.viewDidLoad()
         setNavigationTitle()
         setLanguageDict()
-        
+        updateUI()
     }
     
     
@@ -57,7 +57,6 @@ class ChartViewController: UIViewController, ChartViewDelegate {
             disConnetedVC.modalPresentationStyle = .fullScreen
             self.present(disConnetedVC, animated: true)
         }
-        updateUI()
         print("viewWillAppear")
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -144,12 +143,12 @@ extension ChartViewController{
                 languagePieChartView.clear()
             }
             self.commitToDict(githubController.repositories)
-            print("repoTotal : \(self.repoTotal)")
             setLineChartView()
             repositorySetData()
             languageSetData()
             setPieChartView()
-            
+            print("repoTotal : \(self.repoTotal)")
+
             initRefresh()
             print("subViewCounts : \(contributionStackView.arrangedSubviews.count)")
 //            if contributionStackView.arrangedSubviews.count < 2{

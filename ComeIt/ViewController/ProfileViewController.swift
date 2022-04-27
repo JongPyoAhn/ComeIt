@@ -7,8 +7,12 @@
 
 import UIKit
 import FirebaseAuth
+import Firebase
 class ProfileViewController: UIViewController {
-    let user = LoginManager.shared.user!
+    private let user = LoginManager.shared.user!
+    private let firebaseAuth = Auth.auth()
+    private let loginManager = LoginManager.shared
+    
     @IBOutlet weak var repositoriesLabel: UILabel!
     @IBOutlet weak var companyLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
@@ -40,10 +44,8 @@ class ProfileViewController: UIViewController {
     
     @IBAction func logoutButtonTapped(_ sender: Any) {
         //자동로그인방지
-        print("눌림")
-        UserDefaults.standard.removeObject(forKey: "userAccessToken")
-        self.dismiss(animated: true) {
-            self.navigationController?.popViewController(animated: true)
-        }
+        print("로그아웃 버튼 눌림")
+        loginManager.logout()
+        self.dismiss(animated: true)
     }
 }

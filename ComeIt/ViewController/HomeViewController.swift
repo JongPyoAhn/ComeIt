@@ -82,8 +82,6 @@ extension HomeViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicke
             //유저가 피커뷰에 설정해놓은 값 저장
             UserDefaults.standard.set(repoNames[row].name, forKey: "currentSelectedRepository")
             
-           
-            
             //선택한 레포지토리의 정보를 가지고와서 몇번 커밋했는지 나타내줄거임.
             commitTextChange(row)
         }else{
@@ -116,7 +114,6 @@ extension HomeViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicke
     
     @objc func selectButtonTapped(){
         self.view.endEditing(true) //pickerView 사라지게.
-        
     }
     
     //커밋횟수 가져오고 UI에 표현
@@ -135,7 +132,6 @@ extension HomeViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicke
                 //1번이상이면 노티에 현재있는 알람들 isOn = false
                 if self.latestDayOfCommit >= 1{
                     //오늘 커밋여부를 알고 알림하기위해 저장.
-                    
                     UserDefaults.standard.set(true, forKey: "isCommit")
                     self.commentLabel.text = "😍성공하셨습니다😍"
                 }else{

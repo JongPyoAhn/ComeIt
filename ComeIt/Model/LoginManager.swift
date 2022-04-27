@@ -16,11 +16,12 @@ class LoginManager{
     private init() {}
     //파이어베이스
     let firebaseAuth = Auth.auth()
-    let provider = OAuthProvider(providerID: "github.com")
+    var provider = OAuthProvider(providerID: "github.com")
     var user: User?
     var userAccessToken: String?
 
     func getCredential(){
+        
         provider.scopes = ["repo, user"] //저장소와 유저정보를 가져오겠다고 허가받기.
         provider.getCredentialWith(nil) { credential, error in
             if error != nil {
@@ -38,14 +39,21 @@ class LoginManager{
                         self.userAccessToken = userAccessToken
                         UserDefaults.standard.set(userAccessToken, forKey: "userAccessToken")
                     }
+                    NotificationCenter.default.post(name: .AuthStateDidChange, object: nil)
                 }
+                
             }
         }
         
     }
-  
-    
-    
+    func logout(){
+        do {
+          try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+          print("Error signing out: %@", signOutError)
+        }
+        UserDefaults.standard.removeObject(forKey: "userAccessToken")
+    }
     
     
     

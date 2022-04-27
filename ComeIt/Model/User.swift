@@ -25,6 +25,19 @@ struct User : Codable{
         case reposPublic = "public_repos"
         case reposPrivate = "total_private_repos"
     }
+    //email, company등이 null값이 들어올 수 있음.
+    //container는 codingkeys에 있는것들임.
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: codingkeys.self)
+        imageURL = try values.decode(String.self, forKey: .imageURL)
+        name = try values.decode(String.self, forKey: .name)
+        company = (try? values.decode(String.self, forKey: .company)) ?? "없습니다."
+        email = (try? values.decode(String.self, forKey: .email)) ?? "없습니다."
+        reposPublic = try values.decode(Int.self, forKey: .reposPublic)
+        reposPrivate = try values.decode(Int.self, forKey: .reposPrivate)
+        
+    }
+
 }
 
 
