@@ -10,7 +10,7 @@ import Kingfisher
 import PocketSVG
 import Charts
 import RxSwift
-
+import Moya
 //홈에서 fetchCommit한거를 GithubController에 가지고있다가 처음에 화면띄울떄 그거갖고와서 띄우고 리프레쉬할떄 다시 fetch하기.
 class ChartViewController: UIViewController, ChartViewDelegate {
     let loginManager = LoginManager.shared
@@ -20,6 +20,9 @@ class ChartViewController: UIViewController, ChartViewDelegate {
     var language = [String]()
     var languageValue = [Int]()
     var repoTotal: [String:Int] = [:] //차트에서 사용
+    
+    var provider: MoyaProvider<GithubAPI>?
+    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contributionStackView: UIStackView!
     @IBOutlet weak var contributionView: UIView!
@@ -42,32 +45,35 @@ class ChartViewController: UIViewController, ChartViewDelegate {
     let networkMonitor = NetworkMonitor.shared
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let endpointClosure = { (target: GithubAPI) -> Endpoint in
+            let defaultEndpoint = MoyaProvider.defaultEndpointMapping(for: target)
+            switch target {
+            default:
+                return defaultEndpoint.adding(newHTTPHeaderFields: ["Authorization": "token \(self.loginManager.userAccessToken ?? "")"])
+            }
+        }
+        provider = MoyaProvider<GithubAPI>(endpointClosure: endpointClosure)
         setNavigationTitle()
         setLanguageDict()
-        updateUI()
+        print("githubController.repositories : \(githubController.repositories)")
+        
+        print("repoTotal : \(repoTotal)")
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        updateUI()
         //커밋 수 많은 위에서 5개만 추려야됨.
         //dict에서 오름차순이나 내림차순으로 쓰기.
-        if !networkMonitor.isConnected{
-            let disConnetedVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DisConnectedViewController")
-            disConnetedVC.modalPresentationStyle = .fullScreen
-            self.present(disConnetedVC, animated: true)
-        }
+//        if !networkMonitor.isConnected{
+//            let disConnetedVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DisConnectedViewController")
+//            disConnetedVC.modalPresentationStyle = .fullScreen
+//            self.present(disConnetedVC, animated: true)
+//        }
         print("viewWillAppear")
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        print("viewDisappear")
-    }
-    
     
     func setLanguageDict(){
         for i in githubController.repositories{
@@ -86,7 +92,7 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         ]
         UINavigationBar.appearance().titleTextAttributes = attrs
     }
-
+    
     
     func getContributionSvgImage(name: String ,_ completion: @escaping (SVGImageView)->Void) {
         Observable.just(name)
@@ -105,22 +111,33 @@ class ChartViewController: UIViewController, ChartViewDelegate {
             .disposed(by: disposedBag)
     }
     //
-    func commitToDict(_ repositories: [Repository]){
+    func commitToDict(_ repositories: [Repository], completion: @escaping ()->Void){
+        guard let provider = provider else{return}
+        guard let userName = loginManager.user?.name else {return}
+        print(repositories)
+        
         for i in repositories{
-            //의존적인것은 아님 모든 커밋횟수를 가져와야하기 때문에 이런식으로 하지않으면 안됨(?)
-            githubController.fetchCommit(loginManager.user!.name, i.name, userAccessToken: loginManager.userAccessToken!) { commits in
+            //뭔가이상하다 위에서 함수내에 UPDATEUI작업이 모두 끝나고나서 이걸실행함.
+            //viewWillAppear가 끝나고나서 이함수의 컴플리션을 실행하네...
+            
+            githubController.requestFetchCommit(provider, i.name, userName){ commits in
+                //                    print(commits)
                 let latestCommit = commits.last!
                 self.repoTotal[i.name] = latestCommit.total
+                if self.repoTotal.count >= 5{
+                    DispatchQueue.main.async {
+                        completion()
+                    }
+                }
             }
         }
+        
     }
-    
-    
 }
 //MARK: -refresh
 extension ChartViewController{
     func initRefresh() {
-        
+//        updateData()
         refresh.addTarget(self, action: #selector(updateUI), for: .valueChanged)
         refresh.backgroundColor = UIColor.clear
         //UIRefreshControl의 attributedTitle
@@ -129,6 +146,7 @@ extension ChartViewController{
         //ScrollView에 UIRefreshControl 적용
         self.scrollView.refreshControl = refresh
     }
+
     
     @objc func updateUI(){
         if NetworkMonitor.shared.isConnected{
@@ -142,12 +160,14 @@ extension ChartViewController{
                 languageValue.removeAll()
                 languagePieChartView.clear()
             }
-            self.commitToDict(githubController.repositories)
-            setLineChartView()
-            repositorySetData()
+            //repoTotal딕셔너리에서 totalRepo가 많은순으로 내림차순 정렬
+            self.commitToDict(githubController.repositories){
+                self.repositorySetData()
+                self.setLineChartView()
+            }
+
             languageSetData()
             setPieChartView()
-            print("repoTotal : \(self.repoTotal)")
 
             initRefresh()
             print("subViewCounts : \(contributionStackView.arrangedSubviews.count)")
@@ -191,6 +211,7 @@ extension ChartViewController {
     //레포지토리 꺽은선 그래프
     func repositorySetData(){
         var x: Double = 0
+
         for i in repositoryNames{
             let repoTotal = self.repoTotal[i]!
             repositoryValues.append(ChartDataEntry(x: x, y: Double(repoTotal)))
@@ -248,21 +269,24 @@ extension ChartViewController {
     
     //꺽은선그래프 꾸미기
     func setLineChartView(){
-        //repoTotal딕셔너리에서 totalRepo가 많은순으로 내림차순 정렬
+//        //repoTotal딕셔너리에서 totalRepo가 많은순으로 내림차순 정렬
         var sorted = self.repoTotal.sorted { $0.value > $1.value}
         //저장소이름은 오름차순 정렬 딱히 의미x
         sorted.sort{
             $0.key < $1.key
         }
-        if sorted.count > 4{
-            for i in 0...4{
-                self.repositoryNames.append(sorted[i].key)
-            }
-        }else {
-            for i in 0..<sorted.count{
-                self.repositoryNames.append(sorted[i].key)
+        if repositoryNames.isEmpty{
+            if sorted.count > 4{
+                for i in 0...4{
+                    self.repositoryNames.append(sorted[i].key)
+                }
+            }else {
+                for i in 0..<sorted.count{
+                    self.repositoryNames.append(sorted[i].key)
+                }
             }
         }
+        
         print("repositoryNames : \(repositoryNames)")
         repositoryChartView.backgroundColor = .white
         repositoryChartView.rightAxis.enabled = false
@@ -276,9 +300,6 @@ extension ChartViewController {
         
         repositoryChartView.setExtraOffsets(left: 30, top: 0, right: 30, bottom: 0)
         repositoryChartView.fitScreen()
-        //        repositoryChartView.layer.borderWidth = 2
-        //        repositoryChartView.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
-        //
         
         let yAxis = repositoryChartView.leftAxis
         let xAxis = repositoryChartView.xAxis
@@ -313,12 +334,7 @@ extension ChartViewController {
         repositoryChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)//애니메이션 설정
         
     }
-    
-    
-    //        yAxis.labelFont = .boldSystemFont(ofSize: 12) //왼쪽 y축 눈금의 폰트를 설정
-    
-    
-    
+
     //MARK: - 언어 원형그래프
     func languageSetData(){
         setLanguageDict()

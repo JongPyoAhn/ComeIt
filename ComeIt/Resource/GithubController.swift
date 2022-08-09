@@ -7,18 +7,81 @@
 
 import UIKit
 import RxSwift
+import Moya
 class GithubController{
     static let shared = GithubController()
     var repositories: [Repository] = []
     var repositoryChartNames: [String] = []
+    var commits: [Commit] = []
     private init(){}
     let disposeBag = DisposeBag()
+    let loginManager = LoginManager.shared
     
-//    func fetchRepository(_ name: String, userAccessToken: String, completion: @escaping ([Repository])->Void){
+    func requestFetchUser(_ provider: MoyaProvider<GithubAPI>,completion:@escaping () -> Void){
+        provider.request(.fetchUser){ result in
+            switch result{
+            case let .success(response):
+                print(response)
+                self.loginManager.tokenValidate(response) {
+                    do{
+                        let decoder = JSONDecoder()
+                        let data = try decoder.decode(User.self, from: response.data)
+                        self.loginManager.user = data
+                        completion() //escapingClosure
+                    }catch let error{
+                        print("에러 : \(error.localizedDescription)")
+                    }
+                }
+            case let .failure(error):
+                print("에러 : \(error.localizedDescription)")
+            }
+        }
+    }
+    func requestFetchRepository(_ provider: MoyaProvider<GithubAPI>, _ userName: String, completion:@escaping ()->Void){
+        provider.request(.fetchRepository(userName)){ result in
+            switch result{
+            case let .success(response):
+                do{
+                    let decoder = JSONDecoder()
+                    //데이터가 유실되었다 = 내가 model을 잘못만들었다.
+                    //올바른 포맷이 아니기 때문에 해당 데이터를 읽을 수 없습니다 = 받아오는게 잘못됨(여기)
+                    let data = try decoder.decode([Repository].self, from: response.data)
+                    self.repositories = data
+                    completion()
+                    
+                }catch let err{
+                    print("레포지토리 파싱에러 : \(err.localizedDescription)")
+                }
+            case let .failure(error):
+                print("레포지토리 에러 : \(error.localizedDescription)")
+            }
+            
+            
+        }
+    }
+    func requestFetchCommit(_ provider: MoyaProvider<GithubAPI>, _ repositoryName: String, _ name: String, _ completion: @escaping ([Commit])->Void){
+        provider.request(.fetchCommit(name, repositoryName)){ result in
+            switch result{
+            case let .success(response):
+                do{
+                    let decoder = JSONDecoder()
+                    let data = try decoder.decode([Commit].self, from: response.data)
+                    completion(data)
+                    
+                    print("여기")
+                    
+                }catch let err{
+                    print("commit 데이터 패치에러 : \(err.localizedDescription)")
+                }
+            case let .failure(error):
+                print("requestFetchError: \(error.localizedDescription)")
+            }
+        }
+    }
+//    func fetchCommit(_ name: String,_ repository: String, userAccessToken: String ,completion: @escaping ([Commit])->Void){
 //        Observable.just(name)
 //            .map { name -> URLRequest  in
-//                let url = URL(string: "https://api.github.com/users/\(name)/repos")!
-//                //                print("url : \(url)")
+//                let url = URL(string: "https://api.github.com/repos/\(name)/\(repository)/stats/commit_activity")!
 //                var request = URLRequest(url: url)
 //                request.httpMethod = "GET"
 //                request.addValue("token \(userAccessToken)", forHTTPHeaderField: "Authorization")//헤더추가
@@ -32,89 +95,38 @@ class GithubController{
 //                return 200..<300 ~= responds.statusCode
 //            }
 //            .map { _, data -> [[String:Any]] in
+//
 //                guard let json = try? JSONSerialization.jsonObject(with: data, options: []),
 //                      let result = json as? [[String: Any]] else {
 //                          return []
 //                      }
+//
 //                return result
+//
 //            }
 //            .filter { result in
+//
 //                result.count > 0
 //            }
 //            .map { objects in
-//                return objects.compactMap { dic -> Repository? in
-//                    
-//                    guard let id = dic["id"] as? Int,
-//                          let name = dic["name"] as? String,
-//                          let full_name = dic["full_name"] as? String
-//                    else {return nil}
-//                    if let language = dic["language"] as? String {
-//                        return Repository(id: id, name: name, full_name: full_name, language: language)
-//                    }else{
-//                        return Repository(id: id, name: name, full_name: full_name, language: "Null")
-//                    }
-//                    
-//                    
+//                return objects.compactMap { dic -> Commit? in
+//
+//                    guard let week = dic["week"] as? Int,
+//                          let days = dic["days"] as? [Int],
+//                          let total = dic["total"] as? Int
+//                    else{ return nil}
+//
+//                    return Commit(week: week, days: days, total: total)
 //                }
 //            }
-//            .subscribe(onNext: {repositories in
-//                
+//            .subscribe(onNext: {commits in
+//
 //                DispatchQueue.main.async {
-//                    completion(repositories)
+//                    completion(commits)
 //                }
 //            })
 //            .disposed(by: disposeBag)
 //    }
-    
-    func fetchCommit(_ name: String,_ repository: String, userAccessToken: String ,completion: @escaping ([Commit])->Void){
-        Observable.just(name)
-            .map { name -> URLRequest  in
-                let url = URL(string: "https://api.github.com/repos/\(name)/\(repository)/stats/commit_activity")!
-                var request = URLRequest(url: url)
-                request.httpMethod = "GET"
-                request.addValue("token \(userAccessToken)", forHTTPHeaderField: "Authorization")//헤더추가
-                request.addValue("application/vnd.github.v3+json", forHTTPHeaderField: "Accept")//헤더추가
-                return request
-            }
-            .flatMap { request -> Observable<(response: HTTPURLResponse, data: Data)> in
-                return URLSession.shared.rx.response(request: request)
-            }
-            .filter { responds, _ in
-                return 200..<300 ~= responds.statusCode
-            }
-            .map { _, data -> [[String:Any]] in
-                
-                guard let json = try? JSONSerialization.jsonObject(with: data, options: []),
-                      let result = json as? [[String: Any]] else {
-                          return []
-                      }
-                
-                return result
-                
-            }
-            .filter { result in
-                
-                result.count > 0
-            }
-            .map { objects in
-                return objects.compactMap { dic -> Commit? in
-                    
-                    guard let week = dic["week"] as? Int,
-                          let days = dic["days"] as? [Int],
-                          let total = dic["total"] as? Int
-                    else{ return nil}
-                    
-                    return Commit(week: week, days: days, total: total)
-                }
-            }
-            .subscribe(onNext: {commits in
-                
-                DispatchQueue.main.async {
-                    completion(commits)
-                }
-            })
-            .disposed(by: disposeBag)
-    }
     
 }
 //    func fetchUser(_ userAccessToken: String, completion:@escaping (User) -> Void) {
@@ -167,5 +179,56 @@ class GithubController{
 //                }
 //            }
 //
+//            .disposed(by: disposeBag)
+//    }
+//    func fetchRepository(_ name: String, userAccessToken: String, completion: @escaping ([Repository])->Void){
+//        Observable.just(name)
+//            .map { name -> URLRequest  in
+//                let url = URL(string: "https://api.github.com/users/\(name)/repos")!
+//                //                print("url : \(url)")
+//                var request = URLRequest(url: url)
+//                request.httpMethod = "GET"
+//                request.addValue("token \(userAccessToken)", forHTTPHeaderField: "Authorization")//헤더추가
+//                request.addValue("application/vnd.github.v3+json", forHTTPHeaderField: "Accept")//헤더추가
+//                return request
+//            }
+//            .flatMap { request -> Observable<(response: HTTPURLResponse, data: Data)> in
+//                return URLSession.shared.rx.response(request: request)
+//            }
+//            .filter { responds, _ in
+//                return 200..<300 ~= responds.statusCode
+//            }
+//            .map { _, data -> [[String:Any]] in
+//                guard let json = try? JSONSerialization.jsonObject(with: data, options: []),
+//                      let result = json as? [[String: Any]] else {
+//                          return []
+//                      }
+//                return result
+//            }
+//            .filter { result in
+//                result.count > 0
+//            }
+//            .map { objects in
+//                return objects.compactMap { dic -> Repository? in
+//
+//                    guard let id = dic["id"] as? Int,
+//                          let name = dic["name"] as? String,
+//                          let full_name = dic["full_name"] as? String
+//                    else {return nil}
+//                    if let language = dic["language"] as? String {
+//                        return Repository(id: id, name: name, full_name: full_name, language: language)
+//                    }else{
+//                        return Repository(id: id, name: name, full_name: full_name, language: "Null")
+//                    }
+//
+//
+//                }
+//            }
+//            .subscribe(onNext: {repositories in
+//
+//                DispatchQueue.main.async {
+//                    completion(repositories)
+//                }
+//            })
 //            .disposed(by: disposeBag)
 //    }

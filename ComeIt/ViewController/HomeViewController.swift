@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Moya
 
 class HomeViewController: UIViewController {
     
@@ -15,12 +16,14 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var repositoryPicker: UITextField!
     @IBOutlet weak var levelImage: UIImageView!
-    let loginManager = LoginManager.shared
-    let githubController = GithubController.shared
-    var latestDayOfCommit = 0
-    var repoNames: [Repository] = []
-    let pickerView = UIPickerView()
-    var defaultRowIndex: Int = 0
+    private let loginManager = LoginManager.shared
+    private let githubController = GithubController.shared
+    private var latestDayOfCommit = 0
+    private var repoNames: [Repository] = []
+    private let pickerView = UIPickerView()
+    private var defaultRowIndex: Int = 0
+    private var provider: MoyaProvider<GithubAPI>?
+    
     //커밋 0번이면 노티키고 1번이상이면 노티끄기위해서.
     let userNotification = UNUserNotificationCenter.current()
     let networkMonitor = NetworkMonitor.shared
@@ -31,6 +34,15 @@ class HomeViewController: UIViewController {
         repositoryPicker.layer.cornerRadius = 8.0
         repositoryPicker.layer.borderWidth = 0.8
         repositoryPicker.layer.masksToBounds = true
+        
+        let endpointClosure = { (target: GithubAPI) -> Endpoint in
+            let defaultEndpoint = MoyaProvider.defaultEndpointMapping(for: target)
+            switch target {
+            default:
+                return defaultEndpoint.adding(newHTTPHeaderFields: ["Authorization": "token \(self.loginManager.userAccessToken ?? "")"])
+            }
+        }
+        provider = MoyaProvider<GithubAPI>(endpointClosure: endpointClosure)
         
     }
     
@@ -47,6 +59,8 @@ class HomeViewController: UIViewController {
         }
     }
   
+
+    
     func setNavigationTitle(){
         let attrs = [
             NSAttributedString.Key.foregroundColor: UIColor.black,
@@ -118,8 +132,12 @@ extension HomeViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicke
     
     //커밋횟수 가져오고 UI에 표현
     func commitTextChange(_ row: Int){
-        let confirm: () = self.githubController.fetchCommit(loginManager.user!.name, repoNames[row].name, userAccessToken: loginManager.userAccessToken!) {[weak self] commits in
+        guard let provider = provider else {return}
+        guard let userName = loginManager.user?.name else {return}
+        let confirm: () = self.githubController.requestFetchCommit(provider, repoNames[row].name, userName){[weak self] commits in
             guard let self = self else {return}
+            //차트뷰에서 써먹을것
+            self.githubController.commits = commits
             print("commits : \(commits)")
             if let commitLast = commits.last{
                 print(commitLast)

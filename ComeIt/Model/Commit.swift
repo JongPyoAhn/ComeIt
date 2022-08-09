@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct Commit{
+struct Commit: Codable{
     var week: Int
     var days: [Int]
     var total: Int

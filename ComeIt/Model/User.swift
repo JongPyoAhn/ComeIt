@@ -31,8 +31,8 @@ struct User : Codable{
         let values = try decoder.container(keyedBy: codingkeys.self)
         imageURL = try values.decode(String.self, forKey: .imageURL)
         name = try values.decode(String.self, forKey: .name)
-        company = (try? values.decode(String.self, forKey: .company)) ?? "없습니다."
-        email = (try? values.decode(String.self, forKey: .email)) ?? "없습니다."
+        company = (try? values.decode(String.self, forKey: .company)) ?? "소속을 등록하세요."
+        email = (try? values.decode(String.self, forKey: .email)) ?? "이메일을 등록하세요."
         reposPublic = try values.decode(Int.self, forKey: .reposPublic)
         reposPrivate = try values.decode(Int.self, forKey: .reposPrivate)
         

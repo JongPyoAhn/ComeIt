@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 import RxSwift
 import RxCocoa
-
+import Moya
 //user와 userAccessToken을 싱글톤으로 사용할 때 !써주는 이유는 만약 로그아웃된 상태라서 nil값이 들어있다면 SceneDelegate의 LoginController의 노티피케이션이 감지하고 로그인페이지로 넘겨버리기때문에 무조건 값이 들어있음.
 class LoginManager{
     static let shared = LoginManager() //싱글톤
@@ -54,7 +54,13 @@ class LoginManager{
         }
         UserDefaults.standard.removeObject(forKey: "userAccessToken")
     }
-    
+    func tokenValidate(_ response: Response, success:(()->())){
+        if 200..<300 ~= response.statusCode{
+            success()
+        }else if response.statusCode == 401 || response.statusCode == 403{//토큰관련 에러
+            logout()
+        }
+    }
     
     
 //    func autoLogin(completion: @escaping ()-> Void){

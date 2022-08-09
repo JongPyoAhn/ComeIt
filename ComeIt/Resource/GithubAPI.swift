@@ -7,12 +7,12 @@
 
 import Foundation
 import Moya
-enum GihubAPI{
+enum GithubAPI{
     case fetchUser
     case fetchRepository(_ name: String)
     case fetchCommit(_ name: String, _ repository: String)
 }
-extension GihubAPI: TargetType{
+extension GithubAPI: TargetType{
     var baseURL: URL {
         return URL(string: "https://api.github.com")!
     }
