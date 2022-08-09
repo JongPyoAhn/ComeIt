@@ -340,13 +340,13 @@ extension ChartViewController {
         setLanguageDict()
         
         let sortedDict = languageDict.sorted(by: {$0.value > $1.value})
-//        language.append("C++")
-//        languageValue.append(5)
+        
         for (key, value) in sortedDict{
+            
             if language.count > 4{
                 break
             }
-            if key != "Null"{
+            if key != "Null" && key != "없음"{
                 language.append(key)
                 languageValue.append(value)
             }
