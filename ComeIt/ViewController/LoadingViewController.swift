@@ -18,7 +18,6 @@ class LoadingViewController: UIViewController {
     private var company = "등록된 소속이 없습니다."
     private let githubController = GithubController.shared
     private let networkMonitor = NetworkMonitor.shared
-    private let loginManager = LoginManager.shared
     @IBOutlet weak var gifImageView: GIFImageView!
     private let user = Auth.auth().currentUser
     private var provider: MoyaProvider<GithubAPI>?
@@ -26,12 +25,13 @@ class LoadingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         gifImageView.animate(withGIFNamed: "Loading")
         let endpointClosure = { (target: GithubAPI) -> Endpoint in
             let defaultEndpoint = MoyaProvider.defaultEndpointMapping(for: target)
             switch target {
             default:
-                return defaultEndpoint.adding(newHTTPHeaderFields: ["Authorization": "token \(self.loginManager.userAccessToken ?? "")"])
+                return defaultEndpoint.adding(newHTTPHeaderFields: ["Authorization": "token \(String(describing: FirebaseAPI.shared.userAccessToken))"])
             }
         }
         provider = MoyaProvider<GithubAPI>(endpointClosure: endpointClosure)
@@ -50,8 +50,8 @@ class LoadingViewController: UIViewController {
         //그냥클로저로는 되지도않네.
         guard let provider = provider else {return}
         
-        self.githubController.requestFetchUser(provider){
-            guard let userName = self.loginManager.user?.name else {return}
+        githubController.requestFetchUser(provider){
+            guard let userName = FirebaseAPI.shared.user?.name else {return}
             self.githubController.requestFetchRepository(provider, userName){
                 self.moveToTabbar()
             }

@@ -3,6 +3,7 @@ PODS:
   - Charts (3.6.0):
     - Charts/Core (= 3.6.0)
   - Charts/Core (3.6.0)
+  - CombineCocoa (0.4.0)
   - Firebase/Analytics (8.8.0):
     - Firebase/Core
   - Firebase/Auth (8.8.0):
@@ -119,6 +120,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 5.5)
   - Charts
+  - CombineCocoa
   - Firebase/Analytics
   - Firebase/Auth
   - Gifu
@@ -134,6 +136,7 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - Charts
+    - CombineCocoa
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -159,6 +162,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
   Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
+  CombineCocoa: 68a050228ce7c53c1c5ac2c57cccf92a7f5c5085
   Firebase: 629510f1a9ddb235f3a7c5c8ceb23ba887f0f814
   FirebaseAnalytics: 5506ea8b867d8423485a84b4cd612d279f7b0b8a
   FirebaseAuth: bcf0adeff88bda5dcb3beeabe5760f1226ab7b2f
@@ -181,6 +185,6 @@ SPEC CHECKSUMS:
   RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
   SwiftSVG: ca7f64e403b8ea7ea8eba8c823b83ba4a059834c
 
-PODFILE CHECKSUM: 140906d085d1f878b8a2c97c686f74cba14f483d
+PODFILE CHECKSUM: 93beb5488dba7fa98e5a2a66118063a4bbb5ae8d
 
 COCOAPODS: 1.11.2

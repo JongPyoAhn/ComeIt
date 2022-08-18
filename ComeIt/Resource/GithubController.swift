@@ -14,19 +14,17 @@ class GithubController{
     var repositoryChartNames: [String] = []
     var commits: [Commit] = []
     private init(){}
-    let disposeBag = DisposeBag()
-    let loginManager = LoginManager.shared
     
     func requestFetchUser(_ provider: MoyaProvider<GithubAPI>,completion:@escaping () -> Void){
         provider.request(.fetchUser){ result in
             switch result{
             case let .success(response):
                 print(response)
-                self.loginManager.tokenValidate(response) {
+                FirebaseAPI.shared.tokenValidate(response) {
                     do{
                         let decoder = JSONDecoder()
                         let data = try decoder.decode(User.self, from: response.data)
-                        self.loginManager.user = data
+                        FirebaseAPI.shared.user = data
                         completion() //escapingClosure
                     }catch let error{
                         print("에러 : \(error.localizedDescription)")

@@ -16,6 +16,7 @@ pod 'PocketSVG', '~> 2.6'
 pod 'LicensePlist'
 pod 'Alamofire', '~> 5.5'
 pod 'Moya', '~> 15.0'
+pod 'CombineCocoa'
 # Installation path: `${PODS_ROOT}/LicensePlist/license-plist`
   # Pods for Gitramy
 

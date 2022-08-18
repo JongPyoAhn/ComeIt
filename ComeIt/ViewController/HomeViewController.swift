@@ -16,7 +16,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var repositoryPicker: UITextField!
     @IBOutlet weak var levelImage: UIImageView!
-    private let loginManager = LoginManager.shared
+    private let loginManager = FirebaseAPI.shared
     private let githubController = GithubController.shared
     private var latestDayOfCommit = 0
     private var repoNames: [Repository] = []

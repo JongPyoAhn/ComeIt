@@ -10,7 +10,6 @@ import FirebaseAuth
 import Firebase
 class LoginController{
     static let shared = LoginController()
-    let loginManager = LoginManager.shared
     private var window: UIWindow!
     private var rootViewController: UIViewController?{
         didSet{//didSet은 프로퍼티의 값이 변경되기 직전을 감지하는것입니다.
@@ -36,13 +35,10 @@ class LoginController{
     @objc private func checkSignIn(){
         if let _ = Auth.auth().currentUser, let userAccessToken =
             UserDefaults.standard.string(forKey: "userAccessToken"){
-            print(userAccessToken)
-            loginManager.userAccessToken = userAccessToken
+            FirebaseAPI.shared.userAccessToken = userAccessToken
             setHomeScene()
         }else{
-            
             setLoginScene()
-            
         }
     }
 

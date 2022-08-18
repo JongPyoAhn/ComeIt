@@ -9,9 +9,9 @@ import UIKit
 import FirebaseAuth
 import Firebase
 class ProfileViewController: UIViewController {
-    private let user = LoginManager.shared.user!
+    private let user = FirebaseAPI.shared.user!
     private let firebaseAuth = Auth.auth()
-    private let loginManager = LoginManager.shared
+    private let loginManager = FirebaseAPI.shared
     
     @IBOutlet weak var repositoriesLabel: UILabel!
     @IBOutlet weak var companyLabel: UILabel!
@@ -42,10 +42,10 @@ class ProfileViewController: UIViewController {
         
     }
     
-    @IBAction func logoutButtonTapped(_ sender: Any) {
-        //자동로그인방지
-        print("로그아웃 버튼 눌림")
-        loginManager.logout()
-        self.dismiss(animated: true)
-    }
+//    @IBAction func logoutButtonTapped(_ sender: Any) {
+//        //자동로그인방지
+//        print("로그아웃 버튼 눌림")
+//        loginManager.logout()
+//        self.dismiss(animated: true)
+//    }
 }
