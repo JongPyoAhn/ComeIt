@@ -32,16 +32,19 @@
     
     ii. `GitHub API`: API 통신 및 `OAuth 2.0`
     
-    iii. `RxSwift`: `API 통신` 부분과 `기여 이미지(Contribution)` 를 불러올 때 비동기 처리 하였습니다.
+    iii. `RxSwift`: `기여 이미지(Contribution)` 를 불러올 때 비동기 처리 하였습니다.
     
     iv. `UserNotifications`: 푸시알림 처리를 위해 사용했습니다.
     
     v. `UIKit`: `StoryBoard`를 이용한 UI구성
+    
+    Ⅵ. `Moya`: `토큰만료처리` 및 `API통신`을 구성하였습니다.
 
 ## Update
 ### Ver. 1
 - v1.0.0: 1차 App Store release (2021.12.13)
-
+- v1.0.1: iOS 14.0 버전부터 이용할 수 있도록 개선, 통계화면으로 이동할 때 화면이 늦게 나오는 현상을 개선(2022.02.08)
+- v1.0.2: 버튼 UI 개선, 로그인 토큰만료 처리, 네트워킹 방법 변경(2022.08.09)
 ## Contact Me
 - 📱 +82 10.7763.2458
 - 📧 whdvy3@naver.com
