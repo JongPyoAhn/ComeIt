@@ -9,6 +9,10 @@ import UIKit
 import Combine
 import CombineCocoa
 
+protocol LoginViewControllerDelegate{
+    func loginDelegate()
+}
+
 class LoginViewController: UIViewController {
     @IBOutlet weak var githubLoginButton: UIButton!
     private var viewModel: LoginViewModel!
@@ -17,7 +21,6 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = LoginViewModel()
-        
         configureUI()
         bindUI()
     }
@@ -34,8 +37,8 @@ extension LoginViewController{
 extension LoginViewController{
     private func bindUI(){
         self.githubLoginButton.tapPublisher
-            .sink { _ in
-                self.viewModel.githubLoginButtonDidTap()
+            .sink {[weak self] _ in
+                self?.viewModel.githubLoginButtonDidTap()
             }
             .store(in: &subscription)
     }

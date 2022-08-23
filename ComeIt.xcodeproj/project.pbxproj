@@ -13,6 +13,13 @@
 		533B7B13271D0C98002A1359 /* UNNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533B7B12271D0C98002A1359 /* UNNotificationCenter.swift */; };
 		53597A822813C4E800DE6A8B /* GithubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53597A812813C4E800DE6A8B /* GithubAPI.swift */; };
 		535BE53D2761ABE400243161 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 535BE53B2761ABE400243161 /* InfoPlist.strings */; };
+		535D92BF28AE0F800043915E /* LoginViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535D92BE28AE0F800043915E /* LoginViewCoordinator.swift */; };
+		535D92C128AE102A0043915E /* LoadingViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535D92C028AE102A0043915E /* LoadingViewCoordinator.swift */; };
+		535D92C328AE59AF0043915E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535D92C228AE59AF0043915E /* AppCoordinator.swift */; };
+		535D92C528AE59E40043915E /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535D92C428AE59E40043915E /* Coordinator.swift */; };
+		535D92C828AFABA60043915E /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535D92C728AFABA60043915E /* SplashViewController.swift */; };
+		535D92CA28AFABB40043915E /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535D92C928AFABB40043915E /* SplashViewModel.swift */; };
+		535D92CC28AFABC90043915E /* SplashViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535D92CB28AFABC90043915E /* SplashViewCoordinator.swift */; };
 		536186B0274D138400755903 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 536186AF274D138400755903 /* Main.storyboard */; };
 		536186B2274D13DE00755903 /* Loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = 536186B1274D13DE00755903 /* Loading.gif */; };
 		536186B4274D15E400755903 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 536186B3274D15E400755903 /* LaunchScreen.storyboard */; };
@@ -51,6 +58,13 @@
 		535BE53C2761ABE400243161 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		535BE53E2761AC0000243161 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		535BE53F2761AC0000243161 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		535D92BE28AE0F800043915E /* LoginViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewCoordinator.swift; sourceTree = "<group>"; };
+		535D92C028AE102A0043915E /* LoadingViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewCoordinator.swift; sourceTree = "<group>"; };
+		535D92C228AE59AF0043915E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		535D92C428AE59E40043915E /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		535D92C728AFABA60043915E /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		535D92C928AFABB40043915E /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
+		535D92CB28AFABC90043915E /* SplashViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewCoordinator.swift; sourceTree = "<group>"; };
 		536186AF274D138400755903 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		536186B1274D13DE00755903 /* Loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Loading.gif; sourceTree = "<group>"; };
 		536186B3274D15E400755903 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -103,13 +117,57 @@
 			isa = PBXGroup;
 			children = (
 				53BAA92A276C6C0D003F6C23 /* 알람 */,
-				53FD9EA32737FBE8004944EC /* LoadingViewController.swift */,
 				53FC5D13272809E9002F368C /* HomeViewController.swift */,
 				53A4484C270B33CB000FA3C8 /* ChartViewController.swift */,
 				5364AB33273E6A5D00A88E2E /* ProfileViewController.swift */,
 				5376084A2750754B005AD4CE /* DisConnectedViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		535D92BD28AE0F2A0043915E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				535D92C428AE59E40043915E /* Coordinator.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		535D92C628AFAB800043915E /* SplashScene */ = {
+			isa = PBXGroup;
+			children = (
+				535D92C728AFABA60043915E /* SplashViewController.swift */,
+				535D92C928AFABB40043915E /* SplashViewModel.swift */,
+				535D92CB28AFABC90043915E /* SplashViewCoordinator.swift */,
+			);
+			path = SplashScene;
+			sourceTree = "<group>";
+		};
+		535D92CD28B368C20043915E /* LoadingScene */ = {
+			isa = PBXGroup;
+			children = (
+				53FD9EA32737FBE8004944EC /* LoadingViewController.swift */,
+				535D92C028AE102A0043915E /* LoadingViewCoordinator.swift */,
+			);
+			path = LoadingScene;
+			sourceTree = "<group>";
+		};
+		535D92CE28B368E30043915E /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				535D92C228AE59AF0043915E /* AppCoordinator.swift */,
+				53A44836270B215C000FA3C8 /* AppDelegate.swift */,
+				53A44838270B215C000FA3C8 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		535D92CF28B4AF750043915E /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				5331729227281C4D0021BFB3 /* FirebaseAPI.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		536186B5274D16A100755903 /* Font */ = {
@@ -123,8 +181,6 @@
 		53653464280845ED00DF30AF /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				53A44836270B215C000FA3C8 /* AppDelegate.swift */,
-				53A44838270B215C000FA3C8 /* SceneDelegate.swift */,
 				536534652808461D00DF30AF /* LoginController.swift */,
 				5365346728084D3A00DF30AF /* GithubController.swift */,
 				53597A812813C4E800DE6A8B /* GithubAPI.swift */,
@@ -175,7 +231,7 @@
 			children = (
 				53A4483A270B215C000FA3C8 /* LoginViewController.swift */,
 				538BB95228AB58F4008B9C74 /* LoginViewModel.swift */,
-				5331729227281C4D0021BFB3 /* FirebaseAPI.swift */,
+				535D92BE28AE0F800043915E /* LoginViewCoordinator.swift */,
 			);
 			path = LoginScene;
 			sourceTree = "<group>";
@@ -204,7 +260,12 @@
 			isa = PBXGroup;
 			children = (
 				53CEFACB2762166E00E3E8DA /* Gitramy.entitlements */,
+				535D92CF28B4AF750043915E /* Service */,
+				535D92CE28B368E30043915E /* Application */,
+				53FDAD7228AE0EB600EBCF3E /* Common */,
+				535D92C628AFAB800043915E /* SplashScene */,
 				538BB95128AB57D4008B9C74 /* LoginScene */,
+				535D92CD28B368C20043915E /* LoadingScene */,
 				538BB94828AB55DF008B9C74 /* Domain */,
 				53759879273917F10004FAB4 /* View */,
 				53653464280845ED00DF30AF /* Resource */,
@@ -246,6 +307,14 @@
 				536186B1274D13DE00755903 /* Loading.gif */,
 			);
 			path = etc;
+			sourceTree = "<group>";
+		};
+		53FDAD7228AE0EB600EBCF3E /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				535D92BD28AE0F2A0043915E /* View */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		6E8BAC81C53A991F4EF3E44F /* Pods */ = {
@@ -391,10 +460,15 @@
 			files = (
 				538BB95328AB58F4008B9C74 /* LoginViewModel.swift in Sources */,
 				53FC8CBD27322B5A00FAEC43 /* Commit.swift in Sources */,
+				535D92C328AE59AF0043915E /* AppCoordinator.swift in Sources */,
 				533B7B13271D0C98002A1359 /* UNNotificationCenter.swift in Sources */,
 				539D41252714789500ED3606 /* AlarmTableViewController.swift in Sources */,
+				535D92C128AE102A0043915E /* LoadingViewCoordinator.swift in Sources */,
 				53FD9EA42737FBE8004944EC /* LoadingViewController.swift in Sources */,
 				5365346828084D3A00DF30AF /* GithubController.swift in Sources */,
+				535D92C528AE59E40043915E /* Coordinator.swift in Sources */,
+				535D92CC28AFABC90043915E /* SplashViewCoordinator.swift in Sources */,
+				535D92BF28AE0F800043915E /* LoginViewCoordinator.swift in Sources */,
 				5312A8B82715B65A0045F4B3 /* AddAlertViewController.swift in Sources */,
 				53A4483B270B215C000FA3C8 /* LoginViewController.swift in Sources */,
 				5364AB34273E6A5D00A88E2E /* ProfileViewController.swift in Sources */,
@@ -404,6 +478,8 @@
 				536534662808461D00DF30AF /* LoginController.swift in Sources */,
 				53FC5D14272809E9002F368C /* HomeViewController.swift in Sources */,
 				5376084B2750754B005AD4CE /* DisConnectedViewController.swift in Sources */,
+				535D92C828AFABA60043915E /* SplashViewController.swift in Sources */,
+				535D92CA28AFABB40043915E /* SplashViewModel.swift in Sources */,
 				53B280AF2731594200CFD634 /* Repository.swift in Sources */,
 				53A44839270B215C000FA3C8 /* SceneDelegate.swift in Sources */,
 				539D4128271478A500ED3606 /* AlarmTableViewCell.swift in Sources */,

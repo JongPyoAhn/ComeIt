@@ -23,9 +23,11 @@ class LoadingViewController: UIViewController {
     private var provider: MoyaProvider<GithubAPI>?
     private var completionHandler: (() -> Void)?
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("LoadingViewController")
         gifImageView.animate(withGIFNamed: "Loading")
         let endpointClosure = { (target: GithubAPI) -> Endpoint in
             let defaultEndpoint = MoyaProvider.defaultEndpointMapping(for: target)

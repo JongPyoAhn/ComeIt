@@ -10,7 +10,7 @@ import FirebaseAuth
 import Combine
 import Moya
 
-class FirebaseAPI{
+final class FirebaseAPI{
     static let shared = FirebaseAPI()
     private init() {}
     var user: User?
@@ -19,24 +19,31 @@ class FirebaseAPI{
     private var provider: OAuthProvider!
     private var subscription = Set<AnyCancellable>()
     
-    func logIn(){
-        getCredentialAndSignIn()
-            .sink { completion in
-                switch completion{
-                case .finished:
-                    print("getCredentialAndSignIn - finished")
-                case .failure(let err):
-                    print("getCredentialAndSignIn - \(err)")
+    func getCurrentUser() -> AnyPublisher<FirebaseAuth.User?, Error>{
+        return Future<FirebaseAuth.User?, Error>{ promise in
+            let currentUser = Auth.auth().currentUser
+            guard let currentUser = currentUser else {
+                return promise(.success(nil))
+            }
+            currentUser.reload{ error in
+                if let error = error{
+                    let firebaseError = AuthErrorCode(rawValue: error._code)
+                    switch firebaseError{
+                    case .userNotFound, .userTokenExpired, .invalidUserToken, .userDisabled:
+                        return promise(.success(nil))
+                    default:
+                        return promise(.failure(error))
+                    }
                 }
-            } receiveValue: {[weak self] authDataResult in
-                guard let self = self else {return}
-                guard let oAuthCredential = authDataResult.credential as? OAuthCredential else {return}
-                self.userAccessToken = oAuthCredential.accessToken
-                UserDefaults.standard.set(oAuthCredential.accessToken, forKey: "userAccessToken")
-            }.store(in: &subscription)
+                return promise(.success(currentUser))
+            }
+
+        }.eraseToAnyPublisher()
     }
     
-    private func getCredentialAndSignIn() -> AnyPublisher<AuthDataResult, Error>{
+    
+    
+    func getCredential() -> AnyPublisher<AuthDataResult, Error>{
         provider = OAuthProvider(providerID: "github.com")
         firebaseAuth = Auth.auth()
         
@@ -48,7 +55,7 @@ class FirebaseAPI{
             .eraseToAnyPublisher()
     }
     
-    private func signIn(with credential: AuthCredential) -> Future<AuthDataResult, Error> {
+    func signIn(with credential: AuthCredential) -> Future<AuthDataResult, Error> {
           Future<AuthDataResult, Error> {[weak self] promise in
               guard let self = self else {return}
               self.firebaseAuth.signIn(with: credential) { authDataResult, error in
