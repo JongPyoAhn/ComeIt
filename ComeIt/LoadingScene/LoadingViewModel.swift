@@ -17,7 +17,7 @@ final class LoadingViewModel{
     
     var tabbarPageRequested = PassthroughSubject<[Repository], Never>()
     
-    let endpointClosure = { (target: GithubAPI) -> Endpoint in
+    private let endpointClosure = { (target: GithubAPI) -> Endpoint in
         let defaultEndpoint = MoyaProvider.defaultEndpointMapping(for: target)
         switch target {
         default:
@@ -39,19 +39,6 @@ final class LoadingViewModel{
                 self?.tabbarPageRequested.send(repositories)
             }
             .store(in: &subscription)
-
-
-        
-//        let githubController = GithubController.shared
-//        githubController.requestFetchUser(provider){
-//            guard let userName = FirebaseAPI.shared.user?.name else {return}
-//            githubController.requestFetchRepository(provider, userName){
-//
-//            }
-//        }
     }
-    
-    
-   
-    
+
 }

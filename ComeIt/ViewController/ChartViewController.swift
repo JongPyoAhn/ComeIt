@@ -14,7 +14,7 @@ import Moya
 //홈에서 fetchCommit한거를 GithubController에 가지고있다가 처음에 화면띄울떄 그거갖고와서 띄우고 리프레쉬할떄 다시 fetch하기.
 class ChartViewController: UIViewController, ChartViewDelegate {
     let loginManager = FirebaseAPI.shared
-    let githubController = GithubController.shared
+//    let githubController = GithubController.shared
     static let shared = ChartViewController()
     var languageDict = [String: Int]()
     var language = [String]()

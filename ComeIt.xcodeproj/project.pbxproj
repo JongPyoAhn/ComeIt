@@ -42,6 +42,9 @@
 		53AD614C27151587001E51B7 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53AD614B27151587001E51B7 /* Alert.swift */; };
 		53B280AF2731594200CFD634 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B280AE2731594200CFD634 /* Repository.swift */; };
 		53B80CE827624B2500B53468 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53B80CE727624B2500B53468 /* Settings.bundle */; };
+		53D0599B28B7322D00019295 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D0599A28B7322D00019295 /* TabBarViewController.swift */; };
+		53D0599D28B7324400019295 /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D0599C28B7324400019295 /* TabBarViewModel.swift */; };
+		53D0599F28B7324E00019295 /* TabBarViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D0599E28B7324E00019295 /* TabBarViewCoordinator.swift */; };
 		53D086E5274DDFD100CC4797 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D086E4274DDFD100CC4797 /* NetworkMonitor.swift */; };
 		53FC5D14272809E9002F368C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FC5D13272809E9002F368C /* HomeViewController.swift */; };
 		53FC5D1627280C66002F368C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FC5D1527280C66002F368C /* User.swift */; };
@@ -91,6 +94,9 @@
 		53B280AE2731594200CFD634 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		53B80CE727624B2500B53468 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		53CEFACB2762166E00E3E8DA /* Gitramy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Gitramy.entitlements; sourceTree = "<group>"; };
+		53D0599A28B7322D00019295 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		53D0599C28B7324400019295 /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
+		53D0599E28B7324E00019295 /* TabBarViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewCoordinator.swift; sourceTree = "<group>"; };
 		53D086E4274DDFD100CC4797 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		53FC5D13272809E9002F368C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		53FC5D1527280C66002F368C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -268,8 +274,8 @@
 				535D92C628AFAB800043915E /* SplashScene */,
 				538BB95128AB57D4008B9C74 /* LoginScene */,
 				535D92CD28B368C20043915E /* LoadingScene */,
-				53FC5D13272809E9002F368C /* HomeViewController.swift */,
 				53D0599928B72F4600019295 /* TabbarScene */,
+				53FC5D13272809E9002F368C /* HomeViewController.swift */,
 				538BB94828AB55DF008B9C74 /* Domain */,
 				53759879273917F10004FAB4 /* View */,
 				53653464280845ED00DF30AF /* Resource */,
@@ -308,6 +314,9 @@
 		53D0599928B72F4600019295 /* TabbarScene */ = {
 			isa = PBXGroup;
 			children = (
+				53D0599A28B7322D00019295 /* TabBarViewController.swift */,
+				53D0599C28B7324400019295 /* TabBarViewModel.swift */,
+				53D0599E28B7324E00019295 /* TabBarViewCoordinator.swift */,
 			);
 			path = TabbarScene;
 			sourceTree = "<group>";
@@ -469,8 +478,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53D0599B28B7322D00019295 /* TabBarViewController.swift in Sources */,
 				538BB95328AB58F4008B9C74 /* LoginViewModel.swift in Sources */,
 				53FC8CBD27322B5A00FAEC43 /* Commit.swift in Sources */,
+				53D0599F28B7324E00019295 /* TabBarViewCoordinator.swift in Sources */,
 				535D92C328AE59AF0043915E /* AppCoordinator.swift in Sources */,
 				533B7B13271D0C98002A1359 /* UNNotificationCenter.swift in Sources */,
 				539D41252714789500ED3606 /* AlarmTableViewController.swift in Sources */,
@@ -499,6 +510,7 @@
 				53597A822813C4E800DE6A8B /* GithubAPI.swift in Sources */,
 				53D086E5274DDFD100CC4797 /* NetworkMonitor.swift in Sources */,
 				53A4484D270B33CB000FA3C8 /* ChartViewController.swift in Sources */,
+				53D0599D28B7324400019295 /* TabBarViewModel.swift in Sources */,
 				53FC5D1627280C66002F368C /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -27,19 +27,18 @@ class LoadingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configureUI()
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+        bind()
     }
 }
 
 extension LoadingViewController{
-    func configureUI(){
+    private func configureUI(){
         gifImageView.animate(withGIFNamed: "Loading")
+    }
+    private func bind(){
+        viewModel.requestFetchUserAndRepository()
     }
 }
 
