@@ -7,19 +7,36 @@
 
 import Foundation
 import UIKit
-
-//여기서 탭바로 넘어가야됨.
+import Combine
 
 class LoadingViewCoordinator: Coordinator{
+    private var subscription = Set<AnyCancellable>()
     
     override init(identifier: UUID, navigationController: UINavigationController) {
         super.init(identifier: identifier, navigationController: navigationController)
     }
     
     func start() {
-        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoadingViewController")
+        let viewModel = LoadingViewModel()
+        
+        viewModel.tabbarPageRequested
+            .receive(on: DispatchQueue.main)
+            .sink {[weak self] repositories in
+                self?.TabBarPageRequest(repositories)
+            }
+            .store(in: &subscription)
+        
+        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "LoadingViewController") { coder in
+            LoadingViewController(viewModel: viewModel, coder: coder)
+        }
         self.navigationController.setViewControllers([viewController], animated: false)
     }
     
+    private func TabBarPageRequest(_ repositories: [Repository]){
+//        let identifier = UUID()
+//        let loadingViewCoordinator = LoadingViewCoordinator(identifier: identifier, navigationController: navigationController)
+//        self.childCoordinators[identifier] = loadingViewCoordinator
+//        loadingViewCoordinator.start()
+    }
 
 }

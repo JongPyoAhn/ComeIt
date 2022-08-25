@@ -6,57 +6,57 @@
 //
 
 import UIKit
-import RxSwift
+import Combine
+
 import Moya
+
+
 class GithubController{
-    static let shared = GithubController()
-    var repositories: [Repository] = []
     var repositoryChartNames: [String] = []
     var commits: [Commit] = []
+    private var subscription = Set<AnyCancellable>()
     private init(){}
     
-    func requestFetchUser(_ provider: MoyaProvider<GithubAPI>,completion:@escaping () -> Void){
-        provider.request(.fetchUser){ result in
-            switch result{
-            case let .success(response):
-                print(response)
-                FirebaseAPI.shared.tokenValidate(response) {
-                    do{
-                        let decoder = JSONDecoder()
-                        let data = try decoder.decode(User.self, from: response.data)
-                        FirebaseAPI.shared.user = data
-                        completion() //escapingClosure
-                    }catch let error{
-                        print("에러 : \(error.localizedDescription)")
-                    }
-                }
-            case let .failure(error):
-                print("에러 : \(error.localizedDescription)")
-            }
-        }
+    static func fetchUser(_ provider: MoyaProvider<GithubAPI>) -> AnyPublisher<User, Error>{
+        return provider.requestPublisher(.fetchUser)
+            .map(User.self)
+            .mapError({ moyaError in
+                return moyaError as Error
+            })
+            .print()
+            .eraseToAnyPublisher()
+//            .sink { completion in
+//                switch completion{
+//                case .finished:
+//                    print("GithubController.requestFetchUser() - finished")
+//                case .failure(let err):
+//                    print("GithubController.requestFetchUser() - \(err)")
+//                }
+//            } receiveValue: { receivedValue in
+//                do{
+//                    let userData = try receivedValue.map(User.self)
+//                }catch let err{
+//                    print("requestFetchUser - \(err)")
+//                }
+//            }.store(in: &subscription)
+        
     }
-    func requestFetchRepository(_ provider: MoyaProvider<GithubAPI>, _ userName: String, completion:@escaping ()->Void){
-        provider.request(.fetchRepository(userName)){ result in
-            switch result{
-            case let .success(response):
-                do{
-                    let decoder = JSONDecoder()
-                    //데이터가 유실되었다 = 내가 model을 잘못만들었다.
-                    //올바른 포맷이 아니기 때문에 해당 데이터를 읽을 수 없습니다 = 받아오는게 잘못됨(여기)
-                    let data = try decoder.decode([Repository].self, from: response.data)
-                    self.repositories = data
-                    completion()
-                    
-                }catch let err{
-                    print("레포지토리 파싱에러 : \(err.localizedDescription)")
-                }
-            case let .failure(error):
-                print("레포지토리 에러 : \(error.localizedDescription)")
+    static func fetchRepository(_ provider: MoyaProvider<GithubAPI>, _ user: User) -> AnyPublisher<[Repository], Error>{
+        provider.requestPublisher(.fetchRepository(user.name))
+            .map([Repository].self)
+            .mapError { moyaError in
+                return moyaError as Error
             }
-            
-            
-        }
+            .eraseToAnyPublisher()
     }
+    
+    static func fetchUserAndThenRepository(_ provider: MoyaProvider<GithubAPI>) -> AnyPublisher<[Repository], Error>{
+        return fetchUser(provider).flatMap{ user in
+            return fetchRepository(provider, user).eraseToAnyPublisher()
+        }.eraseToAnyPublisher()
+    }
+
+//
     func requestFetchCommit(_ provider: MoyaProvider<GithubAPI>, _ repositoryName: String, _ name: String, _ completion: @escaping ([Commit])->Void){
         provider.request(.fetchCommit(name, repositoryName)){ result in
             switch result{
@@ -229,4 +229,48 @@ class GithubController{
 //                }
 //            })
 //            .disposed(by: disposeBag)
+//    }
+//    func requestFetchUser(_ provider: MoyaProvider<GithubAPI>,completion:@escaping () -> Void){
+//
+//
+//        provider.request(.fetchUser){ result in
+//            switch result{
+//            case let .success(response):
+//                print(response)
+//                FirebaseAPI.shared.tokenValidate(response) {
+//                    do{
+//                        let decoder = JSONDecoder()
+//                        let data = try decoder.decode(User.self, from: response.data)
+//                        FirebaseAPI.shared.user = data
+//                        completion() //escapingClosure
+//                    }catch let error{
+//                        print("에러 : \(error.localizedDescription)")
+//                    }
+//                }
+//            case let .failure(error):
+//                print("에러 : \(error.localizedDescription)")
+//            }
+//        }
+//    }
+//func requestFetchRepository(_ provider: MoyaProvider<GithubAPI>, _ userName: String, completion:@escaping ()->Void){
+//        provider.request(.fetchRepository(userName)){ result in
+//            switch result{
+//            case let .success(response):
+//                do{
+//                    let decoder = JSONDecoder()
+//                    //데이터가 유실되었다 = 내가 model을 잘못만들었다.
+//                    //올바른 포맷이 아니기 때문에 해당 데이터를 읽을 수 없습니다 = 받아오는게 잘못됨(여기)
+//                    let data = try decoder.decode([Repository].self, from: response.data)
+//                    self.repositories = data
+//                    completion()
+//
+//                }catch let err{
+//                    print("레포지토리 파싱에러 : \(err.localizedDescription)")
+//                }
+//            case let .failure(error):
+//                print("레포지토리 에러 : \(error.localizedDescription)")
+//            }
+//
+//
+//        }
 //    }

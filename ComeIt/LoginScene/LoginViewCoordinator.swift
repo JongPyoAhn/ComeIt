@@ -10,9 +10,6 @@ import UIKit
 import Combine
 
 class LoginViewCoordinator: Coordinator{
-    
-    var viewModel: LoginViewModel!
-    
     var subscription = Set<AnyCancellable>()
     
     override init(identifier: UUID, navigationController: UINavigationController) {
@@ -20,7 +17,7 @@ class LoginViewCoordinator: Coordinator{
     }
     
     func start() {
-        viewModel = LoginViewModel()
+        let viewModel = LoginViewModel()
         
         viewModel.credential
             .receive(on: DispatchQueue.main)
@@ -29,7 +26,9 @@ class LoginViewCoordinator: Coordinator{
             }.store(in: &subscription)
         
         
-        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController")
+        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "LoginViewController") { coder in
+            LoginViewController(viewModel: viewModel, coder: coder)
+        }
         
         self.navigationController.setViewControllers([viewController], animated: false)
     }

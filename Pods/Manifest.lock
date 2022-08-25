@@ -100,6 +100,8 @@ PODS:
   - LicensePlist (3.15.0)
   - Moya (15.0.0):
     - Moya/Core (= 15.0.0)
+  - Moya/Combine (15.0.0):
+    - Moya/Core
   - Moya/Core (15.0.0):
     - Alamofire (~> 5.0)
   - nanopb (2.30908.0):
@@ -127,6 +129,7 @@ DEPENDENCIES:
   - Kingfisher (~> 7.0)
   - LicensePlist
   - Moya (~> 15.0)
+  - Moya/Combine (~> 15.0)
   - PocketSVG (~> 2.6)
   - RxCocoa (= 6.2.0)
   - RxSwift (= 6.2.0)
@@ -185,6 +188,6 @@ SPEC CHECKSUMS:
   RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
   SwiftSVG: ca7f64e403b8ea7ea8eba8c823b83ba4a059834c
 
-PODFILE CHECKSUM: 93beb5488dba7fa98e5a2a66118063a4bbb5ae8d
+PODFILE CHECKSUM: 6fdaa4a9542d628cd8c35a20b5267dc29778448b
 
 COCOAPODS: 1.11.2

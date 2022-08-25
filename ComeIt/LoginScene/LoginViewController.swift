@@ -15,12 +15,20 @@ protocol LoginViewControllerDelegate{
 
 class LoginViewController: UIViewController {
     @IBOutlet weak var githubLoginButton: UIButton!
-    private var viewModel: LoginViewModel!
+    private var viewModel: LoginViewModel
     private var subscription = Set<AnyCancellable>()
+    
+    init?(viewModel: LoginViewModel, coder: NSCoder){
+        self.viewModel = viewModel
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = LoginViewModel()
         configureUI()
         bindUI()
     }
