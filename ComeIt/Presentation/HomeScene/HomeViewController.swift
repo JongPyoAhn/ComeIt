@@ -17,14 +17,16 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var repositoryPicker: UITextField!
     @IBOutlet weak var levelImage: UIImageView!
-//    private let loginManager = FirebaseAPI.shared
+
     private var latestDayOfCommit = 0
-    private var repositories: [Repository]!
-    private let pickerView = UIPickerView()
     private var defaultRowIndex: Int = 0
-    private var subscription = Set<AnyCancellable>()
-    private var user: User!
+    
+    private let pickerView = UIPickerView()
+    private var repositories: [Repository] = []
+    private var user: User?
     private var viewModel: HomeViewModel!
+    private var subscription = Set<AnyCancellable>()
+    private var dayOfWeekInt: Int = 0
     
     //user랑 repositories는 coordinator -> viewModel로 받아야됨.
     init?(viewModel: HomeViewModel, coder: NSCoder) {
@@ -42,8 +44,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        self.user = viewModel.user
-        self.repositories = viewModel.repositories
+        bindingUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,41 +79,33 @@ extension HomeViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicke
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return repositories.count
+        return viewModel.repositoriesCount
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return repositories[row].name
+        return viewModel.repositoriesNames[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if NetworkMonitor.shared.isConnected{
-            repositoryPicker.text = repositories[row].name
-            //유저가 피커뷰에 설정해놓은 값 저장
-            UserDefaults.standard.set(repositories[row].name, forKey: "currentSelectedRepository")
-            
-            //선택한 레포지토리의 정보를 가지고와서 몇번 커밋했는지 나타내줄거임.
-            commitTextChange(row)
-        }else{
-            moveDisConnected()
-        }
+        repositoryPicker.text = viewModel.repositoriesNames[row]
+        //유저가 피커뷰에 설정해놓은 값 저장
+        UserDefaults.standard.set(viewModel.repositoriesNames[row], forKey: "currentSelectedRepository")
+        //선택한 레포지토리의 정보를 가지고와서 몇번 커밋했는지 나타내줄거임.
+        commitTextChange(row)
     }
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return 30
     }
     
-    
     func createPickerView(){
         pickerView.delegate = self
         repositoryPicker.inputView = pickerView
-        
     }
     
     func dismissPickerView() {
         let toolBar = UIToolbar()
         toolBar.barStyle = .default
         toolBar.sizeToFit()
-//        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         let button = UIBarButtonItem(title: "선택", style: .plain, target: self, action: #selector(self.selectButtonTapped))
         toolBar.setItems([button], animated: true)
         toolBar.isUserInteractionEnabled = true
@@ -126,6 +119,7 @@ extension HomeViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicke
     
     //커밋횟수 가져오고 UI에 표현
     func commitTextChange(_ row: Int){
+        guard let user = user else {return}
         let confirm: () = GithubController.fetchCommit(user.name, repositories[row].name)
             .receive(on: DispatchQueue.main)
             .sink { completion in
@@ -135,11 +129,11 @@ extension HomeViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicke
                 case .failure(let err):
                     print("HomeViewController - fetchCommit : \(err)")
                 }
-            } receiveValue: { commits in
+            } receiveValue: {[weak self] commits in
+                guard let self = self else {return}
                 if let commitLast = commits.last{
-                    //오늘 요일의 커밋을 정보에서 빼내옴.
-                    self.latestDayOfCommit = commitLast.days[Int(self.getNowDay())! - 1]
-                    print("오늘 커밋한 횟수 : \(commitLast.days[Int(self.getNowDay())! - 1])")
+                    //오늘 커밋한 횟수
+                    self.latestDayOfCommit = commitLast.days[self.dayOfWeekInt - 1]
                     self.commitCountLabel.text = "\(self.latestDayOfCommit)번!!"
                     self.alertOnOff()
                     //0번이면 노티에 현재있는 알람들 isOn = true해주고
@@ -160,32 +154,8 @@ extension HomeViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicke
             self.commitCountLabel.text = "없음"
             self.commentLabel.text = "😔커밋하신적이 없습니다😔"
         }
-//        let confirm: () = GithubController.requestFetchCommit(provider, repoNames[row].name, userName){[weak self] commits in
-//            guard let self = self else {return}
-//            //차트뷰에서 써먹을것
-//            self.githubController.commits = commits
-//            if let commitLast = commits.last{
-//                //오늘 요일의 커밋을 정보에서 빼내옴.
-//                self.latestDayOfCommit = commitLast.days[Int(self.getNowDay())! - 1]
-//                print("오늘 커밋한 횟수 : \(commitLast.days[Int(self.getNowDay())! - 1])")
-//                self.commitCountLabel.text = "\(self.latestDayOfCommit)번!!"
-//                self.alertOnOff()
-//                //0번이면 노티에 현재있는 알람들 isOn = true해주고
-//                //1번이상이면 노티에 현재있는 알람들 isOn = false
-//                if self.latestDayOfCommit >= 1{
-//                    //오늘 커밋여부를 알고 알림하기위해 저장.
-//                    UserDefaults.standard.set(true, forKey: "isCommit")
-//                    self.commentLabel.text = "😍성공하셨습니다😍"
-//                }else{
-//
-//                    UserDefaults.standard.set(false, forKey: "isCommit")
-//                    self.commentLabel.text = "🥺오늘은 안하실건가요?🥺"
-//                }
-//            }
-//        }
-        
-        
     }
+    
     func alertOnOff(){
         guard let data = UserDefaults.standard.value(forKey: "alerts") as? Data,
               let alerts = try? PropertyListDecoder().decode([Alert].self, from: data) else {return}
@@ -201,24 +171,15 @@ extension HomeViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicke
         }
     }
     
-    //오늘요일수 구하는 함수(1~7) 일,월,화...,토
-    func getNowDay() -> String{
-        let nowDate = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "e"
-        let str = dateFormatter.string(from: nowDate)
-        return str
-    }
+    
     
     //피커뷰 디폴트값 세팅
     func pickerDefaultSetting() -> Int{
-        if let defaults = UserDefaults.standard.string(forKey: "currentSelectedRepository") {
-            print("defaults: \(defaults)")
-            let names = repositories.map{$0.name}
+        if let defaults = UserDefaults.standard.string(forKey: "currentSelectedRepository"){
+            let names = viewModel.repositoriesNames
             if let defaultRowIndex = names.firstIndex(of: defaults){
                 self.defaultRowIndex = defaultRowIndex
             }
-            print("defaultRowIndex : \(defaultRowIndex)")
             pickerView.selectRow(defaultRowIndex, inComponent: 0, animated: true)
             repositoryName.text = defaults
             repositoryName.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
@@ -227,14 +188,6 @@ extension HomeViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicke
         else {
             return 0
         }
-    }
-    
-    func moveDisConnected(){
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let disConnectedVC = storyboard.instantiateViewController(withIdentifier: "DisConnectedViewController")
-        disConnectedVC.modalPresentationStyle = .fullScreen
-        disConnectedVC.modalTransitionStyle = .crossDissolve
-        self.present(disConnectedVC, animated: false, completion: nil)
     }
 }
 //MARK: -- UI
@@ -249,4 +202,23 @@ extension HomeViewController{
         navigationController?.isNavigationBarHidden = true
     }
 }
-
+//MARK: -- Binding
+extension HomeViewController{
+    func bindingUI(){
+        viewModel.repositoriesPublisher
+            .sink { repositories in
+                self.repositories = repositories
+            }
+            .store(in: &subscription)
+        viewModel.userPublisher
+            .sink { user in
+                self.user = user
+            }
+            .store(in: &subscription)
+        viewModel.getNowDay()
+            .sink { dayOfWeek in
+                self.dayOfWeekInt = Int(String(dayOfWeek))!
+            }
+            .store(in: &subscription)
+    }
+}
