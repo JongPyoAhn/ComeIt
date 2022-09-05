@@ -11,7 +11,6 @@ import Firebase
 class ProfileViewController: UIViewController {
     private let user = FirebaseAPI.shared.user!
     private let firebaseAuth = Auth.auth()
-    private let loginManager = FirebaseAPI.shared
     
     @IBOutlet weak var repositoriesLabel: UILabel!
     @IBOutlet weak var companyLabel: UILabel!

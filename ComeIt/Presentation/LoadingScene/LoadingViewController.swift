@@ -14,7 +14,8 @@ import Moya
 
 class LoadingViewController: UIViewController {
     @IBOutlet weak var gifImageView: GIFImageView!
-    var viewModel: LoadingViewModel!
+    private var viewModel: LoadingViewModel!
+    private var subscription = Set<AnyCancellable>()
     
     init?(viewModel: LoadingViewModel, coder: NSCoder){
         self.viewModel = viewModel
@@ -38,7 +39,14 @@ extension LoadingViewController{
         gifImageView.animate(withGIFNamed: "Loading")
     }
     private func bind(){
-        viewModel.requestFetchUserAndRepository()
+//        viewModel.request()
+        viewModel.requestFetchUser()
+        viewModel.repositoryFetchRequested
+            .sink {[weak self] user in
+                self?.viewModel.requestFetchRepository(user)
+            }
+            .store(in: &subscription)
+        
     }
 }
 

@@ -14,10 +14,14 @@ final class FirebaseAPI{
     static let shared = FirebaseAPI()
     private init() {}
     var user: User?
-    var userAccessToken: String?
+    var userAccessToken: String = ""
     private var firebaseAuth = Auth.auth()
     private var provider: OAuthProvider!
     private var subscription = Set<AnyCancellable>()
+    
+    func reauthentificate(){
+       
+    }
     
     func getCurrentUser() -> AnyPublisher<FirebaseAuth.User?, Error>{
         return Future<FirebaseAuth.User?, Error>{ promise in
@@ -40,8 +44,6 @@ final class FirebaseAPI{
 
         }.eraseToAnyPublisher()
     }
-    
-    
     
     func getCredential() -> AnyPublisher<AuthDataResult, Error>{
         provider = OAuthProvider(providerID: "github.com")
@@ -74,8 +76,10 @@ final class FirebaseAPI{
         } catch let signOutError as NSError {
             print("Error signing out: %@", signOutError)
         }
+        FirebaseAPI.shared.userAccessToken = ""
         UserDefaults.standard.removeObject(forKey: "userAccessToken")
     }
+    
     func tokenValidate(_ response: Response, success:(()->())){
         if 200..<300 ~= response.statusCode{
             success()

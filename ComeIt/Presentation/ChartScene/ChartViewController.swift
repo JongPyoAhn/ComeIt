@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Combine
+
 import Kingfisher
 import PocketSVG
 import Charts
@@ -13,36 +15,41 @@ import RxSwift
 import Moya
 //홈에서 fetchCommit한거를 GithubController에 가지고있다가 처음에 화면띄울떄 그거갖고와서 띄우고 리프레쉬할떄 다시 fetch하기.
 class ChartViewController: UIViewController, ChartViewDelegate {
-    let loginManager = FirebaseAPI.shared
-//    let githubController = GithubController.shared
-    static let shared = ChartViewController()
-    var languageDict = [String: Int]()
-    var language = [String]()
-    var languageValue = [Int]()
-    var repoTotal: [String:Int] = [:] //차트에서 사용
-    
-    var provider: MoyaProvider<GithubAPI>?
-    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contributionStackView: UIStackView!
     @IBOutlet weak var contributionView: UIView!
     @IBOutlet weak var repositoryChartView: LineChartView!
     @IBOutlet weak var languagePieChartView: PieChartView!
     
+    private let refresh = UIRefreshControl()
+//    static let shared = ChartViewController()
+    private var languageDict = [String: Int]()
+    private var language = [String]()
+    private var languageValue = [Int]()
+    private var repoTotal: [String:Int] = [:] //차트에서 사용
+    private var repositories: [Repository]?
+    private var repositoryNames: [String] = []//x축을 레파지토리 이름 받아오기
+    private let pieChartDataEntries: [PieChartDataEntry] = []
+    private var repositoryValues: [ChartDataEntry] = [] //모든 레포지토리 데이터 받아와서 y축을 총커밋수
+    private var user: User?
+    private var viewModel: ChartViewModel!
+    
     //rx
     let disposedBag = DisposeBag()
+    private var provider: MoyaProvider<GithubAPI>!
+    private var subscription = Set<AnyCancellable>()
     
     
-    var repositoryNames: [String] = []//x축을 레파지토리 이름 받아오기
-    let pieChartDataEntries: [PieChartDataEntry] = []
     
+    init?(viewModel: ChartViewModel,coder: NSCoder) {
+        self.viewModel = viewModel
+        super.init(coder: coder)
+    }
     
-    //모든 레포지토리 데이터 받아와서 y축을 총커밋수
-    var repositoryValues: [ChartDataEntry] = []
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
-    let refresh = UIRefreshControl()
-    
-    let networkMonitor = NetworkMonitor.shared
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,17 +57,20 @@ class ChartViewController: UIViewController, ChartViewDelegate {
             let defaultEndpoint = MoyaProvider.defaultEndpointMapping(for: target)
             switch target {
             default:
-                return defaultEndpoint.adding(newHTTPHeaderFields: ["Authorization": "token \(self.loginManager.userAccessToken ?? "")"])
+                return defaultEndpoint.adding(newHTTPHeaderFields: ["Authorization": "token \(FirebaseAPI.shared.userAccessToken ?? "")"])
             }
         }
         provider = MoyaProvider<GithubAPI>(endpointClosure: endpointClosure)
+        bindUI()
         setNavigationTitle()
         setLanguageDict()
-        print("githubController.repositories : \(githubController.repositories)")
         
-        print("repoTotal : \(repoTotal)")
     }
     
+    func bindUI(){
+        self.repositories = viewModel.repositories
+        self.user = viewModel.user
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -76,10 +86,12 @@ class ChartViewController: UIViewController, ChartViewDelegate {
     }
     
     func setLanguageDict(){
-        for i in githubController.repositories{
+        guard let repositories = repositories else {return}
+
+        for i in repositories{
             languageDict["\(i.language)"] = 0
         }
-        for i in githubController.repositories{
+        for i in repositories{
             languageDict["\(i.language)"]! += 1
         }
         print("languageDict: \(languageDict)")
@@ -112,24 +124,28 @@ class ChartViewController: UIViewController, ChartViewDelegate {
     }
     //
     func commitToDict(_ repositories: [Repository], completion: @escaping ()->Void){
-        guard let provider = provider else{return}
-        guard let userName = loginManager.user?.name else {return}
-        print(repositories)
-        
+        guard let user = user else {return
+        }
+
         for i in repositories{
-            //뭔가이상하다 위에서 함수내에 UPDATEUI작업이 모두 끝나고나서 이걸실행함.
-            //viewWillAppear가 끝나고나서 이함수의 컴플리션을 실행하네...
-            
-            githubController.requestFetchCommit(provider, i.name, userName){ commits in
-                //                    print(commits)
-                let latestCommit = commits.last!
-                self.repoTotal[i.name] = latestCommit.total
-                if self.repoTotal.count >= 5{
-                    DispatchQueue.main.async {
-                        completion()
+            GithubController.fetchCommit(user.name, i.name)
+                .sink(receiveCompletion: { completion in
+                    switch completion{
+                    case .finished:
+                        print("ChartViewController-fetchCommit : finished")
+                    case .failure(let err):
+                        print("ChartViewController-fetchCommit : \(err)")
                     }
-                }
-            }
+                }, receiveValue: { commits in
+                    let latestCommit = commits.last!
+                    self.repoTotal[i.name] = latestCommit.total
+                    if self.repoTotal.count >= 5{
+                        DispatchQueue.main.async {
+                            completion()
+                        }
+                    }
+                })
+                .store(in: &subscription)
         }
         
     }
@@ -137,7 +153,6 @@ class ChartViewController: UIViewController, ChartViewDelegate {
 //MARK: -refresh
 extension ChartViewController{
     func initRefresh() {
-//        updateData()
         refresh.addTarget(self, action: #selector(updateUI), for: .valueChanged)
         refresh.backgroundColor = UIColor.clear
         //UIRefreshControl의 attributedTitle
@@ -149,6 +164,8 @@ extension ChartViewController{
 
     
     @objc func updateUI(){
+        guard let repositories = self.repositories else {return}
+        guard let user = self.user else {return}
         if NetworkMonitor.shared.isConnected{
             if !repositoryNames.isEmpty{
                 repositoryNames.removeAll()
@@ -161,7 +178,7 @@ extension ChartViewController{
                 languagePieChartView.clear()
             }
             //repoTotal딕셔너리에서 totalRepo가 많은순으로 내림차순 정렬
-            self.commitToDict(githubController.repositories){
+            self.commitToDict(repositories){
                 self.repositorySetData()
                 self.setLineChartView()
             }
@@ -174,7 +191,7 @@ extension ChartViewController{
 //            if contributionStackView.arrangedSubviews.count < 2{
 //                getContributionSvgImageFile()
 //            }
-            getContributionSvgImage(name: self.loginManager.user!.name) { svgImage in
+            getContributionSvgImage(name: user.name) { svgImage in
                 
                 if self.contributionStackView.arrangedSubviews.count >= 2{
                     self.contributionStackView.removeArrangedSubview(svgImage)

@@ -15,7 +15,7 @@ pod 'Gifu'
 pod 'PocketSVG', '~> 2.6'
 pod 'LicensePlist'
 pod 'Alamofire', '~> 5.5'
-pod 'Moya', '~> 15.0'
+#pod 'Moya', '~> 15.0'
 pod 'CombineCocoa'
 pod 'Moya/Combine', '~> 15.0'
 # Installation path: `${PODS_ROOT}/LicensePlist/license-plist`

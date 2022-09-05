@@ -41,10 +41,15 @@
 		53A4484D270B33CB000FA3C8 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A4484C270B33CB000FA3C8 /* ChartViewController.swift */; };
 		53AD614C27151587001E51B7 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53AD614B27151587001E51B7 /* Alert.swift */; };
 		53B280AF2731594200CFD634 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B280AE2731594200CFD634 /* Repository.swift */; };
+		53B5A72028BF290B003FB143 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 53B5A71F28BF290B003FB143 /* CombineMoya */; };
 		53B80CE827624B2500B53468 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53B80CE727624B2500B53468 /* Settings.bundle */; };
 		53D0599B28B7322D00019295 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D0599A28B7322D00019295 /* TabBarViewController.swift */; };
 		53D0599D28B7324400019295 /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D0599C28B7324400019295 /* TabBarViewModel.swift */; };
 		53D0599F28B7324E00019295 /* TabBarViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D0599E28B7324E00019295 /* TabBarViewCoordinator.swift */; };
+		53D059A628B876FB00019295 /* HomeViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D059A528B876FB00019295 /* HomeViewCoordinator.swift */; };
+		53D059A828B8770400019295 /* ChartViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D059A728B8770400019295 /* ChartViewCoordinator.swift */; };
+		53D059AA28B87A1500019295 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D059A928B87A1500019295 /* HomeViewModel.swift */; };
+		53D059AC28B87C4D00019295 /* ChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D059AB28B87C4D00019295 /* ChartViewModel.swift */; };
 		53D086E5274DDFD100CC4797 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D086E4274DDFD100CC4797 /* NetworkMonitor.swift */; };
 		53FC5D14272809E9002F368C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FC5D13272809E9002F368C /* HomeViewController.swift */; };
 		53FC5D1627280C66002F368C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FC5D1527280C66002F368C /* User.swift */; };
@@ -97,6 +102,10 @@
 		53D0599A28B7322D00019295 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		53D0599C28B7324400019295 /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
 		53D0599E28B7324E00019295 /* TabBarViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewCoordinator.swift; sourceTree = "<group>"; };
+		53D059A528B876FB00019295 /* HomeViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewCoordinator.swift; sourceTree = "<group>"; };
+		53D059A728B8770400019295 /* ChartViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewCoordinator.swift; sourceTree = "<group>"; };
+		53D059A928B87A1500019295 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		53D059AB28B87C4D00019295 /* ChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewModel.swift; sourceTree = "<group>"; };
 		53D086E4274DDFD100CC4797 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		53FC5D13272809E9002F368C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		53FC5D1527280C66002F368C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -114,6 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53B5A72028BF290B003FB143 /* CombineMoya in Frameworks */,
 				CBC133481A9142FA120ED5B2 /* Pods_ComeIt.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -124,9 +134,6 @@
 		530F862A270B358000343BA1 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				53BAA92A276C6C0D003F6C23 /* 알람 */,
-				53A4484C270B33CB000FA3C8 /* ChartViewController.swift */,
-				5364AB33273E6A5D00A88E2E /* ProfileViewController.swift */,
 				5376084A2750754B005AD4CE /* DisConnectedViewController.swift */,
 			);
 			path = ViewController;
@@ -267,15 +274,11 @@
 		53A44835270B215C000FA3C8 /* Gitramy */ = {
 			isa = PBXGroup;
 			children = (
+				53D059A028B86CB300019295 /* Presentation */,
 				53CEFACB2762166E00E3E8DA /* Gitramy.entitlements */,
 				535D92CE28B368E30043915E /* Application */,
 				535D92CF28B4AF750043915E /* Service */,
 				53FDAD7228AE0EB600EBCF3E /* Common */,
-				535D92C628AFAB800043915E /* SplashScene */,
-				538BB95128AB57D4008B9C74 /* LoginScene */,
-				535D92CD28B368C20043915E /* LoadingScene */,
-				53D0599928B72F4600019295 /* TabbarScene */,
-				53FC5D13272809E9002F368C /* HomeViewController.swift */,
 				538BB94828AB55DF008B9C74 /* Domain */,
 				53759879273917F10004FAB4 /* View */,
 				53653464280845ED00DF30AF /* Resource */,
@@ -300,17 +303,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		53BAA92A276C6C0D003F6C23 /* 알람 */ = {
-			isa = PBXGroup;
-			children = (
-				539D4126271478A500ED3606 /* AlarmTableViewCell.swift */,
-				5312A8B72715B65A0045F4B3 /* AddAlertViewController.swift */,
-				539D41242714789500ED3606 /* AlarmTableViewController.swift */,
-			);
-			name = "알람";
-			path = "알람";
-			sourceTree = "<group>";
-		};
 		53D0599928B72F4600019295 /* TabbarScene */ = {
 			isa = PBXGroup;
 			children = (
@@ -319,6 +311,59 @@
 				53D0599E28B7324E00019295 /* TabBarViewCoordinator.swift */,
 			);
 			path = TabbarScene;
+			sourceTree = "<group>";
+		};
+		53D059A028B86CB300019295 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				535D92C628AFAB800043915E /* SplashScene */,
+				538BB95128AB57D4008B9C74 /* LoginScene */,
+				535D92CD28B368C20043915E /* LoadingScene */,
+				53D0599928B72F4600019295 /* TabbarScene */,
+				53D059A128B86CC400019295 /* HomeScene */,
+				53D059A428B86CF500019295 /* ProfileScene */,
+				53D059A328B86CEA00019295 /* ChartScene */,
+				53D059A228B86CCF00019295 /* AlarmScene */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		53D059A128B86CC400019295 /* HomeScene */ = {
+			isa = PBXGroup;
+			children = (
+				53FC5D13272809E9002F368C /* HomeViewController.swift */,
+				53D059A928B87A1500019295 /* HomeViewModel.swift */,
+				53D059A528B876FB00019295 /* HomeViewCoordinator.swift */,
+			);
+			path = HomeScene;
+			sourceTree = "<group>";
+		};
+		53D059A228B86CCF00019295 /* AlarmScene */ = {
+			isa = PBXGroup;
+			children = (
+				539D4126271478A500ED3606 /* AlarmTableViewCell.swift */,
+				5312A8B72715B65A0045F4B3 /* AddAlertViewController.swift */,
+				539D41242714789500ED3606 /* AlarmTableViewController.swift */,
+			);
+			path = AlarmScene;
+			sourceTree = "<group>";
+		};
+		53D059A328B86CEA00019295 /* ChartScene */ = {
+			isa = PBXGroup;
+			children = (
+				53A4484C270B33CB000FA3C8 /* ChartViewController.swift */,
+				53D059AB28B87C4D00019295 /* ChartViewModel.swift */,
+				53D059A728B8770400019295 /* ChartViewCoordinator.swift */,
+			);
+			path = ChartScene;
+			sourceTree = "<group>";
+		};
+		53D059A428B86CF500019295 /* ProfileScene */ = {
+			isa = PBXGroup;
+			children = (
+				5364AB33273E6A5D00A88E2E /* ProfileViewController.swift */,
+			);
+			path = ProfileScene;
 			sourceTree = "<group>";
 		};
 		53D0DBE22808FDF40023EDFB /* etc */ = {
@@ -374,6 +419,9 @@
 			dependencies = (
 			);
 			name = ComeIt;
+			packageProductDependencies = (
+				53B5A71F28BF290B003FB143 /* CombineMoya */,
+			);
 			productName = Gitramy;
 			productReference = 53A44833270B215C000FA3C8 /* ComeIt.app */;
 			productType = "com.apple.product-type.application";
@@ -403,6 +451,9 @@
 				Base,
 			);
 			mainGroup = 53A4482A270B215C000FA3C8;
+			packageReferences = (
+				53B5A71E28BF290B003FB143 /* XCRemoteSwiftPackageReference "Moya" */,
+			);
 			productRefGroup = 53A44834270B215C000FA3C8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -483,16 +534,20 @@
 				53FC8CBD27322B5A00FAEC43 /* Commit.swift in Sources */,
 				53D0599F28B7324E00019295 /* TabBarViewCoordinator.swift in Sources */,
 				535D92C328AE59AF0043915E /* AppCoordinator.swift in Sources */,
+				53D059AC28B87C4D00019295 /* ChartViewModel.swift in Sources */,
 				533B7B13271D0C98002A1359 /* UNNotificationCenter.swift in Sources */,
+				53D059A828B8770400019295 /* ChartViewCoordinator.swift in Sources */,
 				539D41252714789500ED3606 /* AlarmTableViewController.swift in Sources */,
 				535D92C128AE102A0043915E /* LoadingViewCoordinator.swift in Sources */,
 				53FD9EA42737FBE8004944EC /* LoadingViewController.swift in Sources */,
+				53D059AA28B87A1500019295 /* HomeViewModel.swift in Sources */,
 				5365346828084D3A00DF30AF /* GithubController.swift in Sources */,
 				535D92C528AE59E40043915E /* Coordinator.swift in Sources */,
 				535D92CC28AFABC90043915E /* SplashViewCoordinator.swift in Sources */,
 				535D92BF28AE0F800043915E /* LoginViewCoordinator.swift in Sources */,
 				5312A8B82715B65A0045F4B3 /* AddAlertViewController.swift in Sources */,
 				53A4483B270B215C000FA3C8 /* LoginViewController.swift in Sources */,
+				53D059A628B876FB00019295 /* HomeViewCoordinator.swift in Sources */,
 				5364AB34273E6A5D00A88E2E /* ProfileViewController.swift in Sources */,
 				53A44837270B215C000FA3C8 /* AppDelegate.swift in Sources */,
 				5331729327281C4D0021BFB3 /* FirebaseAPI.swift in Sources */,
@@ -731,6 +786,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		53B5A71E28BF290B003FB143 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		53B5A71F28BF290B003FB143 /* CombineMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 53B5A71E28BF290B003FB143 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = CombineMoya;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 53A4482B270B215C000FA3C8 /* Project object */;
 }

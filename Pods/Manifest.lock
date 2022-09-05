@@ -98,8 +98,6 @@ PODS:
   - GTMSessionFetcher/Core (1.7.0)
   - Kingfisher (7.0.0)
   - LicensePlist (3.15.0)
-  - Moya (15.0.0):
-    - Moya/Core (= 15.0.0)
   - Moya/Combine (15.0.0):
     - Moya/Core
   - Moya/Core (15.0.0):
@@ -128,7 +126,6 @@ DEPENDENCIES:
   - Gifu
   - Kingfisher (~> 7.0)
   - LicensePlist
-  - Moya (~> 15.0)
   - Moya/Combine (~> 15.0)
   - PocketSVG (~> 2.6)
   - RxCocoa (= 6.2.0)
@@ -188,6 +185,6 @@ SPEC CHECKSUMS:
   RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
   SwiftSVG: ca7f64e403b8ea7ea8eba8c823b83ba4a059834c
 
-PODFILE CHECKSUM: 6fdaa4a9542d628cd8c35a20b5267dc29778448b
+PODFILE CHECKSUM: f4430f5fb1e23599d532e9d485dfa8c16f32b9b7
 
 COCOAPODS: 1.11.2

@@ -24,18 +24,18 @@ final class SplashViewModel{
     var subscription = Set<AnyCancellable>()
     
     func validateAccount(){
-        //getCurrentUser
         firebaseAPI.getCurrentUser()
             .sink {[weak self] completion in
                 switch completion{
                 case .finished:
-                    print("firebaseAPI - getCurrent() : finished")
+                    print("SplashViewModel-firebaseAPI-getCurrentUser() : finished")
                 case .failure(let err):
-                    print("firebaseAPI - getCurrent() : \(err)")
+                    print("SplashViewModel-firebaseAPI-getCurrentUser() : \(err)")
                     self?.error = err
                 }
             } receiveValue: {[weak self] firebaseUser in
                 if let _ = firebaseUser, let userAccessToken = UserDefaults.standard.string(forKey: "userAccessToken") {
+                    print(userAccessToken)
                     self?.firebaseAPI.userAccessToken = userAccessToken
                     self?.loadingPageRequested.send()
                 }else{
@@ -44,8 +44,5 @@ final class SplashViewModel{
 
             }
             .store(in: &subscription)
-
-        //만약 user가 존재하면 loadingPageRequested에 send
-        //아니면 loginPageRequested에 send
     }
 }

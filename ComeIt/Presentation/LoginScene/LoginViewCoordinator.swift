@@ -19,7 +19,7 @@ class LoginViewCoordinator: Coordinator{
     func start() {
         let viewModel = LoginViewModel()
         
-        viewModel.credential
+        viewModel.credentialPass
             .receive(on: DispatchQueue.main)
             .sink {[weak self] _ in
                 self?.loadingPageRequest()

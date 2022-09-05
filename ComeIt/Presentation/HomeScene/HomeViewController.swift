@@ -7,6 +7,7 @@
 
 import UIKit
 import Moya
+import Combine
 
 class HomeViewController: UIViewController {
     
@@ -16,47 +17,40 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var repositoryPicker: UITextField!
     @IBOutlet weak var levelImage: UIImageView!
-    private let loginManager = FirebaseAPI.shared
-//    private let githubController = GithubController.shared
+//    private let loginManager = FirebaseAPI.shared
     private var latestDayOfCommit = 0
-    private var repoNames: [Repository] = []
+    private var repositories: [Repository]!
     private let pickerView = UIPickerView()
     private var defaultRowIndex: Int = 0
-    private var provider: MoyaProvider<GithubAPI>?
+    private var subscription = Set<AnyCancellable>()
+    private var user: User!
+    private var viewModel: HomeViewModel!
+    
+    //user랑 repositories는 coordinator -> viewModel로 받아야됨.
+    init?(viewModel: HomeViewModel, coder: NSCoder) {
+        self.viewModel = viewModel
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     //커밋 0번이면 노티키고 1번이상이면 노티끄기위해서.
     let userNotification = UNUserNotificationCenter.current()
     let networkMonitor = NetworkMonitor.shared
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavigationTitle()
-        repositoryPicker.tintColor = .clear
-        repositoryPicker.layer.cornerRadius = 8.0
-        repositoryPicker.layer.borderWidth = 0.8
-        repositoryPicker.layer.masksToBounds = true
-        
-        let endpointClosure = { (target: GithubAPI) -> Endpoint in
-            let defaultEndpoint = MoyaProvider.defaultEndpointMapping(for: target)
-            switch target {
-            default:
-                return defaultEndpoint.adding(newHTTPHeaderFields: ["Authorization": "token \(self.loginManager.userAccessToken ?? "")"])
-            }
-        }
-        provider = MoyaProvider<GithubAPI>(endpointClosure: endpointClosure)
-        
+        configureUI()
+        self.user = viewModel.user
+        self.repositories = viewModel.repositories
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.repoNames = githubController.repositories
         self.createPickerView()
         self.dismissPickerView()
         self.commitTextChange(self.pickerDefaultSetting())
-        if !networkMonitor.isConnected{
-            let disConnetedVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DisConnectedViewController")
-            disConnetedVC.modalPresentationStyle = .fullScreen
-            self.present(disConnetedVC, animated: true)
-        }
     }
   
 
@@ -84,17 +78,17 @@ extension HomeViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicke
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return repoNames.count
+        return repositories.count
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return repoNames[row].name
+        return repositories[row].name
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if NetworkMonitor.shared.isConnected{
-            repositoryPicker.text = repoNames[row].name
+            repositoryPicker.text = repositories[row].name
             //유저가 피커뷰에 설정해놓은 값 저장
-            UserDefaults.standard.set(repoNames[row].name, forKey: "currentSelectedRepository")
+            UserDefaults.standard.set(repositories[row].name, forKey: "currentSelectedRepository")
             
             //선택한 레포지토리의 정보를 가지고와서 몇번 커밋했는지 나타내줄거임.
             commitTextChange(row)
@@ -132,37 +126,64 @@ extension HomeViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicke
     
     //커밋횟수 가져오고 UI에 표현
     func commitTextChange(_ row: Int){
-        guard let provider = provider else {return}
-        guard let userName = loginManager.user?.name else {return}
-        let confirm: () = self.githubController.requestFetchCommit(provider, repoNames[row].name, userName){[weak self] commits in
-            guard let self = self else {return}
-            //차트뷰에서 써먹을것
-            self.githubController.commits = commits
-            print("commits : \(commits)")
-            if let commitLast = commits.last{
-                print(commitLast)
-                //오늘 요일의 커밋을 정보에서 빼내옴.
-                self.latestDayOfCommit = commitLast.days[Int(self.getNowDay())! - 1]
-                print("오늘 커밋한 횟수 : \(commitLast.days[Int(self.getNowDay())! - 1])")
-                self.commitCountLabel.text = "\(self.latestDayOfCommit)번!!"
-                self.alertOnOff()
-                //0번이면 노티에 현재있는 알람들 isOn = true해주고
-                //1번이상이면 노티에 현재있는 알람들 isOn = false
-                if self.latestDayOfCommit >= 1{
-                    //오늘 커밋여부를 알고 알림하기위해 저장.
-                    UserDefaults.standard.set(true, forKey: "isCommit")
-                    self.commentLabel.text = "😍성공하셨습니다😍"
-                }else{
-                   
-                    UserDefaults.standard.set(false, forKey: "isCommit")
-                    self.commentLabel.text = "🥺오늘은 안하실건가요?🥺"
+        let confirm: () = GithubController.fetchCommit(user.name, repositories[row].name)
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion{
+                case .finished:
+                    print("HomeViewController - fetchCommit : Finished")
+                case .failure(let err):
+                    print("HomeViewController - fetchCommit : \(err)")
+                }
+            } receiveValue: { commits in
+                if let commitLast = commits.last{
+                    //오늘 요일의 커밋을 정보에서 빼내옴.
+                    self.latestDayOfCommit = commitLast.days[Int(self.getNowDay())! - 1]
+                    print("오늘 커밋한 횟수 : \(commitLast.days[Int(self.getNowDay())! - 1])")
+                    self.commitCountLabel.text = "\(self.latestDayOfCommit)번!!"
+                    self.alertOnOff()
+                    //0번이면 노티에 현재있는 알람들 isOn = true해주고
+                    //1번이상이면 노티에 현재있는 알람들 isOn = false
+                    if self.latestDayOfCommit >= 1{
+                        //오늘 커밋여부를 알고 알림하기위해 저장.
+                        UserDefaults.standard.set(true, forKey: "isCommit")
+                        self.commentLabel.text = "😍성공하셨습니다😍"
+                    }else{
+                       
+                        UserDefaults.standard.set(false, forKey: "isCommit")
+                        self.commentLabel.text = "🥺오늘은 안하실건가요?🥺"
+                    }
                 }
             }
-        }
+            .store(in: &subscription)
         if confirm == () {
             self.commitCountLabel.text = "없음"
             self.commentLabel.text = "😔커밋하신적이 없습니다😔"
         }
+//        let confirm: () = GithubController.requestFetchCommit(provider, repoNames[row].name, userName){[weak self] commits in
+//            guard let self = self else {return}
+//            //차트뷰에서 써먹을것
+//            self.githubController.commits = commits
+//            if let commitLast = commits.last{
+//                //오늘 요일의 커밋을 정보에서 빼내옴.
+//                self.latestDayOfCommit = commitLast.days[Int(self.getNowDay())! - 1]
+//                print("오늘 커밋한 횟수 : \(commitLast.days[Int(self.getNowDay())! - 1])")
+//                self.commitCountLabel.text = "\(self.latestDayOfCommit)번!!"
+//                self.alertOnOff()
+//                //0번이면 노티에 현재있는 알람들 isOn = true해주고
+//                //1번이상이면 노티에 현재있는 알람들 isOn = false
+//                if self.latestDayOfCommit >= 1{
+//                    //오늘 커밋여부를 알고 알림하기위해 저장.
+//                    UserDefaults.standard.set(true, forKey: "isCommit")
+//                    self.commentLabel.text = "😍성공하셨습니다😍"
+//                }else{
+//
+//                    UserDefaults.standard.set(false, forKey: "isCommit")
+//                    self.commentLabel.text = "🥺오늘은 안하실건가요?🥺"
+//                }
+//            }
+//        }
+        
         
     }
     func alertOnOff(){
@@ -193,7 +214,7 @@ extension HomeViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicke
     func pickerDefaultSetting() -> Int{
         if let defaults = UserDefaults.standard.string(forKey: "currentSelectedRepository") {
             print("defaults: \(defaults)")
-            let names = repoNames.map{$0.name}
+            let names = repositories.map{$0.name}
             if let defaultRowIndex = names.firstIndex(of: defaults){
                 self.defaultRowIndex = defaultRowIndex
             }
@@ -216,3 +237,16 @@ extension HomeViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicke
         self.present(disConnectedVC, animated: false, completion: nil)
     }
 }
+//MARK: -- UI
+extension HomeViewController{
+    func configureUI(){
+        setNavigationTitle()
+        repositoryPicker.tintColor = .clear
+        repositoryPicker.layer.cornerRadius = 8.0
+        repositoryPicker.layer.borderWidth = 0.8
+        repositoryPicker.layer.masksToBounds = true
+        self.navigationController?.isToolbarHidden = true
+        navigationController?.isNavigationBarHidden = true
+    }
+}
+

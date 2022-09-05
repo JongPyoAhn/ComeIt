@@ -10,7 +10,7 @@ import Moya
 enum GithubAPI{
     case fetchUser
     case fetchRepository(_ name: String)
-    case fetchCommit(_ name: String, _ repository: String)
+    case fetchCommit(_ userName: String, _ repository: String)
 }
 extension GithubAPI: TargetType{
     var baseURL: URL {
@@ -23,8 +23,8 @@ extension GithubAPI: TargetType{
             return "/user"
         case .fetchRepository(let name):
             return "/users/\(name)/repos"
-        case .fetchCommit(let name, let repository):
-            return "/repos/\(name)/\(repository)/stats/commit_activity"
+        case .fetchCommit(let userName, let repository):
+            return "/repos/\(userName)/\(repository)/stats/commit_activity"
         }
     }
     
