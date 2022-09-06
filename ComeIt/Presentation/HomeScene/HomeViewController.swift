@@ -19,7 +19,9 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var levelImage: UIImageView!
 
     private var latestDayOfCommit = 0
+    
     private var defaultRowIndex: Int = 0
+    
     
     private let pickerView = UIPickerView()
     private var repositories: [Repository] = []
@@ -51,7 +53,9 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         self.createPickerView()
         self.dismissPickerView()
-        self.commitTextChange(self.pickerDefaultSetting())
+        //인덱스 넣어야됨.
+        self.commitTextChange(self.getRepositoryIndex())
+        
     }
   
 
@@ -170,25 +174,6 @@ extension HomeViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicke
             }
         }
     }
-    
-    
-    
-    //피커뷰 디폴트값 세팅
-    func pickerDefaultSetting() -> Int{
-        if let defaults = UserDefaults.standard.string(forKey: "currentSelectedRepository"){
-            let names = viewModel.repositoriesNames
-            if let defaultRowIndex = names.firstIndex(of: defaults){
-                self.defaultRowIndex = defaultRowIndex
-            }
-            pickerView.selectRow(defaultRowIndex, inComponent: 0, animated: true)
-            repositoryName.text = defaults
-            repositoryName.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
-            return defaultRowIndex
-        }
-        else {
-            return 0
-        }
-    }
 }
 //MARK: -- UI
 extension HomeViewController{
@@ -220,5 +205,24 @@ extension HomeViewController{
                 self.dayOfWeekInt = Int(String(dayOfWeek))!
             }
             .store(in: &subscription)
+        viewModel.defaultSelectedRepositoryNameRequested
+            .receive(on: DispatchQueue.main)
+            .sink {[weak self] selectedRepositoryName in
+                self?.repositoryName.text = selectedRepositoryName
+                self?.repositoryName.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
+            }
+            .store(in: &subscription)
+        viewModel.defaultIndexOfSelectedRepositoryRequested
+            .receive(on: DispatchQueue.main)
+            .sink {[weak self] index in
+                self?.pickerView.selectRow(index, inComponent: 0, animated: true)
+            }
+            .store(in: &subscription)
+    }
+}
+//MARK: --
+extension HomeViewController{
+    func getRepositoryIndex() -> Int{
+        return viewModel.getDefaultIndexOfSelectedRepository(viewModel.getDefaultSelectedRepositoryName())
     }
 }
