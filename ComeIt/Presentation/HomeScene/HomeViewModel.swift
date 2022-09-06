@@ -7,8 +7,13 @@
 
 import Foundation
 import Combine
+import UIKit
 
 final class HomeViewModel{
+    
+    //커밋 0번이면 노티키고 1번이상이면 노티끄기위해서.
+    private let userNotification = UNUserNotificationCenter.current()
+    private var subscription = Set<AnyCancellable>()
     
     var userPublisher: AnyPublisher<User, Never>{ self.$user.eraseToAnyPublisher() }
     var repositoriesPublisher: AnyPublisher<[Repository], Never> { self.$repositories.eraseToAnyPublisher() }
@@ -19,6 +24,7 @@ final class HomeViewModel{
     
     var defaultSelectedRepositoryNameRequested = PassthroughSubject<String, Never>()
     var defaultIndexOfSelectedRepositoryRequested = PassthroughSubject<Int, Never>()
+    var commitLastRequested = PassthroughSubject<Commit, Never>()
     
     @Published var user: User
     @Published var repositories: [Repository]
@@ -55,5 +61,44 @@ final class HomeViewModel{
         return indexOfSelectedRepository
     }
     
+    func getCommitLast(_ commits: [Commit]){
+        guard let commitLast = commits.last else {return}
+        self.commitLastRequested.send(commitLast)
+    }
     
+    func getLatestDayOfCommitCount(_ commitLast: Commit, _ dayOfWeekInt: Int) -> Int{
+        return commitLast.days[dayOfWeekInt - 1]
+    }
+    
+    func commitTextChange(_ row: Int){
+        GithubController.fetchCommit(user.name, repositories[row].name)
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion{
+                case .finished:
+                    print("HomeViewController - fetchCommit : Finished")
+                case .failure(let err):
+                    print("HomeViewController - fetchCommit : \(err)")
+                }
+            } receiveValue: {[weak self] commits in
+                guard let self = self else {return}
+                self.getCommitLast(commits)//to -> commitLastRequested
+            }
+            .store(in: &subscription)
+    }
+    
+    func alertOnOff(_ latestDayOfCommit: Int){
+        guard let data = UserDefaults.standard.value(forKey: "alerts") as? Data,
+              let alerts = try? PropertyListDecoder().decode([Alert].self, from: data) else {return}
+        UserDefaults.standard.set(try? PropertyListEncoder().encode(alerts), forKey: "alerts")
+        if latestDayOfCommit >= 1 {
+            for i in 0..<alerts.count{
+                self.userNotification.removePendingNotificationRequests(withIdentifiers: [alerts[i].id])
+            }
+        }else{
+            for i in 0..<alerts.count{
+                self.userNotification.addNotificaionRequest(by: alerts[i])
+            }
+        }
+    }
 }
