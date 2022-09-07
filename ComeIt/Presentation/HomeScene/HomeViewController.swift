@@ -8,6 +8,7 @@
 import UIKit
 import Moya
 import Combine
+import CombineCocoa
 
 class HomeViewController: UIViewController {
     
@@ -17,7 +18,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var repositoryPicker: UITextField!
     @IBOutlet weak var levelImage: UIImageView!
-
+    @IBOutlet weak var moveToProfileButton: UIButton!
+    
     
     private let pickerView = UIPickerView()
     private var repositories: [Repository] = []
@@ -124,6 +126,13 @@ extension HomeViewController{
 //MARK: -- Binding
 extension HomeViewController{
     func bindingUI(){
+        self.moveToProfileButton.tapPublisher
+            .print()
+            .sink { _ in
+                self.viewModel.profileButtonDidTapped()
+            }
+            .store(in: &subscription)
+        
         viewModel.repositoriesPublisher
             .sink {[weak self] repositories in
                 self?.repositories = repositories

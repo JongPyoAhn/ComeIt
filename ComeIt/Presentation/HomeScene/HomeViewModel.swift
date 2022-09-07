@@ -22,6 +22,8 @@ final class HomeViewModel{
         self.repositories.map{ $0.name }
     }
     
+    var profilePageRequested = PassthroughSubject<User, Never>()
+    
     var defaultSelectedRepositoryNameRequested = PassthroughSubject<String, Never>()
     var defaultIndexOfSelectedRepositoryRequested = PassthroughSubject<Int, Never>()
     var commitLastRequested = PassthroughSubject<Commit, Never>()
@@ -32,6 +34,11 @@ final class HomeViewModel{
     init(user: User, repositories: [Repository]){
         self.user = user
         self.repositories = repositories
+    }
+    
+    //MARK: --이벤트
+    func profileButtonDidTapped(){
+        self.profilePageRequested.send(user)
     }
     
     //오늘요일수 구하는 함수(1~7) 일,월,화...,토
