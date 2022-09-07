@@ -55,6 +55,8 @@
 		53FC5D1627280C66002F368C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FC5D1527280C66002F368C /* User.swift */; };
 		53FC8CBD27322B5A00FAEC43 /* Commit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FC8CBC27322B5A00FAEC43 /* Commit.swift */; };
 		53FD9EA42737FBE8004944EC /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FD9EA32737FBE8004944EC /* LoadingViewController.swift */; };
+		53FF52E128C875D7003CB3E5 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FF52E028C875D7003CB3E5 /* ProfileViewModel.swift */; };
+		53FF52E328C875F8003CB3E5 /* ProfileViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FF52E228C875F8003CB3E5 /* ProfileViewCoordinator.swift */; };
 		CBC133481A9142FA120ED5B2 /* Pods_ComeIt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E80F3726FD8AC0B175F01A9 /* Pods_ComeIt.framework */; };
 /* End PBXBuildFile section */
 
@@ -111,6 +113,8 @@
 		53FC5D1527280C66002F368C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		53FC8CBC27322B5A00FAEC43 /* Commit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commit.swift; sourceTree = "<group>"; };
 		53FD9EA32737FBE8004944EC /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		53FF52E028C875D7003CB3E5 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		53FF52E228C875F8003CB3E5 /* ProfileViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewCoordinator.swift; sourceTree = "<group>"; };
 		6E80F3726FD8AC0B175F01A9 /* Pods_ComeIt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ComeIt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		72B56493170A9C557ADA4AD2 /* Pods-ComeIt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComeIt.debug.xcconfig"; path = "Target Support Files/Pods-ComeIt/Pods-ComeIt.debug.xcconfig"; sourceTree = "<group>"; };
 		89B8B0F155CFD623C83CFA29 /* Pods-Gitramy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gitramy.release.xcconfig"; path = "Target Support Files/Pods-Gitramy/Pods-Gitramy.release.xcconfig"; sourceTree = "<group>"; };
@@ -362,6 +366,8 @@
 			isa = PBXGroup;
 			children = (
 				5364AB33273E6A5D00A88E2E /* ProfileViewController.swift */,
+				53FF52E028C875D7003CB3E5 /* ProfileViewModel.swift */,
+				53FF52E228C875F8003CB3E5 /* ProfileViewCoordinator.swift */,
 			);
 			path = ProfileScene;
 			sourceTree = "<group>";
@@ -565,8 +571,10 @@
 				53597A822813C4E800DE6A8B /* GithubAPI.swift in Sources */,
 				53D086E5274DDFD100CC4797 /* NetworkMonitor.swift in Sources */,
 				53A4484D270B33CB000FA3C8 /* ChartViewController.swift in Sources */,
+				53FF52E128C875D7003CB3E5 /* ProfileViewModel.swift in Sources */,
 				53D0599D28B7324400019295 /* TabBarViewModel.swift in Sources */,
 				53FC5D1627280C66002F368C /* User.swift in Sources */,
+				53FF52E328C875F8003CB3E5 /* ProfileViewCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

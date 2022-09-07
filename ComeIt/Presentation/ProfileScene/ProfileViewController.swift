@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import Combine
+
+import CombineCocoa
 import FirebaseAuth
 import Firebase
 class ProfileViewController: UIViewController {
-    private let user = FirebaseAPI.shared.user!
     private let firebaseAuth = Auth.auth()
     
     @IBOutlet weak var repositoriesLabel: UILabel!
@@ -17,34 +19,55 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var moveToRepositoryButton: UIButton!
+    
+    private var viewModel: ProfileViewModel
+    private var subscription = Set<AnyCancellable>()
+//    private var user: User?
+    
+    init?(viewModel: ProfileViewModel,coder: NSCoder) {
+        self.viewModel = viewModel
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        bindUI()
+        configureUI()
         
-        guard let url = URL(string: user.imageURL) else {return}
-        let data = try? Data(contentsOf: url)
-        DispatchQueue.main.async {
-            self.profileImage.image = UIImage(data: data!)
-        }
+    }
+    
+    func configureUI(){
         profileImage.contentMode = .scaleAspectFit
-        nameLabel.text = user.name
-        
-        emailLabel.text = user.email
-        companyLabel.text = "소속 : \(user.company)"
-        repositoriesLabel.text = "총 레포지토리 수 : \(user.reposPublic + user.reposPrivate)"
-    }
-    
-    
-    @IBAction func moveToRepositoryButtonTapped(_ sender: Any) {
-        if let url = URL(string: "https://github.com/\(self.user)?tab=repositories"){
-            UIApplication.shared.open(url, options: [:])
-        }
         
     }
     
-//    @IBAction func logoutButtonTapped(_ sender: Any) {
-//        //자동로그인방지
-//        print("로그아웃 버튼 눌림")
-//        loginManager.logout()
-//        self.dismiss(animated: true)
-//    }
+    func bindUI(){
+        self.moveToRepositoryButton.tapPublisher
+            .sink { _ in
+                self.viewModel.moveToRepositoryButtonDidTapped()
+            }
+            .store(in: &subscription)
+        
+        self.viewModel.getUrlImageRequested
+            .receive(on: DispatchQueue.main)
+            .sink {[weak self] data in
+                self?.profileImage.image = UIImage(data: data)
+            }
+            .store(in: &subscription)
+        self.viewModel.userPublisher
+            .sink {[weak self] user in
+                guard let self = self else {return}
+                self.nameLabel.text = user.name
+                self.emailLabel.text = user.email
+                self.companyLabel.text = "소속 : \(user.company)"
+                self.repositoriesLabel.text = "총 레포지토리 수 : \(user.reposPublic + user.reposPrivate)"
+            }
+            .store(in: &subscription)
+    }
+
 }
