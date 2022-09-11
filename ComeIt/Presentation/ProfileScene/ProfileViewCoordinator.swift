@@ -20,24 +20,10 @@ class ProfileViewCoordinator: Coordinator {
     func start(){
         let viewModel = ProfileViewModel(user: user)
         
-        viewModel.popViewRequested
-            .receive(on: DispatchQueue.main)
-            .sink {[weak self] _ in
-                self?.popViewController()
-            }
-            .store(in: &subscription)
-        
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "ProfileViewController") { coder in
             ProfileViewController(viewModel: viewModel, coder: coder)
         }
-        viewController.modalTransitionStyle = .partialCurl
-        self.navigationController.pushViewController(viewController, animated: false)
+        self.navigationController.present(viewController, animated: true)
     }
-    
-    func popViewController(){
-        self.navigationController.popViewController(animated: false)
-    }
-    
-    
 }
 

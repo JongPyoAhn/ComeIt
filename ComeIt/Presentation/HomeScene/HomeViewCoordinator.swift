@@ -13,14 +13,11 @@ class HomeViewCoordinator: Coordinator{
     private var subscription = Set<AnyCancellable>()
     private var user: User
     private var repositories: [Repository]
-    @Published var a = 0
+    
     init(user: User, repositories: [Repository] ,identifier: UUID, navigationController: UINavigationController) {
         self.user = user
         self.repositories = repositories
         super.init(identifier: identifier, navigationController: navigationController)
-    }
-    func observingProfilePageRequested(){
-        
     }
     
     func tabBarConnection() -> UINavigationController{
@@ -30,7 +27,7 @@ class HomeViewCoordinator: Coordinator{
                 self?.profilePageRequest(user)
             }
             .store(in: &subscription)
-        
+//        
         let navigationController = UINavigationController()
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "HomeViewController") { coder in
             HomeViewController(viewModel: viewModel, coder: coder)

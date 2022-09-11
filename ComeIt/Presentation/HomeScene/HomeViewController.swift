@@ -48,7 +48,6 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         self.createPickerView()
         self.dismissPickerView()
-        //인덱스 넣어야됨.
         self.viewModel.commitTextChange(self.getRepositoryIndex())
     }
 }

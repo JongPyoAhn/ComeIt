@@ -59,6 +59,7 @@ class ProfileViewController: UIViewController {
                 self?.profileImage.image = UIImage(data: data)
             }
             .store(in: &subscription)
+        
         self.viewModel.userPublisher
             .sink {[weak self] user in
                 guard let self = self else {return}
@@ -68,6 +69,8 @@ class ProfileViewController: UIViewController {
                 self.repositoriesLabel.text = "총 레포지토리 수 : \(user.reposPublic + user.reposPrivate)"
             }
             .store(in: &subscription)
+        
+        self.viewModel.getUrlImage()
     }
 
 }

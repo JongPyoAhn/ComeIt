@@ -22,25 +22,13 @@ class TabBarViewCoordinator: Coordinator{
         self.user = user
         self.repositories = repositories
         super.init(identifier: identifier, navigationController: navigationController)
-//        tabController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarViewController") as! UITabBarController
-//        homeViewCoordinator = HomeViewCoordinator(user: user, repositories: repositories, identifier: identifier, navigationController: navigationController)
-//        chartViewCoordinator = ChartViewCoordinator(user: user, repositories: repositories, identifier: identifier, navigationController: navigationController)
-//        super.init(identifier: identifier, navigationController: navigationController)
-//        var controllers: [UIViewController] = []
-//        let homeViewController = homeViewCoordinator.navigationController
-//        let chartViewController = chartViewCoordinator.navigationController
-//        controllers.append(homeViewController)
-//        controllers.append(chartViewController)
-//
-//        tabController.viewControllers = controllers
-//        tabController.tabBar.isTranslucent = false
         
     }
     
     func start(){
-        let TabBarController = setTabBarController()
-        let scene = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
-        scene?.window?.rootViewController = TabBarController
+        let tabBarController = setTabBarController()
+        self.navigationController.isNavigationBarHidden = true
+        self.navigationController.setViewControllers([tabBarController], animated: false)
     }
     
     func setTabBarController() -> UITabBarController{
@@ -52,19 +40,19 @@ class TabBarViewCoordinator: Coordinator{
         
         let homeIdentifier = UUID()
         let homeViewCoordinator = HomeViewCoordinator(user: user, repositories: repositories, identifier: homeIdentifier, navigationController: navigationController)
-        self.childCoordinators[identifier] = homeViewCoordinator
+        self.childCoordinators[homeIdentifier] = homeViewCoordinator
         let homeViewController = homeViewCoordinator.tabBarConnection()
         homeViewController.tabBarItem = homeTabBarItem
         
         let alarmIdentifier = UUID()
         let alarmViewCoordinator = HomeViewCoordinator(user: user, repositories: repositories, identifier: alarmIdentifier, navigationController: navigationController)
-        self.childCoordinators[identifier] = alarmViewCoordinator
+        self.childCoordinators[alarmIdentifier] = alarmViewCoordinator
         let alarmViewController = alarmViewCoordinator.tabBarConnection()
         alarmViewController.tabBarItem = alarmTabBarItem
         
         let chartIdentifier = UUID()
         let chartViewCoordinator = ChartViewCoordinator(user: user, repositories: repositories, identifier: chartIdentifier, navigationController: navigationController)
-        self.childCoordinators[identifier] = chartViewCoordinator
+        self.childCoordinators[chartIdentifier] = chartViewCoordinator
         let chartViewController = chartViewCoordinator.tabBarConnection()
         chartViewController.tabBarItem = chartTabBarItem
         

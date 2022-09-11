@@ -39,6 +39,7 @@ final class HomeViewModel{
     //MARK: --이벤트
     func profileButtonDidTapped(){
         self.profilePageRequested.send(user)
+        
     }
     
     //오늘요일수 구하는 함수(1~7) 일,월,화...,토
@@ -90,6 +91,7 @@ final class HomeViewModel{
             } receiveValue: {[weak self] commits in
                 guard let self = self else {return}
                 self.getCommitLast(commits)//to -> commitLastRequested
+                
             }
             .store(in: &subscription)
     }

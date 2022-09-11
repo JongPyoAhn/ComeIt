@@ -17,7 +17,6 @@ final class ProfileViewModel{
         self.$user.eraseToAnyPublisher()
     }
     
-    var popViewRequested = PassthroughSubject<Void, Never>()
     var getUrlImageRequested = PassthroughSubject<Data, Never>()
     
     @Published var user: User
@@ -33,7 +32,7 @@ final class ProfileViewModel{
     }
     
     func moveToRepositoryButtonDidTapped(){
-        if let url = URL(string: "https://github.com/\(self.user)?tab=repositories"){
+        if let url = URL(string: "https://github.com/\(self.user.name)?tab=repositories"){
             UIApplication.shared.open(url, options: [:])
         }
     }

@@ -53,14 +53,7 @@ class ChartViewController: UIViewController, ChartViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let endpointClosure = { (target: GithubAPI) -> Endpoint in
-            let defaultEndpoint = MoyaProvider.defaultEndpointMapping(for: target)
-            switch target {
-            default:
-                return defaultEndpoint.adding(newHTTPHeaderFields: ["Authorization": "token \(FirebaseAPI.shared.userAccessToken ?? "")"])
-            }
-        }
-        provider = MoyaProvider<GithubAPI>(endpointClosure: endpointClosure)
+        navigationController?.isNavigationBarHidden = true
         bindUI()
         setNavigationTitle()
         setLanguageDict()

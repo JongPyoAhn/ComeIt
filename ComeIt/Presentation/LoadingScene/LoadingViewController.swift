@@ -39,7 +39,6 @@ extension LoadingViewController{
         gifImageView.animate(withGIFNamed: "Loading")
     }
     private func bind(){
-//        viewModel.request()
         viewModel.requestFetchUser()
         viewModel.repositoryFetchRequested
             .sink {[weak self] user in

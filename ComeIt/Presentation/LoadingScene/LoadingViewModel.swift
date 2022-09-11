@@ -20,39 +20,6 @@ final class LoadingViewModel{
     var loginPageRequested = PassthroughSubject<Void, Never>()
     var repositoryFetchRequested = PassthroughSubject<User, Never>()
     
-//    func request(){
-//        let endpointClosure = { (target: GithubAPI) -> Endpoint in
-//            let defaultEndpoint = MoyaProvider.defaultEndpointMapping(for: target)
-//            switch target {
-//            default:
-//                print("endpoint: \(String(describing: FirebaseAPI.shared.userAccessToken))")
-//                return defaultEndpoint.adding(newHTTPHeaderFields: ["Authorization": "token \(String(describing: FirebaseAPI.shared.userAccessToken))"])
-//            }
-//        }
-//        let provider = MoyaProvider<GithubAPI>(endpointClosure: endpointClosure)
-//        provider.requestPublisher(.fetchUser)
-//            .sink { completion in
-//                switch completion{
-//                case .finished:
-//                    print("finished")
-//                case .failure(let err):
-//                    print(err)
-//                }
-//            } receiveValue: { response in
-//                do{
-//                    let json = try JSONSerialization.jsonObject(with: response.data, options: .fragmentsAllowed) as! [String: Any]
-//                    print(json)
-//                    let user = try JSONDecoder().decode(User.self, from: response.data).name
-//                    print(user)
-//                }catch(let err){
-//                    print(err)
-//                }
-//            }
-//            .store(in: &subscription)
-//
-//        
-//    }
-    
     func requestFetchUser(){
         GithubController.fetchUser()
             .sink {[weak self] completion in
