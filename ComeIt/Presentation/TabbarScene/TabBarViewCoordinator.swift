@@ -45,7 +45,7 @@ class TabBarViewCoordinator: Coordinator{
         homeViewController.tabBarItem = homeTabBarItem
         
         let alarmIdentifier = UUID()
-        let alarmViewCoordinator = HomeViewCoordinator(user: user, repositories: repositories, identifier: alarmIdentifier, navigationController: navigationController)
+        let alarmViewCoordinator = AlarmViewCoordinator(identifier: alarmIdentifier, navigationController: navigationController)
         self.childCoordinators[alarmIdentifier] = alarmViewCoordinator
         let alarmViewController = alarmViewCoordinator.tabBarConnection()
         alarmViewController.tabBarItem = alarmTabBarItem

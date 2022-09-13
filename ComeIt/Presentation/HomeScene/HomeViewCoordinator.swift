@@ -27,7 +27,7 @@ class HomeViewCoordinator: Coordinator{
                 self?.profilePageRequest(user)
             }
             .store(in: &subscription)
-//        
+
         let navigationController = UINavigationController()
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "HomeViewController") { coder in
             HomeViewController(viewModel: viewModel, coder: coder)

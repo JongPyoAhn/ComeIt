@@ -23,7 +23,6 @@ class ProfileViewController: UIViewController {
     
     private var viewModel: ProfileViewModel
     private var subscription = Set<AnyCancellable>()
-//    private var user: User?
     
     init?(viewModel: ProfileViewModel,coder: NSCoder) {
         self.viewModel = viewModel

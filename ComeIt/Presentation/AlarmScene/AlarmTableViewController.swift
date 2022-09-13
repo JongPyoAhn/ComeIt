@@ -7,57 +7,53 @@
 
 import UIKit
 import UserNotifications
+import Combine
 
 class AlarmTableViewController: UITableViewController {
 
-    var alerts: [Alert] = []
-    let userNotification = UNUserNotificationCenter.current()
+    private var subscription = Set<AnyCancellable>()
+    private var viewModel: AlarmViewModel
+    
+    private var alerts: [Alert] = []
+    private let userNotification = UNUserNotificationCenter.current()
+    
+    
+    init?(viewModel: AlarmViewModel,coder: NSCoder) {
+        self.viewModel = viewModel
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationTitle()
-        let nibName = UINib(nibName: "AlarmTableViewCell", bundle: nil)
-        tableView.register(nibName, forCellReuseIdentifier: "AlarmTableViewCell")
+        configureUI()
+        bindUI()
+        
+        tableView.register(UINib(nibName: "AlarmTableViewCell", bundle: nil), forCellReuseIdentifier: "AlarmTableViewCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("alarmTableViewController")
-        
-        alerts = alertList()
-        for i in 0..<alerts.count{
-            if !UserDefaults.standard.bool(forKey: "isCommit"){
-                alerts[i].isOn = true
-            }else{
-                alerts[i].isOn = false
-            }
-        }
-        UserDefaults.standard.set(try? PropertyListEncoder().encode(self.alerts), forKey:  "alerts")
+        viewModel.alertsOnOffSetting()
         tableView.reloadData()
-    }
-    
-    func setNavigationTitle(){
-        let attrs = [
-            NSAttributedString.Key.foregroundColor: UIColor.black,
-            NSAttributedString.Key.font: UIFont(name: "BM EULJIRO", size: 20)!
-        ]
-        UINavigationBar.appearance().titleTextAttributes = attrs
     }
 
     @IBAction func addAlertAction(_ sender: Any) {
         guard let addAlertVC = storyboard?.instantiateViewController(identifier: "AddAlertViewController") as? AddAlertViewController else {return}
         addAlertVC.pickedDate = {[weak self] date in
             guard let self = self else {return}
-            var alertList = self.alertList()
-            print(self.alertList())
             var newAlert = Alert(date: date, isOn: true)
             if UserDefaults.standard.bool(forKey: "isCommit"){
                 newAlert.isOn = false
             }
-            alertList.append(newAlert)
-            alertList.sort{$0.date < $1.date}
-            self.alerts = alertList
-            UserDefaults.standard.set(try? PropertyListEncoder().encode(self.alerts), forKey:  "alerts")
+            self.alerts.append(newAlert)
+            self.alerts.sort{$0.date < $1.date}
+            UserDefaults.standard.set(try? PropertyListEncoder().encode(self.alerts), forKey: "alerts")
             
             //오늘커밋데이터가져와서 커밋이 1이상이면 isCommit은 true 1 미만이면 isCommit은 false
             if !UserDefaults.standard.bool(forKey: "isCommit"){
@@ -68,10 +64,34 @@ class AlarmTableViewController: UITableViewController {
         self.present(addAlertVC, animated: true, completion: nil)
     }
     
-    func alertList() -> [Alert] {
-        guard let data = UserDefaults.standard.value(forKey: "alerts") as? Data,
-              let alerts = try? PropertyListDecoder().decode([Alert].self, from: data) else {return []}
-        return alerts
+
+    
+        
+}
+
+extension AlarmTableViewController{
+    func configureUI(){
+        self.navigationController?.isNavigationBarHidden = true
+//        setNavigationTitle()
+    }
+    
+    
+    
+    func bindUI(){
+        //alertList()
+        self.viewModel.alertsPublisher
+            .sink { alerts in
+                self.alerts = alerts
+            }
+            .store(in: &subscription)
+    }
+    
+    func setNavigationTitle(){
+        let attrs = [
+            NSAttributedString.Key.foregroundColor: UIColor.black,
+            NSAttributedString.Key.font: UIFont(name: "BM EULJIRO", size: 20)!
+        ]
+        UINavigationBar.appearance().titleTextAttributes = attrs
     }
 }
 

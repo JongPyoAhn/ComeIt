@@ -30,6 +30,10 @@
 		5365346828084D3A00DF30AF /* GithubController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5365346728084D3A00DF30AF /* GithubController.swift */; };
 		5365346A28086CFA00DF30AF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5365346928086CFA00DF30AF /* GoogleService-Info.plist */; };
 		5376084B2750754B005AD4CE /* DisConnectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5376084A2750754B005AD4CE /* DisConnectedViewController.swift */; };
+		5388875328CD957200D35982 /* AlarmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5388875228CD957200D35982 /* AlarmViewModel.swift */; };
+		5388875528CD957E00D35982 /* AlarmViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5388875428CD957E00D35982 /* AlarmViewCoordinator.swift */; };
+		5388875828CD975F00D35982 /* AddAlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5388875728CD975F00D35982 /* AddAlertViewModel.swift */; };
+		5388875A28CD976A00D35982 /* AddAlertViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5388875928CD976A00D35982 /* AddAlertViewCoordinator.swift */; };
 		538BB95328AB58F4008B9C74 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538BB95228AB58F4008B9C74 /* LoginViewModel.swift */; };
 		539D41252714789500ED3606 /* AlarmTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539D41242714789500ED3606 /* AlarmTableViewController.swift */; };
 		539D4128271478A500ED3606 /* AlarmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539D4126271478A500ED3606 /* AlarmTableViewCell.swift */; };
@@ -86,6 +90,10 @@
 		5365346728084D3A00DF30AF /* GithubController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubController.swift; sourceTree = "<group>"; };
 		5365346928086CFA00DF30AF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5376084A2750754B005AD4CE /* DisConnectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisConnectedViewController.swift; sourceTree = "<group>"; };
+		5388875228CD957200D35982 /* AlarmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewModel.swift; sourceTree = "<group>"; };
+		5388875428CD957E00D35982 /* AlarmViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewCoordinator.swift; sourceTree = "<group>"; };
+		5388875728CD975F00D35982 /* AddAlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlertViewModel.swift; sourceTree = "<group>"; };
+		5388875928CD976A00D35982 /* AddAlertViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlertViewCoordinator.swift; sourceTree = "<group>"; };
 		538BB95228AB58F4008B9C74 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		539D41242714789500ED3606 /* AlarmTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTableViewController.swift; sourceTree = "<group>"; };
 		539D4126271478A500ED3606 /* AlarmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTableViewCell.swift; sourceTree = "<group>"; };
@@ -218,6 +226,16 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		5388875628CD973700D35982 /* AddAlertScene */ = {
+			isa = PBXGroup;
+			children = (
+				5312A8B72715B65A0045F4B3 /* AddAlertViewController.swift */,
+				5388875728CD975F00D35982 /* AddAlertViewModel.swift */,
+				5388875928CD976A00D35982 /* AddAlertViewCoordinator.swift */,
+			);
+			path = AddAlertScene;
+			sourceTree = "<group>";
+		};
 		538BB94828AB55DF008B9C74 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
@@ -278,8 +296,8 @@
 		53A44835270B215C000FA3C8 /* Gitramy */ = {
 			isa = PBXGroup;
 			children = (
-				53D059A028B86CB300019295 /* Presentation */,
 				53CEFACB2762166E00E3E8DA /* Gitramy.entitlements */,
+				53D059A028B86CB300019295 /* Presentation */,
 				535D92CE28B368E30043915E /* Application */,
 				535D92CF28B4AF750043915E /* Service */,
 				53FDAD7228AE0EB600EBCF3E /* Common */,
@@ -326,8 +344,9 @@
 				53D0599928B72F4600019295 /* TabbarScene */,
 				53D059A128B86CC400019295 /* HomeScene */,
 				53D059A428B86CF500019295 /* ProfileScene */,
-				53D059A328B86CEA00019295 /* ChartScene */,
 				53D059A228B86CCF00019295 /* AlarmScene */,
+				5388875628CD973700D35982 /* AddAlertScene */,
+				53D059A328B86CEA00019295 /* ChartScene */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -345,9 +364,10 @@
 		53D059A228B86CCF00019295 /* AlarmScene */ = {
 			isa = PBXGroup;
 			children = (
-				539D4126271478A500ED3606 /* AlarmTableViewCell.swift */,
-				5312A8B72715B65A0045F4B3 /* AddAlertViewController.swift */,
 				539D41242714789500ED3606 /* AlarmTableViewController.swift */,
+				5388875228CD957200D35982 /* AlarmViewModel.swift */,
+				5388875428CD957E00D35982 /* AlarmViewCoordinator.swift */,
+				539D4126271478A500ED3606 /* AlarmTableViewCell.swift */,
 			);
 			path = AlarmScene;
 			sourceTree = "<group>";
@@ -540,8 +560,10 @@
 				53FC8CBD27322B5A00FAEC43 /* Commit.swift in Sources */,
 				53D0599F28B7324E00019295 /* TabBarViewCoordinator.swift in Sources */,
 				535D92C328AE59AF0043915E /* AppCoordinator.swift in Sources */,
+				5388875328CD957200D35982 /* AlarmViewModel.swift in Sources */,
 				53D059AC28B87C4D00019295 /* ChartViewModel.swift in Sources */,
 				533B7B13271D0C98002A1359 /* UNNotificationCenter.swift in Sources */,
+				5388875A28CD976A00D35982 /* AddAlertViewCoordinator.swift in Sources */,
 				53D059A828B8770400019295 /* ChartViewCoordinator.swift in Sources */,
 				539D41252714789500ED3606 /* AlarmTableViewController.swift in Sources */,
 				535D92C128AE102A0043915E /* LoadingViewCoordinator.swift in Sources */,
@@ -567,12 +589,14 @@
 				53B280AF2731594200CFD634 /* Repository.swift in Sources */,
 				53A44839270B215C000FA3C8 /* SceneDelegate.swift in Sources */,
 				539D4128271478A500ED3606 /* AlarmTableViewCell.swift in Sources */,
+				5388875528CD957E00D35982 /* AlarmViewCoordinator.swift in Sources */,
 				53AD614C27151587001E51B7 /* Alert.swift in Sources */,
 				53597A822813C4E800DE6A8B /* GithubAPI.swift in Sources */,
 				53D086E5274DDFD100CC4797 /* NetworkMonitor.swift in Sources */,
 				53A4484D270B33CB000FA3C8 /* ChartViewController.swift in Sources */,
 				53FF52E128C875D7003CB3E5 /* ProfileViewModel.swift in Sources */,
 				53D0599D28B7324400019295 /* TabBarViewModel.swift in Sources */,
+				5388875828CD975F00D35982 /* AddAlertViewModel.swift in Sources */,
 				53FC5D1627280C66002F368C /* User.swift in Sources */,
 				53FF52E328C875F8003CB3E5 /* ProfileViewCoordinator.swift in Sources */,
 			);
