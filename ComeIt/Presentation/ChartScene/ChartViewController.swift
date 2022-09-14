@@ -11,7 +11,6 @@ import Combine
 import Kingfisher
 import PocketSVG
 import Charts
-import RxSwift
 import Moya
 //홈에서 fetchCommit한거를 GithubController에 가지고있다가 처음에 화면띄울떄 그거갖고와서 띄우고 리프레쉬할떄 다시 fetch하기.
 class ChartViewController: UIViewController, ChartViewDelegate {
@@ -22,11 +21,10 @@ class ChartViewController: UIViewController, ChartViewDelegate {
     @IBOutlet weak var languagePieChartView: PieChartView!
     
     private let refresh = UIRefreshControl()
-//    static let shared = ChartViewController()
     private var languageDict = [String: Int]()
     private var language = [String]()
     private var languageValue = [Int]()
-    private var repoTotal: [String:Int] = [:] //차트에서 사용
+    private var repositoryCommitCountDict: [String:Int] = [:] //차트에서 사용
     private var repositories: [Repository]?
     private var repositoryNames: [String] = []//x축을 레파지토리 이름 받아오기
     private let pieChartDataEntries: [PieChartDataEntry] = []
@@ -34,8 +32,6 @@ class ChartViewController: UIViewController, ChartViewDelegate {
     private var user: User?
     private var viewModel: ChartViewModel!
     
-    //rx
-    let disposedBag = DisposeBag()
     private var provider: MoyaProvider<GithubAPI>!
     private var subscription = Set<AnyCancellable>()
     
@@ -52,95 +48,101 @@ class ChartViewController: UIViewController, ChartViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationController?.isNavigationBarHidden = true
+        configureUI()
         bindUI()
+        updateUI()
+    }
+    
+    func configureUI(){
+        self.navigationController?.isNavigationBarHidden = true
         setNavigationTitle()
-        setLanguageDict()
-        
     }
     
     func bindUI(){
-        self.repositories = viewModel.repositories
-        self.user = viewModel.user
+        self.viewModel.userPublisher
+            .sink { user in
+                self.user = user
+            }
+            .store(in: &subscription)
+        
+        self.viewModel.repositoriesPublisher
+            .sink { repositories in
+                self.repositories = repositories
+            }
+            .store(in: &subscription)
+        
+        self.viewModel.languageDictRequested
+            .sink { languageDict in
+                self.languageDict = languageDict
+            }
+            .store(in: &subscription)
+        
+        self.viewModel.repositoryCommitCountDictPublisher
+            .sink { repositoryCommitCountDict in
+                self.repositoryCommitCountDict = repositoryCommitCountDict
+            }
+            .store(in: &subscription)
+        
+        self.viewModel.getContributionImageURL()
+            .receive(on: DispatchQueue.main)
+            .sink { url in
+                let svgImageView = SVGImageView.init(contentsOf: url)
+                svgImageView.frame = self.view.bounds
+                svgImageView.contentMode = .scaleAspectFit
+                if self.contributionStackView.arrangedSubviews.count >= 2{
+                    self.contributionStackView.removeArrangedSubview(svgImageView)
+                }else {
+                    self.contributionStackView.addArrangedSubview(svgImageView)
+                }
+            }
+            .store(in: &subscription)
+        
+        self.viewModel.setLanguageDict()
+        self.viewModel.repositoryCommitCountToDictionary()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         updateUI()
-        //커밋 수 많은 위에서 5개만 추려야됨.
-        //dict에서 오름차순이나 내림차순으로 쓰기.
-//        if !networkMonitor.isConnected{
-//            let disConnetedVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DisConnectedViewController")
-//            disConnetedVC.modalPresentationStyle = .fullScreen
-//            self.present(disConnetedVC, animated: true)
+    }
+    
+//    func commitToDict(_ repositories: [Repository], completion: @escaping ()->Void){
+//        guard let user = user else {return
 //        }
-        print("viewWillAppear")
-    }
-    
-    func setLanguageDict(){
-        guard let repositories = repositories else {return}
+//
+//        for i in repositories{
+//            GithubController.fetchCommit(user.name, i.name)
+//                .sink(receiveCompletion: { completion in
+//                    switch completion{
+//                    case .finished:
+//                        print("ChartViewController-fetchCommit : finished")
+//                    case .failure(let err):
+//                        print("ChartViewController-fetchCommit : \(err)")
+//                    }
+//                }, receiveValue: { commits in
+//                    let latestCommit = commits.last!
+//                    self.repositoryCommitCountDict[i.name] = latestCommit.total
+//                    if self.repositoryCommitCountDict.count >= 5{
+//                        DispatchQueue.main.async {
+//                            completion()
+//                        }
+//                    }
+//                })
+//                .store(in: &subscription)
+//        }
+//
+//    }
+}
 
-        for i in repositories{
-            languageDict["\(i.language)"] = 0
-        }
-        for i in repositories{
-            languageDict["\(i.language)"]! += 1
-        }
-        print("languageDict: \(languageDict)")
-    }
-    
+//MARK: -UI
+extension ChartViewController{
     func setNavigationTitle(){
         let attrs = [
             NSAttributedString.Key.foregroundColor: UIColor.black,
             NSAttributedString.Key.font: UIFont(name: "BM EULJIRO", size: 20)!
         ]
         UINavigationBar.appearance().titleTextAttributes = attrs
-    }
-    
-    
-    func getContributionSvgImage(name: String ,_ completion: @escaping (SVGImageView)->Void) {
-        Observable.just(name)
-            .map{"https://ghchart.rshah.org/\($0)"}
-            .map{URL(string: $0)}
-            .filter{$0 != nil}
-            .map{ $0!}
-            .observe(on: ConcurrentDispatchQueueScheduler(qos: .default))
-            .map{SVGImageView.init(contentsOf: $0)}
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { image in
-                image.frame = self.view.bounds
-                image.contentMode = .scaleAspectFit
-                completion(image)
-            })
-            .disposed(by: disposedBag)
-    }
-    //
-    func commitToDict(_ repositories: [Repository], completion: @escaping ()->Void){
-        guard let user = user else {return
-        }
-
-        for i in repositories{
-            GithubController.fetchCommit(user.name, i.name)
-                .sink(receiveCompletion: { completion in
-                    switch completion{
-                    case .finished:
-                        print("ChartViewController-fetchCommit : finished")
-                    case .failure(let err):
-                        print("ChartViewController-fetchCommit : \(err)")
-                    }
-                }, receiveValue: { commits in
-                    let latestCommit = commits.last!
-                    self.repoTotal[i.name] = latestCommit.total
-                    if self.repoTotal.count >= 5{
-                        DispatchQueue.main.async {
-                            completion()
-                        }
-                    }
-                })
-                .store(in: &subscription)
-        }
-        
     }
 }
 //MARK: -refresh
@@ -157,61 +159,27 @@ extension ChartViewController{
 
     
     @objc func updateUI(){
-        guard let repositories = self.repositories else {return}
-        guard let user = self.user else {return}
-        if NetworkMonitor.shared.isConnected{
-            if !repositoryNames.isEmpty{
-                repositoryNames.removeAll()
-                repositoryValues.removeAll()
-                repositoryChartView.clear()
-            }
-            if !language.isEmpty{
-                language.removeAll()
-                languageValue.removeAll()
-                languagePieChartView.clear()
-            }
-            //repoTotal딕셔너리에서 totalRepo가 많은순으로 내림차순 정렬
-            self.commitToDict(repositories){
-                self.repositorySetData()
-                self.setLineChartView()
-            }
-
-            languageSetData()
-            setPieChartView()
-
-            initRefresh()
-            print("subViewCounts : \(contributionStackView.arrangedSubviews.count)")
-//            if contributionStackView.arrangedSubviews.count < 2{
-//                getContributionSvgImageFile()
-//            }
-            getContributionSvgImage(name: user.name) { svgImage in
-                
-                if self.contributionStackView.arrangedSubviews.count >= 2{
-                    self.contributionStackView.removeArrangedSubview(svgImage)
-                }else {
-                    self.contributionStackView.addArrangedSubview(svgImage)
-                }
-            }
-            self.refresh.endRefreshing() //새로고침종료
-        }else{
-            moveDisConnected()
+        self.viewModel.setLanguageDict()
+        self.viewModel.repositoryCommitCountToDictionary()
+        if !repositoryNames.isEmpty{
+            repositoryNames.removeAll()
+            repositoryValues.removeAll()
+            repositoryChartView.clear()
         }
-    }
-    
-    func moveDisConnected(){
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let disConnectedVC = storyboard.instantiateViewController(withIdentifier: "DisConnectedViewController")
-        disConnectedVC.modalPresentationStyle = .fullScreen
-        disConnectedVC.modalTransitionStyle = .crossDissolve
-        self.present(disConnectedVC, animated: false, completion: nil)
+        if !language.isEmpty{
+            language.removeAll()
+            languageValue.removeAll()
+            languagePieChartView.clear()
+        }
+        self.setLineChartView()
+        self.repositorySetData()
+
+        languageSetData()
+        setPieChartView()
+        initRefresh()
+        self.refresh.endRefreshing() //새로고침종료
     }
 }
-
-//MARK: -AutoLayout
-extension ChartViewController {
-    
-}
-
 
 //MARK: -차트관련
 extension ChartViewController {
@@ -223,12 +191,12 @@ extension ChartViewController {
         var x: Double = 0
 
         for i in repositoryNames{
-            let repoTotal = self.repoTotal[i]!
+            let repoTotal = self.repositoryCommitCountDict[i]!
             repositoryValues.append(ChartDataEntry(x: x, y: Double(repoTotal)))
             x += 1.0 //xLabel에 이름이 안나왔던 원인임 차트는 1.0단위로해줘야함 ㅠㅠㅠㅠ
             //그동안 10으로해서 안나왔던것이다ㅠㅠㅠㅠㅠㅠㅠㅠㅠ
         }
-        print(repositoryValues)
+        
         let set1 = LineChartDataSet(entries: repositoryValues, label: "🙈레포지토리 커밋개수")
         set1.lineWidth = 5 //선의 굵기
         //그래프 바깥쪽 원 크기와 색상
@@ -240,9 +208,6 @@ extension ChartViewController {
         //        set1.mode = .cubicBezier //선 유연하게
         set1.setColor(UIColor(rgb: 0x65CD3C))//선의 색깔
         set1.highlightColor = .systemRed //누르면서 움직이면 빨간색나오게함
-        
-        
-        
         
         //누르고 쭉 당기면 노란줄생기는거 없어짐.
         set1.drawHorizontalHighlightIndicatorEnabled = false
@@ -280,11 +245,13 @@ extension ChartViewController {
     //꺽은선그래프 꾸미기
     func setLineChartView(){
 //        //repoTotal딕셔너리에서 totalRepo가 많은순으로 내림차순 정렬
-        var sorted = self.repoTotal.sorted { $0.value > $1.value}
+        var sorted = self.repositoryCommitCountDict.sorted { $0.value > $1.value}
+        
         //저장소이름은 오름차순 정렬 딱히 의미x
         sorted.sort{
             $0.key < $1.key
         }
+        
         if repositoryNames.isEmpty{
             if sorted.count > 4{
                 for i in 0...4{
@@ -296,8 +263,7 @@ extension ChartViewController {
                 }
             }
         }
-        
-        print("repositoryNames : \(repositoryNames)")
+
         repositoryChartView.backgroundColor = .white
         repositoryChartView.rightAxis.enabled = false
         
@@ -321,7 +287,6 @@ extension ChartViewController {
         //        yAxis.axisLineColor = .black //왼쪽 y축 눈금선의 색을 설정
         //        yAxis.valueFormatter = DefaultAxisValueFormatter(decimals: 0)
         
-        print("여기 : \(repositoryNames)")
         
         xAxis.valueFormatter = IndexAxisValueFormatter(values: repositoryNames)
         xAxis.setLabelCount(repositoryNames.count, force: true) //x축 레이블의 수를 설정
@@ -347,8 +312,6 @@ extension ChartViewController {
 
     //MARK: - 언어 원형그래프
     func languageSetData(){
-        setLanguageDict()
-        
         let sortedDict = languageDict.sorted(by: {$0.value > $1.value})
         
         for (key, value) in sortedDict{
@@ -422,7 +385,6 @@ extension ChartViewController {
 //        let sort = languageDict.sorted {
 //            $0.value > $1.value
 //        }
-        print("languageFirst : \(language.first!)")
         if let first = language.first {
             let partTwo = NSMutableAttributedString(string: "\(first)", attributes: languageAttributes)
             combination.append(partTwo)
