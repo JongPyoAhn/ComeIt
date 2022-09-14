@@ -458,16 +458,16 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4GC-GZ-ghH">
-                                        <rect key="frame" x="44.5" y="0.0" width="325" height="389.5"/>
+                                        <rect key="frame" x="43" y="0.0" width="328" height="396.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="applogo" translatesAutoresizingMaskIntoConstraints="NO" id="z5L-FW-5ec">
-                                                <rect key="frame" x="0.0" y="0.0" width="325" height="325.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="328" height="328.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="z5L-FW-5ec" secondAttribute="height" multiplier="1:1" id="DVY-Mp-cVP"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="원하는 시간대에 알림을 받고 하루에 한개의 커밋을 성공하세요!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="cFp-jj-gg4">
-                                                <rect key="frame" x="0.0" y="335.5" width="325" height="54"/>
+                                                <rect key="frame" x="0.0" y="338.5" width="328" height="58"/>
                                                 <fontDescription key="fontDescription" name="BMEULJIRO" family="BM EULJIRO" pointSize="30"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -475,7 +475,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="1OV-Tj-e8a">
-                                        <rect key="frame" x="74.5" y="439.5" width="265" height="378.5"/>
+                                        <rect key="frame" x="74.5" y="446.5" width="265" height="371.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="center" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hvk-7s-88m">
                                                 <rect key="frame" x="0.0" y="0.0" width="265" height="50"/>
@@ -493,7 +493,7 @@
                                                 </state>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5ml-jm-90x">
-                                                <rect key="frame" x="0.0" y="150" width="265" height="228.5"/>
+                                                <rect key="frame" x="0.0" y="150" width="265" height="221.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                         </subviews>

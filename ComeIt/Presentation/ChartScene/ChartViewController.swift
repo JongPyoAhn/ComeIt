@@ -12,18 +12,18 @@ import Kingfisher
 import PocketSVG
 import Charts
 import Moya
-//홈에서 fetchCommit한거를 GithubController에 가지고있다가 처음에 화면띄울떄 그거갖고와서 띄우고 리프레쉬할떄 다시 fetch하기.
+
 class ChartViewController: UIViewController, ChartViewDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contributionStackView: UIStackView!
     @IBOutlet weak var contributionView: UIView!
     @IBOutlet weak var repositoryChartView: LineChartView!
     @IBOutlet weak var languagePieChartView: PieChartView!
-    
     private let refresh = UIRefreshControl()
+    
     private var languageDict = [String: Int]()
-    private var language = [String]()
-    private var languageValue = [Int]()
+    private var chartLanguageNames = [String]()
+    private var chartLanguageValues = [Int]()
     private var repositoryCommitCountDict: [String:Int] = [:] //차트에서 사용
     private var repositories: [Repository]?
     private var repositoryNames: [String] = []//x축을 레파지토리 이름 받아오기
@@ -48,8 +48,13 @@ class ChartViewController: UIViewController, ChartViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
         bindUI()
+        configureUI()
+        updateUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         updateUI()
     }
     
@@ -100,39 +105,6 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         self.viewModel.setLanguageDict()
         self.viewModel.repositoryCommitCountToDictionary()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        updateUI()
-    }
-    
-//    func commitToDict(_ repositories: [Repository], completion: @escaping ()->Void){
-//        guard let user = user else {return
-//        }
-//
-//        for i in repositories{
-//            GithubController.fetchCommit(user.name, i.name)
-//                .sink(receiveCompletion: { completion in
-//                    switch completion{
-//                    case .finished:
-//                        print("ChartViewController-fetchCommit : finished")
-//                    case .failure(let err):
-//                        print("ChartViewController-fetchCommit : \(err)")
-//                    }
-//                }, receiveValue: { commits in
-//                    let latestCommit = commits.last!
-//                    self.repositoryCommitCountDict[i.name] = latestCommit.total
-//                    if self.repositoryCommitCountDict.count >= 5{
-//                        DispatchQueue.main.async {
-//                            completion()
-//                        }
-//                    }
-//                })
-//                .store(in: &subscription)
-//        }
-//
-//    }
 }
 
 //MARK: -UI
@@ -156,47 +128,41 @@ extension ChartViewController{
         //ScrollView에 UIRefreshControl 적용
         self.scrollView.refreshControl = refresh
     }
-
     
     @objc func updateUI(){
         self.viewModel.setLanguageDict()
         self.viewModel.repositoryCommitCountToDictionary()
+        
         if !repositoryNames.isEmpty{
             repositoryNames.removeAll()
             repositoryValues.removeAll()
             repositoryChartView.clear()
         }
-        if !language.isEmpty{
-            language.removeAll()
-            languageValue.removeAll()
+        if !chartLanguageNames.isEmpty{
+            chartLanguageNames.removeAll()
+            chartLanguageValues.removeAll()
             languagePieChartView.clear()
         }
+        
         self.setLineChartView()
         self.repositorySetData()
-
-        languageSetData()
-        setPieChartView()
-        initRefresh()
+        
+        self.languageSetData()
+        self.setPieChartView()
+        
+        self.initRefresh()
         self.refresh.endRefreshing() //새로고침종료
     }
 }
 
-//MARK: -차트관련
+//MARK: - 차트관련
 extension ChartViewController {
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         print(entry)
     }
-    //레포지토리 꺽은선 그래프
+    //MARK: - 레포지토리 꺽은선 그래프
     func repositorySetData(){
-        var x: Double = 0
-
-        for i in repositoryNames{
-            let repoTotal = self.repositoryCommitCountDict[i]!
-            repositoryValues.append(ChartDataEntry(x: x, y: Double(repoTotal)))
-            x += 1.0 //xLabel에 이름이 안나왔던 원인임 차트는 1.0단위로해줘야함 ㅠㅠㅠㅠ
-            //그동안 10으로해서 안나왔던것이다ㅠㅠㅠㅠㅠㅠㅠㅠㅠ
-        }
-        
+        self.repositoryValues = self.viewModel.getLineChartXLabel(self.repositoryNames)
         let set1 = LineChartDataSet(entries: repositoryValues, label: "🙈레포지토리 커밋개수")
         set1.lineWidth = 5 //선의 굵기
         //그래프 바깥쪽 원 크기와 색상
@@ -244,26 +210,10 @@ extension ChartViewController {
     
     //꺽은선그래프 꾸미기
     func setLineChartView(){
-//        //repoTotal딕셔너리에서 totalRepo가 많은순으로 내림차순 정렬
-        var sorted = self.repositoryCommitCountDict.sorted { $0.value > $1.value}
+        let repositoryCommitCountDictSorted = self.viewModel.sortAscendingDictKey(self.viewModel.sortDescendingDictValue(repositoryCommitCountDict))
         
-        //저장소이름은 오름차순 정렬 딱히 의미x
-        sorted.sort{
-            $0.key < $1.key
-        }
+        self.repositoryNames = self.viewModel.repositoryNamesSetting(repositoryCommitCountDictSorted)
         
-        if repositoryNames.isEmpty{
-            if sorted.count > 4{
-                for i in 0...4{
-                    self.repositoryNames.append(sorted[i].key)
-                }
-            }else {
-                for i in 0..<sorted.count{
-                    self.repositoryNames.append(sorted[i].key)
-                }
-            }
-        }
-
         repositoryChartView.backgroundColor = .white
         repositoryChartView.rightAxis.enabled = false
         
@@ -280,13 +230,7 @@ extension ChartViewController {
         let yAxis = repositoryChartView.leftAxis
         let xAxis = repositoryChartView.xAxis
         yAxis.setLabelCount(repositoryNames.count, force: true) //왼쪽 y축 눈금의 수를 설정
-        
         yAxis.enabled = false
-        //        yAxis.gridColor = .clear //격자 선 지우기
-        //        yAxis.labelTextColor = .black //왼쪽 y축 눈금의 색을 설정
-        //        yAxis.axisLineColor = .black //왼쪽 y축 눈금선의 색을 설정
-        //        yAxis.valueFormatter = DefaultAxisValueFormatter(decimals: 0)
-        
         
         xAxis.valueFormatter = IndexAxisValueFormatter(values: repositoryNames)
         xAxis.setLabelCount(repositoryNames.count, force: true) //x축 레이블의 수를 설정
@@ -302,39 +246,17 @@ extension ChartViewController {
         //        repositoryChartView.data?.setDrawValues(false)
         xAxis.labelTextColor = .black //x축 글자색깔
         xAxis.axisLineColor = .clear //x축 눈금선의 색을 설정
-        
-        
-        
         repositoryChartView.doubleTapToZoomEnabled = false
         repositoryChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)//애니메이션 설정
         
     }
-
+    
     //MARK: - 언어 원형그래프
     func languageSetData(){
-        let sortedDict = languageDict.sorted(by: {$0.value > $1.value})
+        let sortedDict = self.viewModel.sortDescendingDictValue(languageDict)
+        (self.chartLanguageNames, self.chartLanguageValues) = self.viewModel.filterLanguageChartData(sortedDict)
         
-        for (key, value) in sortedDict{
-            
-            if language.count > 4{
-                break
-            }
-            if key != "Null" && key != "없음"{
-                language.append(key)
-                languageValue.append(value)
-            }
-            
-        }
-        if language.isEmpty{
-            language.append("Null")
-            languageValue.append(1)
-        }
-        
-        var entries = [PieChartDataEntry]()
-        for (index, value) in languageValue.enumerated() {
-            let entry = PieChartDataEntry(value: Double(value), label: "\(language[index])", data: value)
-            entries.append(entry)
-        }
+        let entries = self.viewModel.getPieChartEntry(self.chartLanguageNames, self.chartLanguageValues)
         
         let set2 = PieChartDataSet(entries: entries)
         set2.sliceSpace = 2.0
@@ -366,26 +288,16 @@ extension ChartViewController {
         data.setDrawValues(true)
         languagePieChartView.data = data
         
-        
-        
     }
     
     func setPieChartView(){
-        //오른쪽아래에 설명적는코드
-        //        let d = Description()
-        //        d.text = ""
-        //        languagePieChartView.chartDescription = d
-        
         let normalFontAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "BM EULJIRO", size: 13)!]
         let languageAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemTeal, NSAttributedString.Key.font: UIFont(name: "BM EULJIRO", size: 13)!]
         let partOne = NSMutableAttributedString(string: "가장 많이 사용하신 언어는 ", attributes: normalFontAttributes)
         let combination = NSMutableAttributedString()
         combination.append(partOne)
-        
-//        let sort = languageDict.sorted {
-//            $0.value > $1.value
-//        }
-        if let first = language.first {
+
+        if let first = chartLanguageNames.first {
             let partTwo = NSMutableAttributedString(string: "\(first)", attributes: languageAttributes)
             combination.append(partTwo)
         }else {
@@ -422,6 +334,7 @@ extension ChartViewController {
         
     }
 }
+
 //HexColor Using
 extension UIColor {
     convenience init(red: Int, green: Int, blue: Int) {
