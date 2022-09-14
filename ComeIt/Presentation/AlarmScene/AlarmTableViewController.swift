@@ -9,6 +9,8 @@ import UIKit
 import UserNotifications
 import Combine
 
+import CombineCocoa
+
 class AlarmTableViewController: UITableViewController {
 
     private var subscription = Set<AnyCancellable>()
@@ -17,6 +19,7 @@ class AlarmTableViewController: UITableViewController {
     private var alerts: [Alert] = []
     private let userNotification = UNUserNotificationCenter.current()
     
+    @IBOutlet weak var addAlertButton: UIBarButtonItem!
     
     init?(viewModel: AlarmViewModel,coder: NSCoder) {
         self.viewModel = viewModel
@@ -26,7 +29,6 @@ class AlarmTableViewController: UITableViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,47 +45,43 @@ class AlarmTableViewController: UITableViewController {
         tableView.reloadData()
     }
 
-    @IBAction func addAlertAction(_ sender: Any) {
-        guard let addAlertVC = storyboard?.instantiateViewController(identifier: "AddAlertViewController") as? AddAlertViewController else {return}
-        addAlertVC.pickedDate = {[weak self] date in
-            guard let self = self else {return}
-            var newAlert = Alert(date: date, isOn: true)
-            if UserDefaults.standard.bool(forKey: "isCommit"){
-                newAlert.isOn = false
-            }
-            self.alerts.append(newAlert)
-            self.alerts.sort{$0.date < $1.date}
-            UserDefaults.standard.set(try? PropertyListEncoder().encode(self.alerts), forKey: "alerts")
-            
-            //오늘커밋데이터가져와서 커밋이 1이상이면 isCommit은 true 1 미만이면 isCommit은 false
-            if !UserDefaults.standard.bool(forKey: "isCommit"){
-                self.userNotification.addNotificaionRequest(by: newAlert)
-            }
-            self.tableView.reloadData()
-        }
-        self.present(addAlertVC, animated: true, completion: nil)
-    }
-    
-
-    
+}
+extension AlarmTableViewController: AddAlertViewControllerDelegate{
+    func addAlert(_ alert: Alert) {
+        self.alerts.append(alert)
+        self.alerts.sort{$0.date < $1.date}
+        self.viewModel.alertsUserDefaultSetting(self.alerts)
         
+        //오늘커밋데이터가져와서 커밋이 1이상이면 isCommit은 true 1 미만이면 isCommit은 false
+        if !UserDefaults.standard.bool(forKey: "isCommit"){
+            self.userNotification.addNotificaionRequest(by: alert)
+        }
+        self.tableView.reloadData()
+    }
+
 }
 
 extension AlarmTableViewController{
     func configureUI(){
         self.navigationController?.isNavigationBarHidden = true
-//        setNavigationTitle()
     }
     
-    
-    
     func bindUI(){
-        //alertList()
+        self.addAlertButton.tapPublisher
+            .receive(on: DispatchQueue.main)
+            .sink {[weak self] _ in
+                
+                self?.viewModel.addAlertButtonDidTapped()
+            }
+            .store(in: &subscription)
+        
         self.viewModel.alertsPublisher
             .sink { alerts in
                 self.alerts = alerts
             }
             .store(in: &subscription)
+        
+        self.viewModel.alertsUserDefaultLoad()
     }
     
     func setNavigationTitle(){
@@ -94,6 +92,7 @@ extension AlarmTableViewController{
         UINavigationBar.appearance().titleTextAttributes = attrs
     }
 }
+
 
 // MARK: - 테이블뷰 딜리게이트, 데이터소스
 extension AlarmTableViewController {
@@ -127,7 +126,7 @@ extension AlarmTableViewController {
         case .delete:
             userNotification.removePendingNotificationRequests(withIdentifiers: [alerts[indexPath.row].id])
             alerts.remove(at: indexPath.row)
-            UserDefaults.standard.set(try? PropertyListEncoder().encode(self.alerts), forKey: "alerts")
+            self.viewModel.alertsUserDefaultSetting(self.alerts)
             DispatchQueue.main.async {
                 tableView.reloadData()
             }

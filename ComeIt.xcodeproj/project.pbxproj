@@ -33,7 +33,6 @@
 		5388875328CD957200D35982 /* AlarmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5388875228CD957200D35982 /* AlarmViewModel.swift */; };
 		5388875528CD957E00D35982 /* AlarmViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5388875428CD957E00D35982 /* AlarmViewCoordinator.swift */; };
 		5388875828CD975F00D35982 /* AddAlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5388875728CD975F00D35982 /* AddAlertViewModel.swift */; };
-		5388875A28CD976A00D35982 /* AddAlertViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5388875928CD976A00D35982 /* AddAlertViewCoordinator.swift */; };
 		538BB95328AB58F4008B9C74 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538BB95228AB58F4008B9C74 /* LoginViewModel.swift */; };
 		539D41252714789500ED3606 /* AlarmTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539D41242714789500ED3606 /* AlarmTableViewController.swift */; };
 		539D4128271478A500ED3606 /* AlarmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539D4126271478A500ED3606 /* AlarmTableViewCell.swift */; };
@@ -93,7 +92,6 @@
 		5388875228CD957200D35982 /* AlarmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewModel.swift; sourceTree = "<group>"; };
 		5388875428CD957E00D35982 /* AlarmViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewCoordinator.swift; sourceTree = "<group>"; };
 		5388875728CD975F00D35982 /* AddAlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlertViewModel.swift; sourceTree = "<group>"; };
-		5388875928CD976A00D35982 /* AddAlertViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlertViewCoordinator.swift; sourceTree = "<group>"; };
 		538BB95228AB58F4008B9C74 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		539D41242714789500ED3606 /* AlarmTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTableViewController.swift; sourceTree = "<group>"; };
 		539D4126271478A500ED3606 /* AlarmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTableViewCell.swift; sourceTree = "<group>"; };
@@ -231,7 +229,6 @@
 			children = (
 				5312A8B72715B65A0045F4B3 /* AddAlertViewController.swift */,
 				5388875728CD975F00D35982 /* AddAlertViewModel.swift */,
-				5388875928CD976A00D35982 /* AddAlertViewCoordinator.swift */,
 			);
 			path = AddAlertScene;
 			sourceTree = "<group>";
@@ -563,7 +560,6 @@
 				5388875328CD957200D35982 /* AlarmViewModel.swift in Sources */,
 				53D059AC28B87C4D00019295 /* ChartViewModel.swift in Sources */,
 				533B7B13271D0C98002A1359 /* UNNotificationCenter.swift in Sources */,
-				5388875A28CD976A00D35982 /* AddAlertViewCoordinator.swift in Sources */,
 				53D059A828B8770400019295 /* ChartViewCoordinator.swift in Sources */,
 				539D41252714789500ED3606 /* AlarmTableViewController.swift in Sources */,
 				535D92C128AE102A0043915E /* LoadingViewCoordinator.swift in Sources */,

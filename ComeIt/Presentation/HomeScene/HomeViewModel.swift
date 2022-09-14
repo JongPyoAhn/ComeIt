@@ -27,6 +27,7 @@ final class HomeViewModel{
     var defaultSelectedRepositoryNameRequested = PassthroughSubject<String, Never>()
     var defaultIndexOfSelectedRepositoryRequested = PassthroughSubject<Int, Never>()
     var commitLastRequested = PassthroughSubject<Commit, Never>()
+    var fetchCommitErrorRequest = PassthroughSubject<Void, Never>()
     
     @Published var user: User
     @Published var repositories: [Repository]
@@ -81,17 +82,17 @@ final class HomeViewModel{
     func commitTextChange(_ row: Int){
         GithubController.fetchCommit(user.name, repositories[row].name)
             .receive(on: DispatchQueue.main)
-            .sink { completion in
+            .sink {[weak self] completion in
                 switch completion{
                 case .finished:
                     print("HomeViewController - fetchCommit : Finished")
                 case .failure(let err):
                     print("HomeViewController - fetchCommit : \(err)")
+                    self?.fetchCommitErrorRequest.send()
                 }
             } receiveValue: {[weak self] commits in
                 guard let self = self else {return}
                 self.getCommitLast(commits)//to -> commitLastRequested
-                
             }
             .store(in: &subscription)
     }

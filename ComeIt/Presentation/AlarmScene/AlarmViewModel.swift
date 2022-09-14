@@ -15,14 +15,16 @@ class AlarmViewModel{
     
     @Published var alerts: [Alert] = []
     
-//    var alertsRequested = PassthroughSubject<[Alert], Never>()
-    var addAlertSceneRequested = PassthroughSubject<Void ,Never>()
+    var addAlertPageRequested = PassthroughSubject<Void ,Never>()
     
-    func alertList(){
+    func addAlertButtonDidTapped(){
+        self.addAlertPageRequested.send()
+    }
+    
+    func alertsUserDefaultLoad(){
         guard let data = UserDefaults.standard.value(forKey: "alerts") as? Data,
               let alerts = try? PropertyListDecoder().decode([Alert].self, from: data) else {return}
         self.alerts = alerts
-//        self.alertsRequested.send(alerts)
     }
     
     func alertsOnOffSetting(){
@@ -38,4 +40,6 @@ class AlarmViewModel{
     func alertsUserDefaultSetting(_ alerts: [Alert]){
         UserDefaults.standard.set(try? PropertyListEncoder().encode(alerts), forKey:  "alerts")
     }
+    
+    
 }

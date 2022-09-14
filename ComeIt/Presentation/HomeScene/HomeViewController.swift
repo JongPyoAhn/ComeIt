@@ -183,9 +183,17 @@ extension HomeViewController{
                     UserDefaults.standard.set(false, forKey: "isCommit")
                     self.commentLabel.text = "🥺오늘은 안하실건가요?🥺"
                 }else if commitLast.total == 0{
+                    UserDefaults.standard.set(false, forKey: "isCommit")
                     self.commitCountLabel.text = "없음"
                     self.commentLabel.text = "😔이번주에 커밋하신적이 없습니다😔"
                 }
+            }
+            .store(in: &subscription)
+        viewModel.fetchCommitErrorRequest
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+                self.commitCountLabel.text = "표시불가"
+                self.commentLabel.text = "다시 시도해주세요."
             }
             .store(in: &subscription)
     }

@@ -6,24 +6,69 @@
 //
 
 import UIKit
+import Combine
+
+import CombineCocoa
+
+protocol AddAlertViewControllerDelegate: AnyObject{
+    func addAlert(_ alert: Alert)
+}
 
 class AddAlertViewController: UIViewController {
-
-    var pickedDate: ((_ date: Date) -> Void)? //일단 함수형인데, 받자마자 리턴하는느낌?
+    private var subscription = Set<AnyCancellable>()
+    var viewModel: AddAlertViewModel
+    private weak var delegate: AddAlertViewControllerDelegate?
     
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var cancelButton: UIButton!
+    
+    @IBOutlet weak var saveButton: UIButton!
+    
+    init?(viewModel: AddAlertViewModel,delegate: AddAlertViewControllerDelegate?,coder: NSCoder) {
+        self.viewModel = viewModel
+        self.delegate = delegate
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        bindUI()
     }
     
-    @IBAction func cancelButtonTabbed(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+    func bindUI(){
+        self.viewModel.saveButtonDidTappedRequested
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+                self.dismiss(animated: true)
+            }
+            .store(in: &subscription)
+        
+        self.viewModel.cancelButtonDidTappedRequested
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+                self.dismiss(animated: true)
+            }
+            .store(in: &subscription)
+        
+        self.cancelButton.tapPublisher
+            .sink {[weak self] _ in
+                self?.viewModel.cancelButtonDidTapped()
+            }
+            .store(in: &subscription)
+        
+        self.saveButton.tapPublisher
+            .receive(on: DispatchQueue.main)
+            .sink {[weak self] _ in
+                guard let self = self else{return}
+                let alert = self.viewModel.makeNewAlert(self.datePicker.date)
+                self.delegate?.addAlert(alert)
+                self.viewModel.saveButtionDidTapped()
+            }
+            .store(in: &subscription)
     }
-    
-    @IBAction func saveButtonTabbed(_ sender: Any) {
-        pickedDate?(datePicker.date)
-        self.dismiss(animated: true, completion: nil)
-    }
+        
 }

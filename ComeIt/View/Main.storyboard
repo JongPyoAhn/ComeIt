@@ -268,15 +268,23 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="알림추가" id="pzd-JV-w8F">
-                                        <barButtonItem key="leftBarButtonItem" title="취소" id="5KS-IO-De1">
-                                            <connections>
-                                                <action selector="cancelButtonTabbed:" destination="V6r-dn-7DZ" id="ttt-R9-oGI"/>
-                                            </connections>
+                                        <barButtonItem key="leftBarButtonItem" title="Item" style="plain" id="uEO-e8-WVf">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="9To-nf-5ze">
+                                                <rect key="frame" x="20" y="4.5" width="92" height="35"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="BMEULJIRO" family="BM EULJIRO" pointSize="20"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="취소"/>
+                                            </button>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="저장" id="Y2A-IB-22z">
-                                            <connections>
-                                                <action selector="saveButtonTabbed:" destination="V6r-dn-7DZ" id="olA-lK-kjd"/>
-                                            </connections>
+                                        <barButtonItem key="rightBarButtonItem" title="Item" style="plain" id="Lli-BE-cG7">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="cWN-aO-6rn">
+                                                <rect key="frame" x="302" y="4" width="92" height="36"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="BMEULJIRO" family="BM EULJIRO" pointSize="20"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="저장"/>
+                                            </button>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -310,7 +318,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="9To-nf-5ze" id="KGi-Z4-VhQ"/>
                         <outlet property="datePicker" destination="AVD-hJ-jH3" id="DpW-z4-dpf"/>
+                        <outlet property="saveButton" destination="cWN-aO-6rn" id="GIg-2W-i0r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XBX-Yw-MPv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -448,16 +458,16 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4GC-GZ-ghH">
-                                        <rect key="frame" x="40.5" y="0.0" width="333" height="402.5"/>
+                                        <rect key="frame" x="44.5" y="0.0" width="325" height="389.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="applogo" translatesAutoresizingMaskIntoConstraints="NO" id="z5L-FW-5ec">
-                                                <rect key="frame" x="0.0" y="0.0" width="333" height="333"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="325" height="325.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="z5L-FW-5ec" secondAttribute="height" multiplier="1:1" id="DVY-Mp-cVP"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="원하는 시간대에 알림을 받고 하루에 한개의 커밋을 성공하세요!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="cFp-jj-gg4">
-                                                <rect key="frame" x="0.0" y="343" width="333" height="59.5"/>
+                                                <rect key="frame" x="0.0" y="335.5" width="325" height="54"/>
                                                 <fontDescription key="fontDescription" name="BMEULJIRO" family="BM EULJIRO" pointSize="30"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -465,7 +475,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="1OV-Tj-e8a">
-                                        <rect key="frame" x="74.5" y="452.5" width="265" height="365.5"/>
+                                        <rect key="frame" x="74.5" y="439.5" width="265" height="378.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="center" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hvk-7s-88m">
                                                 <rect key="frame" x="0.0" y="0.0" width="265" height="50"/>
@@ -483,7 +493,7 @@
                                                 </state>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5ml-jm-90x">
-                                                <rect key="frame" x="0.0" y="150" width="265" height="215.5"/>
+                                                <rect key="frame" x="0.0" y="150" width="265" height="228.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                         </subviews>
@@ -690,9 +700,6 @@
                                 <navigationItem title="푸시알림" id="qmz-YF-9Zr">
                                     <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="t6S-Wx-eD8">
                                         <color key="tintColor" red="0.0048598507420000003" green="0.096086271109999996" blue="0.57499289509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <connections>
-                                            <action selector="addAlertAction:" destination="3pf-6i-c8H" id="MBm-3T-kSJ"/>
-                                        </connections>
                                     </barButtonItem>
                                 </navigationItem>
                             </items>
@@ -713,6 +720,9 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="푸시알림" image="alarm.fill" catalog="system" id="Nb6-aD-ebF"/>
+                    <connections>
+                        <outlet property="addAlertButton" destination="t6S-Wx-eD8" id="NbH-gk-LoQ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vm8-vc-LzY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

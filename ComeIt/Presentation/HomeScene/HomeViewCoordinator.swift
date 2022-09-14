@@ -33,6 +33,7 @@ class HomeViewCoordinator: Coordinator{
             HomeViewController(viewModel: viewModel, coder: coder)
         }
         navigationController.setViewControllers([viewController], animated: false)
+        self.navigationController = navigationController
         return navigationController
     }
     
