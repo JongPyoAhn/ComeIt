@@ -181,7 +181,8 @@ extension ChartViewController {
         
         //그래프밑에 색 채우는거
         let gradient = getGradientFilling()
-        set1.fill = Fill.fillWithLinearGradient(gradient, angle: 90.0)
+        set1.fill = LinearGradientFill(gradient: gradient, angle: 90.0)
+//        set1.fill = Fill.fillWithLinearGradient(gradient, angle: 90.0)
         set1.drawFilledEnabled = true
         set1.valueFormatter = DefaultValueFormatter(decimals: 0)//꼭지점에서 소수점없애기
         set1.valueFont = UIFont.boldSystemFont(ofSize: 10)

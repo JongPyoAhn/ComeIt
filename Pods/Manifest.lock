@@ -1,8 +1,9 @@
 PODS:
   - Alamofire (5.5.0)
-  - Charts (3.6.0):
-    - Charts/Core (= 3.6.0)
-  - Charts/Core (3.6.0)
+  - Charts (4.1.0):
+    - Charts/Core (= 4.1.0)
+  - Charts/Core (4.1.0):
+    - SwiftAlgorithms (~> 1.0)
   - CombineCocoa (0.4.0)
   - Firebase/Analytics (8.8.0):
     - Firebase/Core
@@ -115,11 +116,12 @@ PODS:
   - RxRelay (6.2.0):
     - RxSwift (= 6.2.0)
   - RxSwift (6.2.0)
+  - SwiftAlgorithms (1.0.0)
   - SwiftSVG (2.3.2)
 
 DEPENDENCIES:
   - Alamofire (~> 5.5)
-  - Charts
+  - Charts (~> 4.1.0)
   - CombineCocoa
   - Firebase/Analytics
   - Firebase/Auth
@@ -157,11 +159,12 @@ SPEC REPOS:
     - RxCocoa
     - RxRelay
     - RxSwift
+    - SwiftAlgorithms
     - SwiftSVG
 
 SPEC CHECKSUMS:
   Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
-  Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
+  Charts: 354f86803d11d9c35de280587fef50d1af063978
   CombineCocoa: 68a050228ce7c53c1c5ac2c57cccf92a7f5c5085
   Firebase: 629510f1a9ddb235f3a7c5c8ceb23ba887f0f814
   FirebaseAnalytics: 5506ea8b867d8423485a84b4cd612d279f7b0b8a
@@ -183,8 +186,9 @@ SPEC CHECKSUMS:
   RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
   RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
   RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
+  SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
   SwiftSVG: ca7f64e403b8ea7ea8eba8c823b83ba4a059834c
 
-PODFILE CHECKSUM: f4430f5fb1e23599d532e9d485dfa8c16f32b9b7
+PODFILE CHECKSUM: 63f3625f4ccd406aad320769a1e66c5cb40ccf47
 
 COCOAPODS: 1.11.2

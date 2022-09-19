@@ -6,7 +6,7 @@ target 'ComeIt' do
   use_frameworks!
 pod 'Kingfisher', '~> 7.0'
 pod 'SwiftSVG', '~> 2.0'
-pod 'Charts'
+pod 'Charts', '~> 4.1.0'
 pod 'Firebase/Analytics'
 pod 'Firebase/Auth'
 pod 'RxSwift' , '6.2.0'
