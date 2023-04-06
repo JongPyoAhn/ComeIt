@@ -32,7 +32,7 @@
     
     ii. `GitHub API`: API 통신 및 `OAuth 2.0`
     
-    iii. `RxSwift`: `기여 이미지(Contribution)` 를 불러올 때 비동기 처리 하였습니다.
+    iii. `Combine`: `기여 이미지(Contribution)` 를 불러올 때 비동기 처리 하였습니다.
     
     iv. `UserNotifications`: 푸시알림 처리를 위해 사용했습니다.
     
